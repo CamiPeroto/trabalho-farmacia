@@ -11,7 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+            Schema::create('clients', function (Blueprint $table) {
+            $table->id(); //PK para sales
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('cpf');
+            $table->string('phone_number');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -19,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+          Schema::dropIfExists('clients');
     }
 };

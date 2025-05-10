@@ -11,7 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+            Schema::create('medicines', function (Blueprint $table) {
+            $table->id(); //PK para estoque
+            //FK de active_ingredients aqui
+            $table->string('fantasy_name');
+            $table->string('type'); //'genérico','Referência', 'Similar'
+            $table->string('form'); //"comprimido", "xarope", "solução injetável"
+            $table->string('dosage'); //"500mg", "20mg/ml"
+            $table->string('maker'); //"EMS", "Medley", "Bayer"
+            $table->text('description');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -19,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('medicines');
     }
 };

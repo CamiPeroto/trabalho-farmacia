@@ -11,7 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+           Schema::create('active_ingredients', function (Blueprint $table) {
+            $table->id(); //PK , será usado em medicines
+            $table->string('name');
+            $table->text('description');
+            $table->timestamps();
+        });
+       
     }
 
     /**
@@ -19,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+         Schema::dropIfExists('active_ingredients');
     }
 };
