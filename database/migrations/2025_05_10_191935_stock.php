@@ -18,7 +18,6 @@ return new class extends Migration
             $table->decimal('unitary_price', 10, 2);
             $table->date('expiration_date'); //data de validade
             $table->date('entry_date'); //quando foi adicionado ao estoque
-            $table->text('description');
             $table->timestamps();
         });
     }
