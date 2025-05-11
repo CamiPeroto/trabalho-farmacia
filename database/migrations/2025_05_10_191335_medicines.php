@@ -13,7 +13,7 @@ return new class extends Migration
     {
             Schema::create('medicines', function (Blueprint $table) {
             $table->id(); //PK para estoque
-            //FK de active_ingredients aqui
+            $table->foreignId('active_ingredient_id')->constrained('active_ingredients');//Fk de principio ativo
             $table->string('fantasy_name');
             $table->string('type'); //'genérico','Referência', 'Similar'
             $table->string('form'); //"comprimido", "xarope", "solução injetável"

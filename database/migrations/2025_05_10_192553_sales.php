@@ -13,7 +13,7 @@ return new class extends Migration
     {
           Schema::create('sales', function (Blueprint $table) {
             $table->id(); //PK para itens-sale
-            //FK de clients aqui
+            $table->foreignId('client_id')->constrained('clients'); //FK de clients
             $table->date('sale'); //data da venda
             $table->text('description');
             $table->decimal('total_value'); //valor total
