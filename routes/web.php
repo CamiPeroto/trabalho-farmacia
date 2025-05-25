@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActiveIngredientController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -23,3 +24,6 @@ Route::get('/', function () {
 // ->name('password.reset');
 // Route::post('/reset-password', [ForgotPasswordController::class, 'submitResetPassword'])
 // ->name('reset-password.submit');
+
+//Priincípio Ativo
+Route::get('/active-ingredient', [ActiveIngredientController::class, 'index'])->name('active-ingredient.index');
