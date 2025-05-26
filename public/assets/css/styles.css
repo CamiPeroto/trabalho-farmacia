@@ -93,6 +93,7 @@ body {
 .input-bg{
     background-color: #edeeee;
 }
+/* Inicio da pagina Cadastrar Remedios */
 
 /* Botões */
 #cancel-button{
@@ -105,3 +106,29 @@ body {
     border-color: #D94F04 !important;
     color: #FFFFFF !important;
 }
+/* Fim Botões */
+/* Inicio da pagina Fornecedores */
+.col-3 .card{
+    background: #ebeff5;
+    display:flex;
+    align-items:center;
+    height:50vh;
+}
+.col-3 .card img{
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+.search-sm {
+    width: 15vw !important;
+    height: 6vh !important;
+    border-radius: 25px;
+    border: none;
+    color: var(--black);
+    background-color: var(--transparent-green);
+}
+.search-sm:focus {
+    background-color: var(--transparent-green);
+    outline: none;
+}
+/* Fim da pagina Fornecedores */
