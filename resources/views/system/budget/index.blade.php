@@ -16,7 +16,7 @@
         </div>
         <div class="container d-flex">
             <div class="col-3">
-                <div class="card" style="width: 21rem;">
+                <div class="card shadow" style="width: 21rem;">
                     <div class="card-body">
                         <h5 class="card-title">Card title</h5>
                     </div>
@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="col-3">
-                <div class="card" style="width: 21rem;">
+                <div class="card shadow" style="width: 21rem;">
                     <div class="card-body">
                         <h5 class="card-title">Card title</h5>
                     </div>
@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div class="col-3">
-                <div class="card" style="width: 21rem;">
+                <div class="card shadow" style="width: 21rem;">
                     <div class="card-body">
                         <h5 class="card-title">Card title</h5>
                     </div>
@@ -61,7 +61,7 @@
                 </div>
             </div>
             <div class="col-3">
-                <div class="card" style="width: 21rem;">
+                <div class="card shadow" style="width: 21rem;">
                     <div class="card-body">
                         <h5 class="card-title">Card title</h5>
                     </div>
