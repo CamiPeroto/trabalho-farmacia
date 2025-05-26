@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Farmácia Barateira</title>
-    @vite('resources/css/app.css')
     <link href="{{ url('assets/img/favicon.png') }}" rel="icon" />
     <link href="{{ url('assets/img/favicon.png') }}" rel="apple-touch-icon" />
 
