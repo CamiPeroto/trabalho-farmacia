@@ -2,8 +2,8 @@
 
 
 @section('content')
-    <div class="container container-padding">
-        <h3 class="row">Princípio Ativo</h3>
+    <div class="container">
+        <h3>Princípio Ativo</h3>
         <div class="row">
             <div class="col-12">
                 <table class="table custom-table shadow">

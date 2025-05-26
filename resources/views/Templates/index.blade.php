@@ -71,22 +71,18 @@
     </nav>
 
 
-    <div class="main-panel">
 
-        <main>
-            @yield('content')
-        </main>
+    @yield('content')
 
-        <footer class="footer">
-            <div class="container-fluid d-flex justify-content-center">
-                <nav class="pull-left">
-                    <div class="copyright">
-                        Site criado por Rafael © 2024. Todos os direitos reservados.
-                    </div>
-                </nav>
-            </div>
-        </footer>
-    </div>
+    <footer class="footer">
+        <div class="container-fluid d-flex justify-content-center">
+            <nav class="pull-left">
+                <div class="copyright">
+                    Site criado por Rafael © 2024. Todos os direitos reservados.
+                </div>
+            </nav>
+        </div>
+    </footer>
 
     <script src="{{ asset('assets/dist/js/jquery.js') }}"></script>
     <script src="{{ asset('assets/dist/js/jquery_mask.js') }}"></script>
