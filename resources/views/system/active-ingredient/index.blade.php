@@ -2,28 +2,41 @@
 
 
 @section('content')
-    <h3 class="text-red-900">Princípio Ativo</h3>
-    <table class="table">
-        <thead>
-            <tr class="table-row-header">
-                <th class="table-header">ID</th>
-                <th class="table-header">Nome</th>
-                <th class="table-header hidden lg:table-cell">Descrição</th>
+    <div class="container container-padding">
+        <h3 class="row">Princípio Ativo</h3>
+        <div class="row">
+            <div class="col-12">
 
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="table-row-body">
-                <td class="table-body">1</td>
-                <td class="table-body">Dipirona</td>
-                <td class="table-body hidden lg:table-cell">Antitérmico e Analgésico</td>
-            </tr>
-            <tr class="table-row-body">
-                <td class="table-body">2</td>
-                <td class="table-body">Dipirona</td>
-                <td class="table-body hidden lg:table-cell">Antitérmico e Analgésico</td>
-            </tr>
+                <table class="table custom-table mx-auto">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Descrição</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>John</td>
+                            <td>Doe</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="line">
 
-        </tbody>
-    </table>
+    </div>
 @endsection
