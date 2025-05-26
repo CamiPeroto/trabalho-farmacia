@@ -6,8 +6,7 @@
         <h3 class="row">Princípio Ativo</h3>
         <div class="row">
             <div class="col-12">
-
-                <table class="table custom-table mx-auto">
+                <table class="table custom-table shadow">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
@@ -36,7 +35,5 @@
             </div>
         </div>
     </div>
-    <div class="line">
-
-    </div>
+    <div class="line mt-5"></div>
 @endsection

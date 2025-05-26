@@ -44,8 +44,8 @@
 
             <div class="collapse navbar-collapse justify-content-between align-items-center" id="navbarContent">
 
-                <form class="d-flex flex-grow-1 justify-content-center mx-3" role="search" action="{{ url('/search') }}"
-                    method="GET">
+                <form class="d-flex flex-grow-1 justify-content-center mx-3" role="search"
+                    action="{{ url('/search') }}" method="GET">
                     <input class="form-control nav-search me-2 w-75" type="search" placeholder="O que deseja?"
                         aria-label="Buscar" name="q">
                 </form>
@@ -73,19 +73,19 @@
 
     <div class="main-panel">
 
-        <div class="container">
+        <main>
             @yield('content')
-        </div>
+        </main>
 
-         <footer class="footer">
-        <div class="container-fluid d-flex justify-content-center">
-            <nav class="pull-left">
-                <div class="copyright">
-                    Site criado por Rafael © 2024. Todos os direitos reservados.
-                </div>
-            </nav>
-        </div>
-    </footer>
+        <footer class="footer">
+            <div class="container-fluid d-flex justify-content-center">
+                <nav class="pull-left">
+                    <div class="copyright">
+                        Site criado por Rafael © 2024. Todos os direitos reservados.
+                    </div>
+                </nav>
+            </div>
+        </footer>
     </div>
 
     <script src="{{ asset('assets/dist/js/jquery.js') }}"></script>

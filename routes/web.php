@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\ActiveIngredientController;
+use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MedicineController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -25,5 +27,9 @@ Route::get('/', function () {
 // Route::post('/reset-password', [ForgotPasswordController::class, 'submitResetPassword'])
 // ->name('reset-password.submit');
 
-//Priincípio Ativo
+//Princípio Ativo
 Route::get('/active-ingredient', [ActiveIngredientController::class, 'index'])->name('active-ingredient.index');
+//Remédios
+Route::get('/medicines', [MedicineController::class, 'index'])->name('medicine.index');
+//Orçamentos
+Route::get('/budget', [BudgetController::class, 'index'])->name('budget.index');

@@ -15,7 +15,7 @@ body {
     --black: #000000;
     --white: #FFFFFF;
     --gray: #cad2d3;
-    --gray-blue: rgba(2, 82, 89, 0.05);
+    --bg-primary-color: rgba(2, 82, 89, 0.05);
 }
 
 
@@ -61,9 +61,10 @@ body {
 }
 /* Inicio da Tabela Principio Ativo */
 .custom-table {
-    --bs-table-bg: var(--gray-blue);
-    background-color: var(--gray-blue) !important;
+    --bs-table-bg: var(--bg-primary-color);
+    background-color: var(--bg-primary-color) !important;
     border-collapse: collapse;
+       margin: 0 auto; /* centraliza horizontalmente */
 }
 .custom-table tr {
     border-color: var(--gray);
@@ -79,4 +80,28 @@ body {
 }
 .container-padding{
     padding: 0 !important; 
+}
+/* Fim da Tabela Principio Ativo */
+/* Inicio da pagina Cadastrar Remedios */
+#card-medicine{
+     background-color: var(--bg-primary-color) !important;
+     height: 60vh;
+}
+#card-medicine ul li{
+     background-color: var(--bg-primary-color) !important;
+}
+.input-bg{
+    background-color: #edeeee;
+}
+
+/* Botões */
+#cancel-button{
+    background: var(--white) !important;
+    border-color: #D94F04 !important;
+    color: #D94F04 !important;
+}
+#save-button{
+    background: #D94F04 !important;
+    border-color: #D94F04 !important;
+    color: #FFFFFF !important;
 }
