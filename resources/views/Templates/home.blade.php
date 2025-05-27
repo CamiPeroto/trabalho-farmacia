@@ -19,6 +19,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11.2.8/swiper-bundle.min.css">
 
     <link rel="stylesheet" href="{{ url('assets/vendor/ckeditor5.css') }}">
 
@@ -54,7 +55,7 @@
                     <div class="nav-btn me-4">
                         <div class="d-flex justify-content-center align-items-center">
                             <i class="fi fi-rr-user p-2 fw-2"></i>
-                            <a href="{{ url('/login') }}" class="link-nav-button text-decoration-none">
+                            <a href="{{ url('/login') }}" class="link-nav-button">
                                 <span class="fw-bold ">Bem-vindo!</span>
                                 <span class="small ">Entrar ou cadastrar</span>
                             </a>
@@ -70,18 +71,70 @@
         </div>
     </nav>
 
-
-
     @yield('content')
 
-    <footer class="footer">
-        <div class="container-fluid justify-content-center">
-            <nav class="pull-left">
-                <div class="copyright d-flex align-items-center">
-                    <i class="fi fi-rr-headphones fs-3 me-3"></i>
-                    Problemas ? Fale com nosso suporte: 0800 1234 123
+    <footer>
+        <div class="bg-footer text-dark py-3">
+            <div class="container d-flex align-items-center">
+                <i class="fi fi-rr-headphones fs-3 me-3"></i>
+                <span>Problemas? Fale com nosso suporte: 0800 1234 123</span>
+            </div>
+        </div>
+
+        <div class="container py-4">
+            <div class="row text-center text-md-start">
+                <div class="col-md-3 col-6 mb-3">
+                    <h5 class="bold">Institucional</h5>
+                    <a href="#" class="text-decoration-none footer-button">
+                        <p>Sobre</p>
+                    </a>
+                    <a href="#" class="text-decoration-none footer-button">
+                        <p>Nossas lojas</p>
+                    </a>
+                    <a href="#" class="text-decoration-none footer-button">
+                        <p>Trabalhe conosco</p>
+                    </a>
+                    <a href="#" class="text-decoration-none footer-button">
+                        <p>Fale conosco</p>
+                    </a>
                 </div>
-            </nav>
+                <div class="col-md-3 col-6 mb-3">
+                    <h5>Atendimento</h5>
+                    <p class="text-orange"> (42) 4004-4041 </p>
+                    <p class="mb-1">
+                        Seg a Sáb - 8h00 às 23h00
+                    </p>
+                    <p>
+                        Dom e feriados - 8h00 às 22h00
+                    </p>
+                </div>
+                <div class="col-md-3 col-6 mb-3">
+                    <h5>Suporte </h5>
+                    <a href="#" class="text-decoration-none footer-button">
+                        <p>Prazo de entrega</p>
+                    </a>
+                    <a href="#" class="text-decoration-none footer-button">
+                        <p>Reembolso</p>
+                    </a>
+                    <a href="#" class="text-decoration-none footer-button">
+                        <p>Troca e devolução</p>
+                    </a>
+                </div>
+                <div class="col-md-3 col-6 mb-3">
+                    <img src="{{ asset('assets/img/anvisa.png') }}" alt="" class="img-footer">
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-light py-2">
+            <div class="container text-center">
+                <small class="text-muted">© {{ date('Y') }} Copyright ©️ 2025 Fármacias Barateira - Todos os
+                    direitos reservados. RAZÃO SOCIAL | FÁRMACIAS E DROGARIAS BARATEIRA |CNPJ: 12.123.123/1234-12 | End:
+                    Av. Marechal Floriano Peixoto nº 999 - Hauer - Ponta Grossa - PR| CEP:84123-000 Farmacêutico
+                    Responsável: Conrado Maximiano Cruz, CRF/PR Nº 123456 OBS: "Preços exclusivos para produtos
+                    comercializados na Loja Virtual da Fármacias Barateira." Encarregado pelo tratamento de dados
+                    pessoais (DPO) | Camila Peroto | E-mail: dpo.lgpd@abarateira.com.br.</small>
+            </div>
         </div>
     </footer>
 
@@ -93,6 +146,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <script src="  https://cdn.jsdelivr.net/npm/swiper@11.2.8/swiper-bundle.min.js "></script>
 
     <script src="{{ asset('assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugin/chart.js/chart.min.js') }}"></script>

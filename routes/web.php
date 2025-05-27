@@ -8,7 +8,7 @@ use App\Http\Controllers\MedicineController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('signin.home.index');
+    return view('ecommerce.home.index');
 });
 
 //Login
