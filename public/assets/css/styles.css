@@ -54,6 +54,25 @@ body {
     text-decoration: none;
 }
 
+.nav-btn-card {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 120px;
+    height: 50px;
+    border-radius: 15px;
+    color: var(--black) !important;
+    background-color: var(--transparent-green);
+    text-decoration: none;
+}
+
+.nav-btn-card:hover {
+    background-color: var(--transparent-green-focus);
+    color: var(--white) !important;
+    text-decoration: none;
+}
+
 .link-nav-button {
     display: flex;
     flex-direction: column;
@@ -64,7 +83,7 @@ body {
 }
 
 .link-nav-button:hover {
-    color: #FFFFFF;
+    color: var(--white);
 }
 
 .bg-footer {
@@ -88,6 +107,41 @@ body {
     height: 50%;
 }
 
+/* Inicio do Login */
+
+.btn-login {
+    background-color: orange;
+    border: none;
+    border-radius: 25px;
+    height: 40px;
+    font-size: 16px;
+    color: #ebeff5;
+}
+
+.btn-login:hover {
+    background-color: rgb(113, 75, 5);
+    color: #ebeff5;
+}
+
+.main-login {
+    background-image: url('/assets/img/login.jpg');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.card-bg {
+    background-color: #ebeff5 !important;
+}
+
+.top-60 {
+    top: 60%;
+}
+
+/* Final do Login */
+
+
 /* Inicio da Home */
 
 .img-banner {
@@ -95,10 +149,83 @@ body {
 }
 
 .line-black {
-    width:100%;
+    width: 100%;
     height: 2px;
     background-color: var(--black);
 }
+
+.card {
+    background-color: #00707213;
+}
+
+.swiper-slide .card {
+    height: 100%;
+}
+
+.swiper-slide .card-img-top {
+    height: 180px;
+    object-fit: contain;
+    padding: 1rem;
+}
+
+.swiper-slide .card-body {
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.swiper-slide {
+    height: auto;
+}
+
+.swiper-slide .card {
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.swiper-slide .card-img-top {
+    height: 180px;
+    object-fit: contain;
+    padding: 1rem;
+}
+
+.swiper-slide .card-body {
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.discount-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #dc3545;
+    color: white;
+    padding: 5px 8px;
+    font-size: 0.8rem;
+    border-radius: 5px;
+    z-index: 10;
+}
+
+.btn-buy-home {
+    background-color: #025259;
+    border-radius: 25px;
+    font-size: 16px;
+    color: #ebeff5;
+}
+
+.btn-buy-home:hover {
+    background-color: #033e44;
+    color: #ebeff5;
+}
+
+.text-price-other {
+    text-decoration: line-through;
+}
+
 
 /* Fim da Home */
 
@@ -107,12 +234,15 @@ body {
     --bs-table-bg: var(--bg-primary-color);
     background-color: var(--bg-primary-color) !important;
     border-collapse: collapse;
-       margin: 0 auto; /* centraliza horizontalmente */
+    margin: 0 auto;
+    /* centraliza horizontalmente */
 }
+
 .custom-table tr {
     border-color: var(--gray);
-    
+
 }
+
 .custom-table th,
 .custom-table td {
     padding: 12px 24px;
@@ -120,55 +250,64 @@ body {
 
 .custom-table thead {
     height: 10vh;
-    
+
 }
-.line{
-    width:100%;
+
+.line {
+    width: 100%;
     height: 1px;
     background-color: #CFCFC4;
 }
-.container-padding{
-    padding: 0 !important; 
+
+.container-padding {
+    padding: 0 !important;
 }
+
 /* Fim da Tabela Principio Ativo */
 /* Inicio da pagina Cadastrar Remedios */
-#card-medicine{
-     background-color: var(--bg-primary-color) !important;
-     height: 60vh;
+#card-medicine {
+    background-color: var(--bg-primary-color) !important;
+    height: 60vh;
 }
-#card-medicine ul li{
-     background-color: var(--bg-primary-color) !important;
+
+#card-medicine ul li {
+    background-color: var(--bg-primary-color) !important;
 }
-.input-bg{
+
+.input-bg {
     background-color: #edeeee;
 }
+
 /* Inicio da pagina Cadastrar Remedios */
 
 /* Botões */
-#cancel-button{
+#cancel-button {
     background: var(--white) !important;
     border-color: #D94F04 !important;
     color: #D94F04 !important;
 }
-#save-button{
+
+#save-button {
     background: #D94F04 !important;
     border-color: #D94F04 !important;
     color: #FFFFFF !important;
 }
-#white-button{
+
+#white-button {
     padding: auto;
 }
+
 /* Fim Botões */
 
 /* Inicio da pagina Fornecedores */
-.col-3 .card{
+.col-3 .card {
     background: #ebeff5;
-    display:flex;
-    align-items:center;
-    height:50vh;
+    display: flex;
+    align-items: center;
+    height: 50vh;
 }
 
-.col-3 .card img{
+.col-3 .card img {
     max-width: 100%;
     height: auto;
     display: block;
@@ -187,7 +326,9 @@ body {
     background-color: var(--transparent-green);
     outline: none;
 }
-#p-price{
+
+#p-price {
     margin-bottom: 0px;
 }
+
 /* Fim da pagina Fornecedores */
