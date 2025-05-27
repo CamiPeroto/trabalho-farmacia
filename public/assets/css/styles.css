@@ -68,10 +68,16 @@ body {
 }
 .custom-table tr {
     border-color: var(--gray);
+    
 }
 .custom-table th,
 .custom-table td {
     padding: 12px 24px;
+}
+
+.custom-table thead {
+    height: 10vh;
+    
 }
 .line{
     width:100%;
@@ -106,6 +112,9 @@ body {
     border-color: #D94F04 !important;
     color: #FFFFFF !important;
 }
+#white-button{
+    padding: auto;
+}
 /* Fim Botões */
 /* Inicio da pagina Fornecedores */
 .col-3 .card{
@@ -130,5 +139,8 @@ body {
 .search-sm:focus {
     background-color: var(--transparent-green);
     outline: none;
+}
+#p-price{
+    margin-bottom: 0px;
 }
 /* Fim da pagina Fornecedores */

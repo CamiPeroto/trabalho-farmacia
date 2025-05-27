@@ -2,8 +2,31 @@
 
 
 @section('content')
-    <div class="container">
-        <h3>Princípio Ativo</h3>
+    <div class="container my-5">
+        <div class="row d-flex">
+            <div class="col-6 my-4">
+                <h3 class="fw-bold">Princípio Ativo</h3>
+            </div>
+            <div class="col-6 d-flex align-items-center justify-content-end">
+                <form class="d-flex justify-content-center me-5" role="search" action="{{ url('/search') }}" method="GET">
+                    <input class="form-control search-sm me-2" type="search" placeholder="Pesquisar..." aria-label="Buscar"
+                        name="q">
+                </form>
+            </div>
+            <div class="col-3 d-flex align-items-center justify-content-start gap-3">
+                <p>Filtros</p>
+                <i class="fi fi-rr-bars-filter"></i>
+            </div>
+            <div class="col-3 d-flex align-items-center justify-content-start gap-3">
+                <p>Exportar</p>
+                <i class="fi fi-rr-download"></i>
+            </div>
+
+            <div class="col-6 my-4 d-flex justify-content-end">
+                <button type="button" class="btn btn-light rounded-circle shadow" id="white-circle">
+                </button>
+            </div>
+        </div>
         <div class="row">
             <div class="col-12">
                 <table class="table custom-table shadow">
