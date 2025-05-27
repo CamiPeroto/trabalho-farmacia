@@ -9,21 +9,27 @@
             </div>
             <div class="col-6 d-flex align-items-center justify-content-end">
                 <form class="d-flex justify-content-center me-5" role="search" action="{{ url('/search') }}" method="GET">
-                    <input class="form-control search-sm me-2" type="search" placeholder="Pesquisar..." aria-label="Buscar"
-                        name="q">
+                    <div class="position-relative w-100">
+                        <i class="fi fi-rr-search position-absolute"
+                            style="left: 18px; top: 50%; transform: translateY(-50%); color: gray; z-index: 2;"></i>
+                        <input class="form-control search-sm ps-5 me-2" type="search" placeholder="Pesquisar..."
+                            aria-label="Buscar" name="q">
+                    </div>
                 </form>
             </div>
-            <div class="col-3 d-flex align-items-center justify-content-start gap-3" id="action-item">
-                <p>Filtros</p>
+            <div class="col-3 d-flex align-items-end justify-content-start gap-3 mb-2" id="action-item">
+                <p class="mb-0">Filtros</p>
                 <i class="fi fi-rr-bars-filter"></i>
             </div>
-            <div class="col-3 d-flex align-items-center justify-content-start gap-3" >
-                <p>Exportar</p>
+            <div class="col-3 d-flex align-items-end mb-2 justify-content-start gap-3">
+                <p class="mb-0">Exportar</p>
                 <i class="fi fi-rr-download"></i>
             </div>
-
             <div class="col-6 my-4 d-flex justify-content-end">
-                <button type="button" class="btn btn-light rounded-circle shadow" id="white-circle">
+                <button type="button"
+                    class="btn btn-light rounded-circle shadow d-flex align-items-center justify-content-center"
+                    id="white-circle" style="width: 48px; height: 48px;">
+                    <img src="{{ asset('assets/img/add-icon.png') }}" alt="+" style="width: 12px; height: 12px;">
                 </button>
             </div>
         </div>
@@ -54,6 +60,11 @@
                             <td>Doe</td>
                         </tr>
                     </tbody>
+                    <tfoot>
+                        <tr style="height: 7vh;">
+                            <td colspan="3"></td>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>

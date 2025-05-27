@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
     <link rel="stylesheet" href="{{ url('assets/vendor/ckeditor5.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
     <link rel="stylesheet" href="{{ url('assets/css/plugins.min.css') }}" />
     <link rel="stylesheet" href="{{ url('assets/css/kaiadmin.min.css') }}" />
@@ -33,7 +34,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand me-4" href="{{ url('/') }}">
-                <img src="{{ asset('assets/img/logo.png') }}" alt="Logo" width="150" height="100"
+                <img src="{{ asset('assets/img/logo.png') }}" alt="Logo" width="150" height="50"
                     class="d-inline-block align-text-top">
             </a>
 
@@ -51,21 +52,31 @@
                 </form>
 
                 <div class="d-flex align-items-center justify-content-center">
-                    <div class="nav-btn me-4">
-                        <div class="d-flex justify-content-center align-items-center">
-                            <i class="fi fi-rr-user p-2 fw-2"></i>
-                            <a href="{{ url('/login') }}" class="link-nav-button text-decoration-none">
-                                <span class="fw-bold ">Bem-vindo!</span>
-                                <span class="small ">Entrar ou cadastrar</span>
-                            </a>
+                    <a href="{{ url('/login') }}">
+                        <div class="nav-btn me-4">
+                            <div class="d-flex justify-content-center align-items-center">
+                                <i class="fi fi-rr-user p-2 mr-4 fw-2"></i>
+                                <div class="link-nav-button">
+                                    <span class="fw-bold ">Bem-vindo!</span>
+                                    <span class="small ">Entrar ou cadastrar</span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </a>
 
-                    <a href="{{ url('/register') }}" class="nav-btn text-decoration-none text-dark text-center">
-                        <span class="fw-bold ">Carrinho</span>
-                        <span class="small ">R$ 00,00</span>
+                    <a href="#">
+                        <div class="nav-btn-card me-4">
+                            <div class="d-flex justify-content-center align-items-center">
+                                <i class="fi fi-rr-shopping-cart pe-3 fw-2"></i>
+                                <div class="link-nav-button">
+                                    <span class="fw-bold ">Carrinho</span>
+                                    <span class="small ">R$ 00,00</span>
+                                </div>
+                            </div>
+                        </div>
                     </a>
                 </div>
+
             </div>
         </div>
     </nav>
@@ -107,6 +118,7 @@
     <script src="{{ asset('assets/js/kaiadmin.min.js') }}"></script>
 
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <script>
         @if (Session::has('success'))

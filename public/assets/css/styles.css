@@ -14,12 +14,11 @@ body {
     --transparent-green: #00717226;
     --transparent-green-focus: #007072;
     --black: #000000;
-    --white: #FFFFFF;
+    --white: #ffffff;
     --gray: #cad2d3;
     --bg-primary-color: rgba(2, 82, 89, 0.05);
     --blue-baby: #00717226;
 }
-
 
 .nav-search {
     width: 660px !important;
@@ -99,7 +98,7 @@ body {
 }
 
 .text-orange {
-    color: orange
+    color: orange;
 }
 
 .img-footer {
@@ -124,7 +123,7 @@ body {
 }
 
 .main-login {
-    background-image: url('/assets/img/login.jpg');
+    background-image: url("/assets/img/login.jpg");
     background-size: cover;
     background-position: center;
     width: 100%;
@@ -140,7 +139,6 @@ body {
 }
 
 /* Final do Login */
-
 
 /* Inicio da Home */
 
@@ -226,21 +224,21 @@ body {
     text-decoration: line-through;
 }
 
-
 /* Fim da Home */
 
 /* Inicio da Tabela Principio Ativo */
 .custom-table {
     --bs-table-bg: var(--bg-primary-color);
     background-color: var(--bg-primary-color) !important;
-    border-collapse: collapse;
     margin: 0 auto;
-    /* centraliza horizontalmente */
+    border-radius: 10px;
+    overflow: hidden;
+    border-collapse: separate;
+    border-spacing: 0;
 }
 
 .custom-table tr {
     border-color: var(--gray);
-
 }
 
 .custom-table th,
@@ -250,13 +248,12 @@ body {
 
 .custom-table thead {
     height: 10vh;
-
 }
 
 .line {
     width: 100%;
     height: 1px;
-    background-color: #CFCFC4;
+    background-color: #cfcfc4;
 }
 
 .container-padding {
@@ -265,9 +262,12 @@ body {
 
 /* Fim da Tabela Principio Ativo */
 /* Inicio da pagina Cadastrar Remedios */
+#medicine-header {
+    margin-left: 8rem;
+}
 #card-medicine {
     background-color: var(--bg-primary-color) !important;
-    height: 60vh;
+    height: 63vh;
 }
 
 #card-medicine ul li {
@@ -278,19 +278,19 @@ body {
     background-color: #edeeee;
 }
 
-/* Inicio da pagina Cadastrar Remedios */
+/* Fim da pagina Cadastrar Remedios */
 
 /* Botões */
 #cancel-button {
     background: var(--white) !important;
-    border-color: #D94F04 !important;
-    color: #D94F04 !important;
+    border-color: #d94f04 !important;
+    color: #d94f04 !important;
 }
 
 #save-button {
-    background: #D94F04 !important;
-    border-color: #D94F04 !important;
-    color: #FFFFFF !important;
+    background: #d94f04 !important;
+    border-color: #d94f04 !important;
+    color: #ffffff !important;
 }
 
 #white-button {
@@ -300,6 +300,9 @@ body {
 /* Fim Botões */
 
 /* Inicio da pagina Fornecedores */
+.card {
+    margin: 0 auto;
+}
 .col-3 .card {
     background: #ebeff5;
     display: flex;
@@ -326,9 +329,90 @@ body {
     background-color: var(--transparent-green);
     outline: none;
 }
+#results-budget {
+    color: rgb(102, 102, 102);
+    font-size: 1rem;
+}
 
 #p-price {
     margin-bottom: 0px;
 }
+.best-price {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: #c0ebc7;
+    color: rgb(2, 107, 63);
+    font-weight: bold;
+    font-size: 0.8rem;
+    padding: 9px 10px;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.worst-price {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: rgb(235, 192, 192);
+    color: rgb(122, 2, 2);
+    font-weight: bold;
+    font-size: 0.8rem;
+    padding: 9px 10px;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+#budget-swiper {
+    padding: 10px 0;
+}
+.swiper-slide {
+    display: block;
+    margin-right: 0px;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: rgb(103, 104, 104);
+    width: 30px;
+    height: 30px;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    font-size: 25px;
+}
 
 /* Fim da pagina Fornecedores */
+
+/* Inicio da pagina filiais */
+.custom-table-bg thead {
+    --bs-table-bg: var(--bg-primary-color);
+}
+.custom-tbody {
+    --bs-table-bg: var(--bg-primary-color);
+    background-color: var(--bg-primary-color) !important;
+}
+table.custom-table-spacing {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  border-radius: 0.5rem;
+  overflow: hidden;    
+}
+table.custom-table-spacing > :not(caption) > * > * {
+  padding-top: 1.5rem !important;
+  padding-bottom: 1rem !important;
+}
+table.custom-table-spacing td {
+  padding-left: 1.8rem !important; 
+}
+
+.status-column {
+    text-align: left;
+}
+
+.icon-gray {
+    color: #6c757d !important;
+}
+
+.badge-status {
+    background-color: #6c757d !important;
+    color: white !important;
+}

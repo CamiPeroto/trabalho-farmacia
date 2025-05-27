@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ActiveIngredientController;
 use App\Http\Controllers\BudgetController;
+use App\Http\Controllers\DrugStoreController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MedicineController;
@@ -35,3 +36,5 @@ Route::get('/active-ingredient', [ActiveIngredientController::class, 'index'])->
 Route::get('/medicines', [MedicineController::class, 'index'])->name('medicine.index');
 //Orçamentos
 Route::get('/budget', [BudgetController::class, 'index'])->name('budget.index');
+//Filais
+Route::get('/drugstore', [DrugStoreController::class, 'index'])->name('drugstore.index');
