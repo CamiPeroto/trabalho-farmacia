@@ -2,14 +2,14 @@
 
 @section('content')
     <!-- Header -->
-    <div class="container-fluid py-5 mb-3"style="background-color: #f4f6f8;">
-        <div class="container py-2">
+    <div class="container-fluid py-5"style="background-color: #f4f6f8;">
+        <div class="container pt-2">
             <h2 class="fw-bold mb-0">Filiais</h2>
         </div>
     </div>
 
     <!-- Conteúdo principal -->
-    <div class="container p-4 rounded" style="background-color: #f4f6f8;">
+    <div class="container rounded" style="background-color: #f4f6f8;">
         <!-- Filtros -->
         <div class="row align-items-end mb-5">
             <div class="col-md-3">

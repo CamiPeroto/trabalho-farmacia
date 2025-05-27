@@ -17,6 +17,7 @@ body {
     --white: #ffffff;
     --gray: #cad2d3;
     --bg-primary-color: rgba(2, 82, 89, 0.05);
+    --bg-secondary-color: rgba(100, 120, 124, 0.13);
     --blue-baby: #00717226;
 }
 
@@ -247,7 +248,8 @@ body {
 }
 
 .custom-table thead {
-    height: 10vh;
+    height: 8vh;
+    background-color: var(--bg-secondary-color);
 }
 
 .line {

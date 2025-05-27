@@ -18,11 +18,11 @@
                 </form>
             </div>
             <div class="col-3 d-flex align-items-end justify-content-start gap-3 mb-2" id="action-item">
-                <p class="mb-0">Filtros</p>
+                <p class="mb-0 fs-6 fw-bold">Filtros</p>
                 <i class="fi fi-rr-bars-filter"></i>
             </div>
             <div class="col-3 d-flex align-items-end mb-2 justify-content-start gap-3">
-                <p class="mb-0">Exportar</p>
+                <p class="mb-0 fs-6 fw-bold">Exportar</p>
                 <i class="fi fi-rr-download"></i>
             </div>
             <div class="col-6 my-4 d-flex justify-content-end">
@@ -35,7 +35,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <table class="table custom-table shadow">
+                <table class="table custom-table table-hover">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
