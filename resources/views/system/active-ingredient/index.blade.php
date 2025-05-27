@@ -13,11 +13,11 @@
                         name="q">
                 </form>
             </div>
-            <div class="col-3 d-flex align-items-center justify-content-start gap-3">
+            <div class="col-3 d-flex align-items-center justify-content-start gap-3" id="action-item">
                 <p>Filtros</p>
                 <i class="fi fi-rr-bars-filter"></i>
             </div>
-            <div class="col-3 d-flex align-items-center justify-content-start gap-3">
+            <div class="col-3 d-flex align-items-center justify-content-start gap-3" >
                 <p>Exportar</p>
                 <i class="fi fi-rr-download"></i>
             </div>

@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="col-6">
-                <form class="row g-3 shadow">
+                <form class="row g-3 shadow" style="padding:15px;">
                     <h2 class="fw-medium">Informações do Produto</h2>
                     <div class="col-md-6">
                         <label for="name" class="form-label">Nome*</label>
