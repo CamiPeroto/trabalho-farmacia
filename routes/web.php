@@ -7,6 +7,7 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\StockController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -38,3 +39,5 @@ Route::get('/medicines', [MedicineController::class, 'index'])->name('medicine.i
 Route::get('/budget', [BudgetController::class, 'index'])->name('budget.index');
 //Filais
 Route::get('/drugstore', [DrugStoreController::class, 'index'])->name('drugstore.index');
+// Estoque
+Route::get('/stock', [StockController::class, 'index'])->name('stock.index');
