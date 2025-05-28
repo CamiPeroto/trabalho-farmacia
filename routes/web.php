@@ -6,6 +6,7 @@ use App\Http\Controllers\DrugStoreController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MedicineController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\StockController;
 use Illuminate\Support\Facades\Route;
@@ -41,3 +42,5 @@ Route::get('/budget', [BudgetController::class, 'index'])->name('budget.index');
 Route::get('/drugstore', [DrugStoreController::class, 'index'])->name('drugstore.index');
 // Estoque
 Route::get('/stock', [StockController::class, 'index'])->name('stock.index');
+// Profile
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');

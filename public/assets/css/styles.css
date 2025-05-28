@@ -227,6 +227,22 @@ body {
 
 /* Fim da Home */
 
+/* Inicio de Profile */
+
+.main-panel .container {
+    padding: 50px !important;
+}
+
+.card-bg-profile {
+    background-color: #0070720c;
+}
+
+.bg-grey {
+    background-color: #5759621d;
+}
+
+/* Fim de Profile */
+
 /* Inicio de Estoque */
 
 .icon-dropdown {
