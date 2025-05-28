@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SaleController;
 use App\Http\Controllers\StockController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,7 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register.in
 //Princípio Ativo
 Route::get('/active-ingredient', [ActiveIngredientController::class, 'index'])->name('active-ingredient.index');
 //Remédios
+Route::get('/create-medicines', [MedicineController::class, 'create'])->name('medicine.create');
 Route::get('/medicines', [MedicineController::class, 'index'])->name('medicine.index');
 //Orçamentos
 Route::get('/budget', [BudgetController::class, 'index'])->name('budget.index');
@@ -44,3 +46,5 @@ Route::get('/drugstore', [DrugStoreController::class, 'index'])->name('drugstore
 Route::get('/stock', [StockController::class, 'index'])->name('stock.index');
 // Profile
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+// Profile
+Route::get('/sale', [SaleController::class, 'index'])->name('sale.index');
