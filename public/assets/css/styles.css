@@ -271,7 +271,7 @@ body {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    color: #FFFFFF;
+    color: #ffffff;
     background-color: #d94f04;
     width: 45px;
     height: 45px;
@@ -282,10 +282,10 @@ body {
 
 .btn-icon-bg:hover {
     background-color: #c24908;
-}   
+}
 
 .table .table-light {
-    --bs-table-bg: #00717226
+    --bs-table-bg: #00717226;
 }
 
 .form-check-input:checked {
@@ -359,6 +359,17 @@ body {
 }
 
 #save-button {
+    background: #d94f04 !important;
+    border-color: #d94f04 !important;
+    color: #ffffff !important;
+}
+#cancel-sale {
+    background: var(--white) !important;
+    border-color: #d94f04 !important;
+    color: #d94f04 !important;
+}
+
+#sale-button {
     background: #d94f04 !important;
     border-color: #d94f04 !important;
     color: #ffffff !important;
@@ -476,7 +487,7 @@ table.custom-table-spacing {
     overflow: hidden;
 }
 
-table.custom-table-spacing> :not(caption)>*>* {
+table.custom-table-spacing > :not(caption) > * > * {
     padding-top: 1.5rem !important;
     padding-bottom: 1rem !important;
 }
@@ -497,3 +508,10 @@ table.custom-table-spacing td {
     background-color: #6c757d !important;
     color: white !important;
 }
+/* Fim da pagina filiais */
+/* Inicio da pagina vendas */
+.badge-total {
+    background-color: #d94f04 !important;
+    color: #fff;
+}
+/* Fim da pagina vendas */
