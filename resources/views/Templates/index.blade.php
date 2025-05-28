@@ -52,25 +52,32 @@
                 </form>
 
                 <div class="d-flex align-items-center justify-content-center">
-                    <a href="{{ url('/login') }}">
+                    <div class="nav-btn me-4">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <i class="fi fi-rr-hand-wave p-2 mr-4 fw-2"></i>
+                            <div class="link-nav-button">
+                                <span class="fw-bold ">Olá, Vendedor!</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="{{ url('/profile') }}">
                         <div class="nav-btn me-4">
                             <div class="d-flex justify-content-center align-items-center">
                                 <i class="fi fi-rr-user p-2 mr-4 fw-2"></i>
                                 <div class="link-nav-button">
-                                    <span class="fw-bold ">Bem-vindo!</span>
-                                    <span class="small ">Entrar ou cadastrar</span>
+                                    <span class="fw-bold ">Seu Perfil</span>
                                 </div>
                             </div>
                         </div>
                     </a>
 
-                    <a href="#">
-                        <div class="nav-btn-card me-4">
+                    <a href="{{ url('/login') }}">
+                        <div class="nav-btn" style=" width: 85px; margin-left:10rem;">
                             <div class="d-flex justify-content-center align-items-center">
-                                <i class="fi fi-rr-shopping-cart pe-3 fw-2"></i>
+                                <i class="fi fi-rr-leave p-2 mr-4 fw-2"></i>
                                 <div class="link-nav-button">
-                                    <span class="fw-bold ">Carrinho</span>
-                                    <span class="small ">R$ 00,00</span>
+                                    <span class="fw-bold ">Sair</span>
                                 </div>
                             </div>
                         </div>
@@ -80,6 +87,37 @@
             </div>
         </div>
     </nav>
+    <div class="bg-footer text-dark py-1 mt-4">
+        <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
+            <a href="{{ url()->previous() }}" class="footer-button text-decoration-none fs-5">
+                <i class="fi fi-rr-arrow-left d-flex"></i>
+            </a>
+            <div class="dropdown">
+                <a class="btn d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <i class="fi fi-rr-menu-burger" style="font-size: 18px;"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item fw-bold fs-6" href="{{ route('active-ingredient.index') }}">Principio
+                            Ativo</a></li>
+                    <li><a class="dropdown-item fw-bold fs-6" href="{{ route('medicine.index') }}">Remédios</a></li>
+                    <li><a class="dropdown-item fw-bold fs-6" href="{{ route('drugstore.index') }}">Filiais</a></li>
+                </ul>
+            </div>
+            <a href="{{ route('sale.index') }}" class="px-4 py-2 footer-button fw-bold text-decoration-none">
+                Vendas
+            </a>
+            <a href="{{ route('medicine.index') }}" class="px-4 py-2 footer-button  fw-bold text-decoration-none">
+                Produtos
+            </a>
+            <a href="{{ route('stock.index') }}" class="px-4 py-2 footer-button fw-bold text-decoration-none">
+                Estoque
+            </a>
+            <a href="{{ route('budget.index') }}" class="px-4 py-2 footer-button  fw-bold text-decoration-none">
+                Fornecedores
+            </a>
+        </div>
+    </div>
 
 
 

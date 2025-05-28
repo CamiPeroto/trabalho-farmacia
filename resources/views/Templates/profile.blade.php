@@ -72,6 +72,12 @@
                             <p>Histórico de Comissões</p>
                         </a>
                     </li>
+                     <li class="nav-item">
+                        <a href="{{ url('/medicines') }}">
+                            <i class="fi fi-rr-computer"></i>
+                            <p>Sistema</p>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a href="{{ url('/') }}">
                             <i class="fi fi-rr-sign-out-alt"></i>

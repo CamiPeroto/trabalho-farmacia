@@ -7,7 +7,7 @@
                 <div class="card-body">
                     <h4 class="text-center mb-4">Entrar na Conta</h4>
 
-                    <form action="" method="POST">
+                    <form action="{{ route('medicine.index') }}" method="GET">
                         @csrf
 
                         <div class="mb-3">

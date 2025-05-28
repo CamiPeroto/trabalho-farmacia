@@ -71,27 +71,6 @@
         ];
 
     @endphp
-
-    <div class="bg-footer text-dark py-1 mt-4">
-        <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
-            <a href="#" class="footer-button text-decoration-none fs-5">
-                <i class="fi fi-rr-arrow-left d-flex"></i>
-            </a>
-            <a href="#" class="px-4 py-2 footer-button text-decoration-none">
-                Vendas
-            </a>
-            <a href="#" class="px-4 py-2 footer-button text-decoration-none">
-                Produtos
-            </a>
-            <a href="#" class="px-4 py-2 footer-button text-decoration-none">
-                Estoque
-            </a>
-            <a href="#" class="px-4 py-2 footer-button text-decoration-none">
-                Fornecedores
-            </a>
-        </div>
-    </div>
-
     <div class="container my-5">
         <div class="row d-flex">
             <div class="col-4 my-4 ps-5">
@@ -105,7 +84,7 @@
                 </div>
                 <div class="form-check form-check-inline mt-2">
                     <input class="form-check-input" type="checkbox" id="ativoCheckbox" name="filter[]" value="ativo">
-                    <label class="form-check-label" for="ativoCheckbox">Produto Ativo</label>
+                    <label class="form-check-label" for="ativoCheckbox">Princípio Ativo</label>
                 </div>
             </div>
             <div class="col-4 d-flex align-items-center justify-content-end">
