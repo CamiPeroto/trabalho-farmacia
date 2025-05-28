@@ -374,6 +374,16 @@ body {
     border-color: #d94f04 !important;
     color: #ffffff !important;
 }
+#cancel-ai {
+    background: var(--white) !important;
+    border-color: #025259 !important;
+    color: #025259 !important;
+}
+#ai-button {
+    background: #025259 !important;
+    border-color: #025259 !important;
+    color: #ffffff !important;
+}
 
 #white-button {
     padding: auto;

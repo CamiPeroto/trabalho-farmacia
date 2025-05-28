@@ -10,4 +10,5 @@ class ActiveIngredientController extends Controller
         
         return view('system.active-ingredient.index');
     }
+
 }

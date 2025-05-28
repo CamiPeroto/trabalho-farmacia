@@ -35,7 +35,6 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register.in
 
 //Princípio Ativo
 Route::get('/active-ingredient', [ActiveIngredientController::class, 'index'])->name('active-ingredient.index');
-Route::get('/create-active-ingredient', [ActiveIngredientController::class, 'create'])->name('active-ingredient.create');
 //Remédios
 Route::get('/create-medicines', [MedicineController::class, 'create'])->name('medicine.create');
 Route::get('/medicines', [MedicineController::class, 'index'])->name('medicine.index');

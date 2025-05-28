@@ -77,7 +77,8 @@
                                 </td>
                                 <td class="fw-bold">R$ {{ number_format($product['price'], 2, ',', '.') }}</td>
                                 <td>
-                                    <div class="d-inline-flex border  border-black rounded-pill overflow-hidden align-items-center">
+                                    <div
+                                        class="d-inline-flex border  border-black rounded-pill overflow-hidden align-items-center">
                                         <button class="btn btn-sm px-3 border-end" type="button"
                                             onclick="decrementQuantity(this)">−</button>
                                         <span class="px-3 text-center fw-bold" style="min-width: 40px;"

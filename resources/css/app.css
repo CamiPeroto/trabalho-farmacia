@@ -11,34 +11,5 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
-@layer components{
-/* Inicio da Table Active Ingredients */
-/* Início da tabela listar registros  */
-  .table-container {
-    @apply overflow-hidden bg-[#0252590D] shadow-sm;
-  }
-  .table {
-    @apply w-96 divide-y divide-gray-200 border-separate border-spacing-0;
-  }
-  .table-row-header {
-    @apply  bg-[#0252590D];
-  }
-  .table-header {
-    @apply px-6 py-3 text-left text-sm font-medium text-shadow-gray-500 tracking-wider border-b border-gray-200;
-  }
-  .table-header.center {
-    @apply text-center;
-  }
-  .table-body {
-    @apply px-6 py-2 text-sm text-gray-900 border-b border-gray-200;
-  }
-  .table-row-body {
-    @apply hover:bg-gray-50;
-  }
-  .table-actions {
-    @apply text-center space-x-1 flex justify-center items-center;
-  }
-  .table-actions a {
-    @apply inline-block;
-  }
-  }
+
+  

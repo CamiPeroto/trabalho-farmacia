@@ -20,12 +20,13 @@
                     </form>
                 </div>
                 <div class="col-6 my-4 d-flex justify-content-end">
-                <a href="{{ route('active-ingredient.create') }}"
-                    class="btn btn-light rounded-circle shadow d-flex align-items-center justify-content-center"
-                    id="white-circle" style="width: 48px; height: 48px;">
-                    <img src="{{ asset('assets/img/add-icon.png') }}" alt="+" style="width: 12px; height: 12px;">
-                </a>
-            </div>
+                    <button type="button"
+                        class="btn btn-light rounded-circle shadow d-flex align-items-center justify-content-center"
+                        id="white-circle" style="width: 48px; height: 48px;" data-bs-toggle="modal"
+                        data-bs-target="#createActiveModal">
+                        <img src="{{ asset('assets/img/add-icon.png') }}" alt="+" style="width: 12px; height: 12px;">
+                    </button>
+                </div>
             </div>
             <div class="col-3 d-flex align-items-end justify-content-start gap-3 my-3" id="action-item">
                 <p class="mb-0 fs-6 fw-bold">Filtros</p>
@@ -74,3 +75,33 @@
     </div>
     <div class="line mt-5"></div>
 @endsection
+
+{{-- Card Principio Ativo --}}
+<div class="modal fade" id="createActiveModal" tabindex="-1" aria-labelledby="createActiveModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content p-4 rounded shadow" style="max-width: 500px; margin: auto;">
+      <div class="modal-header border-0">
+        <h5 class="modal-title fw-bold" id="createActiveModalLabel">Novo Princípio Ativo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+      <div class="modal-body">
+        <form method="GET" action="#">
+          @csrf
+          <div class="mb-3">
+            <label for="name" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Descrição</label>
+            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+          </div>
+          <div class="d-flex justify-content-end gap-2">
+             <button type="submit" class="btn btn-warning fw-medium" id="cancel-ai">Cancelar</button>
+            <button type="submit" class="btn btn-warning" id="ai-button">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{-- Card Principio Ativo --}}
