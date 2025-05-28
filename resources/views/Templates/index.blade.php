@@ -87,7 +87,7 @@
             </div>
         </div>
     </nav>
-    <div class="bg-footer text-dark py-1 mt-4">
+    <div class="bg-footer text-dark py-1">
         <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
             <a href="{{ url()->previous() }}" class="footer-button text-decoration-none fs-5">
                 <i class="fi fi-rr-arrow-left d-flex"></i>
