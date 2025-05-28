@@ -87,7 +87,7 @@
             </div>
         </div>
     </nav>
-    <div class="bg-footer text-dark py-1">
+    <div class="bg-footer text-dark py-2">
         <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
             <a href="{{ url()->previous() }}" class="footer-button text-decoration-none fs-5">
                 <i class="fi fi-rr-arrow-left d-flex"></i>
@@ -95,7 +95,7 @@
             <div class="dropdown">
                 <a class="btn d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false">
-                    <i class="fi fi-rr-menu-burger" style="font-size: 18px;"></i>
+                    <i class="fi fi-rr-menu-burger d-flex" style="font-size: 18px;"></i>
                 </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item fw-bold fs-6" href="{{ route('active-ingredient.index') }}">Principio
