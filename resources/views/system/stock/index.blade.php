@@ -73,8 +73,8 @@
     @endphp
     <div class="container my-5">
         <div class="row d-flex">
-            <div class="col-4 my-4 ps-5">
-                <h3 class="fw-bold ps-5">Estoque de Produtos</h3>
+            <div class="col-4 my-4">
+                <h3 class="fw-bold ">Estoque de Produtos</h3>
             </div>
             <div class="col-4 d-flex align-items-center">
                 <div class="form-check form-check-inline ms-5 mt-2">
@@ -100,8 +100,8 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-6 ps-5">
-                <div class="dropdown ps-5">
+            <div class="col-6">
+                <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle d-flex align-items-center gap-2" type="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <div class="icon-dropdown me-3">
