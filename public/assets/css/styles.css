@@ -227,6 +227,58 @@ body {
 
 /* Fim da Home */
 
+/* Inicio de Estoque */
+
+.icon-dropdown {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: #d94f04;
+}
+
+.dropdown .btn-secondary {
+    background: #00717226 !important;
+    color: #000000 !important;
+    border-radius: 25px;
+    border: none;
+}
+
+.dropdown .btn-secondary:hover {
+    color: #000000 !important;
+}
+
+.btn-icon-bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #FFFFFF;
+    background-color: #d94f04;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+        0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+.btn-icon-bg:hover {
+    background-color: #c24908;
+}   
+
+.table .table-light {
+    --bs-table-bg: #00717226
+}
+
+.form-check-input:checked {
+    background-color: black;
+    border-color: black;
+}
+
+/* Fim de Estoque */
+
 /* Inicio da Tabela Principio Ativo */
 .custom-table {
     --bs-table-bg: var(--bg-primary-color);
@@ -267,6 +319,7 @@ body {
 #medicine-header {
     margin-left: 8rem;
 }
+
 #card-medicine {
     background-color: var(--bg-primary-color) !important;
     height: 63vh;
@@ -305,6 +358,7 @@ body {
 .card {
     margin: 0 auto;
 }
+
 .col-3 .card {
     background: #ebeff5;
     display: flex;
@@ -331,6 +385,7 @@ body {
     background-color: var(--transparent-green);
     outline: none;
 }
+
 #results-budget {
     color: rgb(102, 102, 102);
     font-size: 1rem;
@@ -339,6 +394,7 @@ body {
 #p-price {
     margin-bottom: 0px;
 }
+
 .best-price {
     position: absolute;
     top: 15px;
@@ -351,6 +407,7 @@ body {
     border-radius: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 .worst-price {
     position: absolute;
     top: 15px;
@@ -363,9 +420,11 @@ body {
     border-radius: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 #budget-swiper {
     padding: 10px 0;
 }
+
 .swiper-slide {
     display: block;
     margin-right: 0px;
@@ -389,21 +448,25 @@ body {
 .custom-table-bg thead {
     --bs-table-bg: var(--bg-primary-color);
 }
+
 .custom-tbody {
     --bs-table-bg: var(--bg-primary-color);
     background-color: var(--bg-primary-color) !important;
 }
+
 table.custom-table-spacing {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-  border-radius: 0.5rem;
-  overflow: hidden;    
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    overflow: hidden;
 }
-table.custom-table-spacing > :not(caption) > * > * {
-  padding-top: 1.5rem !important;
-  padding-bottom: 1rem !important;
+
+table.custom-table-spacing> :not(caption)>*>* {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1rem !important;
 }
+
 table.custom-table-spacing td {
-  padding-left: 1.8rem !important; 
+    padding-left: 1.8rem !important;
 }
 
 .status-column {
