@@ -1,6 +1,5 @@
 @extends('templates.index')
 
-
 @section('content')
     <div class="container my-5">
         <div class="row d-flex">
@@ -28,11 +27,11 @@
                     </button>
                 </div>
             </div>
-            <div class="col-3 d-flex align-items-end justify-content-start gap-3 my-3" id="action-item">
+            <div class="col-3 d-flex align-items-center justify-content-start gap-3 my-3" id="action-item">
                 <p class="mb-0 fs-6 fw-bold">Filtros</p>
                 <i class="fi fi-rr-bars-filter"></i>
             </div>
-            <div class="col-3 d-flex align-items-end mb-2 justify-content-start gap-3">
+            <div class="col-3 d-flex align-items-center mb-2 justify-content-start gap-3">
                 <p class="mb-0 fs-6 fw-bold">Exportar</p>
                 <i class="fi fi-rr-download"></i>
             </div>
@@ -50,18 +49,28 @@
                     <tbody>
                         <tr>
                             <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
+                            <td>Paracetamol</td>
+                            <td>Analgésico e antipirético usado no tratamento de febres e dores leves a moderadas.</td>
                         </tr>
                         <tr>
                             <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
+                            <td>Ibuprofeno</td>
+                            <td>Anti-inflamatório não esteroide utilizado para alívio de dores, febre e inflamações.</td>
                         </tr>
                         <tr>
                             <th scope="row">3</th>
-                            <td>John</td>
-                            <td>Doe</td>
+                            <td>Amoxicilina</td>
+                            <td>Antibiótico da classe das penicilinas usado para tratar infecções bacterianas.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>Loratadina</td>
+                            <td>Anti-histamínico utilizado no tratamento de alergias sazonais e urticária.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">5</th>
+                            <td>Dipirona</td>
+                            <td>Analgésico e antipirético potente, usado em casos de dor intensa ou febre alta.</td>
                         </tr>
                     </tbody>
                     <tfoot>

@@ -8,7 +8,7 @@
                     <img src="https://www.svgrepo.com/show/384674/account-avatar-profile-user-11.svg" width="50"
                         alt="Avatar">
                     <div>
-                        <h5 class="mb-0 text-uppercase text-primary fw-bold">Camila Peroto</h5>
+                        <h5 class="mb-0 text-uppercase text-primary fw-bold">Rafael Gasperin</h5>
                     </div>
                 </div>
             </div>
@@ -16,7 +16,7 @@
             <div class="row mb-4">
                 <div class="col-6">
                     <label class="form-label small">Função</label>
-                    <input type="text" class="form-control" value="Vendedora" readonly>
+                    <input type="text" class="form-control" value="Vendedor" readonly>
                 </div>
                 <div class="col-6">
                     <label class="form-label small">Codigo de Vendedor</label>
@@ -27,7 +27,7 @@
             <div class="row mb-4">
                 <div class="col-md-4">
                     <label class="form-label small">Salário Base</label>
-                    <input type="text" class="form-control" value="R$2500,00" readonly>
+                    <input type="text" class="form-control" value="R$5500,00" readonly>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label small">Contratado em</label>
@@ -38,7 +38,7 @@
             <div class="row mb-5">
                 <div class="col-12">
                     <label class="form-label small">Usuário do Sistema</label>
-                    <input type="text" class="form-control" value="camila.barateira" readonly>
+                    <input type="text" class="form-control" value="rafael.barateira" readonly>
                 </div>
             </div>
 
