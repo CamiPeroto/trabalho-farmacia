@@ -272,6 +272,11 @@ body {
     --bs-table-bg: #00717226
 }
 
+.form-check-input:checked {
+    background-color: black;
+    border-color: black;
+}
+
 /* Fim de Estoque */
 
 /* Inicio da Tabela Principio Ativo */
