@@ -34,7 +34,13 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register.in
 // ->name('reset-password.submit');
 
 //Princípio Ativo
-Route::get('/active-ingredient', [ActiveIngredientController::class, 'index'])->name('active-ingredient.index');
+Route::get('/ingredient', [ActiveIngredientController::class, 'index'])->name('ingredient.index');
+Route::post('/ingredient', [ActiveIngredientController::class, 'store'])->name('ingredient.store');
+Route::get('/ingredient/{ingredient}', [ActiveIngredientController::class, 'edit'])->name('ingredient.edit');
+Route::put('/ingredient/{ingredient}', [ActiveIngredientController::class, 'update'])->name('ingredient.update');
+Route::delete('/ingredient/{ingredient}', [ActiveIngredientController::class, 'destroy'])->name('ingredient.destroy');
+
+
 //Remédios
 Route::get('/create-medicines', [MedicineController::class, 'create'])->name('medicine.create');
 Route::get('/medicines', [MedicineController::class, 'index'])->name('medicine.index');

@@ -96,7 +96,7 @@
                     <i class="fi fi-rr-menu-burger d-flex" style="font-size: 18px;"></i>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item fw-bold fs-6" href="{{ route('active-ingredient.index') }}">Principio
+                    <li><a class="dropdown-item fw-bold fs-6" href="{{ route('ingredient.index') }}">Principio
                             Ativo</a></li>
                     <li><a class="dropdown-item fw-bold fs-6" href="{{ route('medicine.index') }}">Remédios</a></li>
                     <li><a class="dropdown-item fw-bold fs-6" href="{{ route('drugstore.index') }}">Filiais</a></li>
