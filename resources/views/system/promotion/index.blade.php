@@ -4,11 +4,11 @@
 @section('content')
 <div class="container my-5">
     <div class="row d-flex">
+            <x-alert />
             <div class="col-4 my-4">
                 <h3 class="fw-bold">Produtos em Promoção</h3>
             </div>
         </div>
-          <x-alert />
         <div class="row">
             <div class="col-6 d-flex align-items-center justify-content-start">
                 <form class="d-flex justify-content-center me-5" role="search" action="{{ url('/search') }}" method="GET">
