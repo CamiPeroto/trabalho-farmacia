@@ -40,10 +40,15 @@ Route::get('/ingredient/{ingredient}', [ActiveIngredientController::class, 'edit
 Route::put('/ingredient/{ingredient}', [ActiveIngredientController::class, 'update'])->name('ingredient.update');
 Route::delete('/ingredient/{ingredient}', [ActiveIngredientController::class, 'destroy'])->name('ingredient.destroy');
 
-
 //Remédios
-Route::get('/create-medicines', [MedicineController::class, 'create'])->name('medicine.create');
 Route::get('/medicines', [MedicineController::class, 'index'])->name('medicine.index');
+Route::get('/create-medicines', [MedicineController::class, 'create'])->name('medicine.create');
+Route::post('/store-medicine', [MedicineController::class, 'store'])->name('medicine.store');
+Route::get('/show-medicine/{medicine}', [MedicineController::class, 'show'])->name('medicine.show');
+Route::get('/edit-medicine/{medicine}', [MedicineController::class, 'edit'])->name('medicine.edit');
+Route::put('/edit-medicine/{medicine}', [MedicineController::class, 'update'])->name('medicine.update');
+Route::delete('/medicine/{medicine}', [MedicineController::class, 'destroy'])->name('medicine.destroy');
+
 //Orçamentos
 Route::get('/budget', [BudgetController::class, 'index'])->name('budget.index');
 //Filais
