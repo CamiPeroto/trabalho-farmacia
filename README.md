@@ -34,7 +34,10 @@ Executar as seed
 ```
 php artisan db:seed
 ```
-
+Linkar com o armazenamento das imagens
+```
+php artisan storage:link
+```
 Iniciar o projeto criado com Laravel
 ```
 php artisan serve
