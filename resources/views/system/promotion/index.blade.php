@@ -8,6 +8,7 @@
                 <h3 class="fw-bold">Produtos em Promoção</h3>
             </div>
         </div>
+          <x-alert />
         <div class="row">
             <div class="col-6 d-flex align-items-center justify-content-start">
                 <form class="d-flex justify-content-center me-5" role="search" action="{{ url('/search') }}" method="GET">
@@ -25,7 +26,6 @@
                 </a>
             </div>
         </div>
-    <x-alert />
     <div class="row my-5">
         <div class="col-12">
             <table class="table align-middle text-center">
@@ -43,14 +43,14 @@
                             <td class="d-flex align-items-center text-start">
                                 <img src="{{ $promotion->medicine->image ? asset('storage/' . $promotion->medicine->image) : 'https://via.placeholder.com/150' }}"
                                     alt="{{ $promotion->medicine->fantasy_name }}" width="150" height="150"
-                                    class="me-3 rounded">
+                                    class="me-3 rounded my-3">
                                 <div>
                                     <strong>{{ $promotion->medicine->fantasy_name }}</strong><br>
                                     <small>{{ $promotion->medicine->description ?? 'Sem descrição' }}</small>
                                 </div>
                             </td>
-                            <td>{{ \Carbon\Carbon::parse($promotion->start_date)->format('d/m/Y') }} - {{ \Carbon\Carbon::parse($promotion->end_date)->format('d/m/Y') }}</td>
-                            <td class="fw-bold">R$ {{ number_format($promotion->price, 2, ',', '.') }}</td>
+                            <td class="fw-bold">{{ \Carbon\Carbon::parse($promotion->start_date)->format('d/m/Y') }} - {{ \Carbon\Carbon::parse($promotion->end_date)->format('d/m/Y') }}</td>
+                            <td class="fw-bold">R$ {{ number_format($promotion->promotional_price, 2, ',', '.') }}</td>
                             <td>
                                 <a href="{{ route('promotion.edit', $promotion->id) }}"
                                     class="btn btn-outline-warning btn-sm ms-2 rounded-pill">EDITAR</a>

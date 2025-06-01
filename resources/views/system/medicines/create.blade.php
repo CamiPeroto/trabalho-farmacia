@@ -13,14 +13,12 @@
                 <!-- Coluna esquerda - Imagem -->
                 <div class="col-6 d-flex justify-content-center">
                     <div class="card shadow" style="width: 32rem;" id="card-medicine">
-                        <img id="preview-image"
-                            src="https://pixcap.com/cdn/library/template/1729793843829/thumbnail/Medicine_Bottle_Jar_3D_Icon_transparent_emp_800.webp"
-                            class="card-img-top" style="height: 300px; object-fit: contain;"
-                            alt="Pré-visualização da imagem">
-                        <div class="card-body d-flex justify-content-center">     
+                        <img id="preview-image" src="{{ asset('assets/img/model-medicine.webp') }}"
+                            style="height: 300px; object-fit: contain;margin-top:2rem;" alt="Pré-visualização da imagem">
+                        <div class="card-body d-flex justify-content-center">
                             <input type="file" class="form-control upload-img" name="image" id="image"
                                 style="height: 3rem;" accept="image/* "onchange="previewImage(event)">
-                                 <ul class="list-group list-group-flush" style="height:3rem;">
+                            <ul class="list-group list-group-flush" style="height:3rem;">
                                 <li class="list-group-item text-center">SVG, PNG ou JPG (máx: 3MB)</li>
                             </ul>
                         </div>
@@ -32,10 +30,14 @@
                     <div class="row g-3 shadow rounded-4" style="padding:20px;">
                         <h2 class="fw-medium">Informações do Produto</h2>
 
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <label for="fantasy-name" class="form-label">Nome Fantasia*</label>
                             <input type="text" class="form-control input-bg" id="fantasy-name" name="fantasy_name"
                                 value="{{ old('fantasy_name') }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="price" class="form-label">Preço*</label>
+                            <input type="number" class="form-control input-bg" id="price" name="price"value="{{ old('price') }}" step="0.01" min="0" placeholder="R$:">
                         </div>
 
                         <div class="col-6">
@@ -62,19 +64,6 @@
                                 <option value="Pomada">Pomada</option>
                             </select>
                         </div>
-
-                        <div class="col-6">
-                            <label for="dosage" class="form-label">Dosagem*</label>
-                            <input type="text" class="form-control input-bg" id="dosage" name="dosage"
-                                placeholder="5mg" value="{{ old('dosage') }}">
-                        </div>
-
-                        <div class="col-6">
-                            <label for="maker" class="form-label">Fabricante</label>
-                            <input type="text" class="form-control input-bg" id="maker" name="maker"
-                                placeholder="Ex: OMS" value="{{ old('maker') }}">
-                        </div>
-
                         <div class="col-md-6">
                             <label for="type" class="form-label">Tipo*</label>
                             <select id="type" name="type" class="form-select input-bg">
@@ -84,10 +73,24 @@
                                 <option value="Similar">Similar</option>
                             </select>
                         </div>
-
                         <div class="col-6">
+                            <label for="maker" class="form-label">Fabricante</label>
+                            <input type="text" class="form-control input-bg" id="maker" name="maker"
+                                placeholder="Ex: OMS" value="{{ old('maker') }}">
+                        </div>
+                        <div class="col-4">
                             <label for="id" class="form-label">Código do Produto</label>
-                            <input type="text" class="form-control" id="id" placeholder="1" disabled>
+                            <input type="text" class="form-control" id="id" placeholder="1"  value="{{ $nextId ?? 1 }}" disabled>
+                        </div>
+                        <div class="col-4">
+                            <label for="quantity" class="form-label">Quantidade</label>
+                            <input type="number" class="form-control input-bg" id="quantity" name="quantity" placeholder="UNT"
+                                value="{{ old('quantity') }}" min="1">
+                        </div>
+                        <div class="col-4">
+                            <label for="dosage" class="form-label">Dosagem*</label>
+                            <input type="text" class="form-control input-bg" id="dosage" name="dosage"
+                                placeholder="5mg" value="{{ old('dosage') }}">
                         </div>
 
                         <div class="col-12 pb-3">

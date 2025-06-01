@@ -23,13 +23,15 @@ class MedicineRequest extends FormRequest
         return [
             'description'          => 'required|string',
             'fantasy_name'         => 'required|string',
+            'price'                => 'required|numeric|min:0',
             'type'                 => 'required',
             'form'                 => 'required',
             'dosage'               => 'required',
             'maker'                => 'required|string',
-            'image'                => $this->isMethod('post') 
-                                  ? 'required|image|mimes:jpeg,png,jpg,svg|max:3072'
-                                  : 'nullable|image|mimes:jpeg,png,jpg,svg|max:3072',
+            'quantity'             => 'required|integer|min:1',
+            'image'                => $this->isMethod('post')
+            ? 'required|image|mimes:jpeg,png,jpg,svg|max:3072'
+            : 'nullable|image|mimes:jpeg,png,jpg,svg|max:3072',
             'active_ingredient_id' => 'required|exists:active_ingredients,id',
 
         ];
@@ -40,10 +42,16 @@ class MedicineRequest extends FormRequest
 
             'description.required'          => 'O campo descrição é obrigatório!',
             'fantasy_name.required'         => 'O campo nome fantasia é obrigatório!',
+            'price.required'                => 'O campo preço é obrigatório!',
+            'price.numeric'                 => 'O preço deve ser um número válido!',
+            'price.min'                     => 'O preço não pode ser negativo!',
             'type.required'                 => 'O campo tipo é obrigatório!',
             'form.required'                 => 'O campo forma é obrigatório!',
             'dosage.required'               => 'O campo dosagem é obrigatório!',
             'maker.required'                => 'O campo fabricante é obrigatório!',
+            'quantity.required'             => 'O campo quantidade é obrigatório!',
+            'quantity.integer'              => 'A quantidade deve ser um número inteiro!',
+            'quantity.min'                  => 'A quantidade não pode ser menor que :min!',
             'image.required'                => 'A imagem do produto é obrigatória!',
             'image.image'                   => 'O arquivo deve ser uma imagem!',
             'image.mimes'                   => 'A imagem deve ser do tipo: jpeg, png, jpg ou svg!',

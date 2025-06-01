@@ -8,14 +8,22 @@ use Illuminate\Http\Request;
 class PromotionController extends Controller
 {
     public function index()
-{
-    $promotions = Promotion::with('medicine')->get();
-
-    return view('system.promotion.index', ['promotions' => $promotions]);
-}
-      public function create()
     {
-        $medicines = Medicine::all(); 
+        $promotions = Promotion::with('medicine')->get();
+
+        return view('system.promotion.index', ['promotions' => $promotions]);
+    }
+    public function create()
+    {
+        $medicines = Medicine::with(['stock' => function ($query) {
+            $query->latest()->first();
+        }])->get();
+
+        foreach ($medicines as $medicine) {
+            $latestStock                     = $medicine->stock->sortByDesc('entry_date')->first();
+            $medicine->min_promotional_price = $latestStock ? $latestStock->unitary_price * 1.10 : null;
+        }
+
         return view('system.promotion.create', ['medicines' => $medicines]);
     }
 

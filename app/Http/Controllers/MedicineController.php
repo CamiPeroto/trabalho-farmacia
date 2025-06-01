@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MedicineRequest;
 use App\Models\ActiveIngredient;
 use App\Models\Medicine;
+use App\Models\Stock;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -19,44 +21,60 @@ class MedicineController extends Controller
     public function create()
     {
         $ingredients = ActiveIngredient::all();
-        return view('system.medicines.create', ['ingredients' => $ingredients]);
+        $nextId = \App\Models\Medicine::max('id') + 1;
+        
+        return view('system.medicines.create', 
+        [
+        'ingredients' => $ingredients,
+         'nextId' => $nextId 
+        ]);
     }
     
     public function store(MedicineRequest $request)
     {
-        $request->validated();
+       $request->validated();
 
-        DB::beginTransaction();
+    DB::beginTransaction();
 
-        try {
-            $imagePath = null;
+    try {
+        $imagePath = $request->hasFile('image')
+            ? $request->file('image')->store('medicines', 'public')
+            : null;
 
-            if ($request->hasFile('image')) {
-                $imagePath = $request->file('image')->store('medicines', 'public'); // pasta storage/app/public/medicines
-            } else {
-                $imagePath = null;
-            }
-            Medicine::create([
-                'fantasy_name'         => $request->fantasy_name,
-                'type'                 => $request->type,
-                'form'                 => $request->form,
-                'dosage'               => $request->dosage,
-                'maker'                => $request->maker,
-                'description'          => $request->description,
-                'active_ingredient_id' => $request->active_ingredient_id,
-                'image'                => $imagePath,
-            ]);
-            DB::commit();
+        // Cria o remédio e armazena em $medicine
+        $medicine = Medicine::create([
+            'fantasy_name'         => $request->fantasy_name,
+            'price'                => $request->price,
+            'type'                 => $request->type,
+            'form'                 => $request->form,
+            'dosage'               => $request->dosage,
+            'maker'                => $request->maker,
+            'quantity'             => $request->quantity,
+            'description'          => $request->description,
+            'active_ingredient_id' => $request->active_ingredient_id,
+            'image'                => $imagePath,
+        ]);
 
-            return redirect()->route('medicine.index', )
-                ->with('success', 'Remédio cadastrado com sucesso!');
+        // Cria automaticamente o estoque
+        Stock::create([
+            'medicine_id'     => $medicine->id,
+            'quantity'        => $medicine->quantity,
+            'unitary_price'   => $medicine->price,
+            'entry_date'      => Carbon::now()->toDateString(),
+            'expiration_date' => Carbon::now()->addYears(2)->toDateString(),
+        ]);
 
-        } catch (Exception $e) {
-            DB::rollBack();
-            Log::notice('Remédio não cadastrado.', ['error' => $e->getMessage()]);
-            return back()->withInput()->with('error', 'Remédio não cadastrado');
+        DB::commit();
 
-        }
+        return redirect()->route('medicine.index')
+            ->with('success', 'Remédio cadastrado com sucesso!');
+
+    } catch (Exception $e) {
+        DB::rollBack();
+        Log::notice('Remédio não cadastrado.', ['error' => $e->getMessage()]);
+
+        return back()->withInput()->with('error', 'Remédio não cadastrado');
+    }
     }
     public function edit(Medicine $medicine)
     {
@@ -85,6 +103,7 @@ class MedicineController extends Controller
         // Atualiza os dados
         $medicine->update([
             'fantasy_name'         => $request->fantasy_name,
+            'price'                 => $request->price,
             'type'                 => $request->type,
             'form'                 => $request->form,
             'dosage'               => $request->dosage,

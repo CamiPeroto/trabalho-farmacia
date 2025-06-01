@@ -2,75 +2,6 @@
 
 
 @section('content')
-    @php
-        $products = [
-            [
-                'title' => 'Dipirona Monoidratada 1g - CIMED',
-                'description' => '10 comprimidos',
-                'price' => 13.12,
-                'stock' => 150,
-                'image' =>
-                    'https://airela.com.br/wp-content/uploads/2024/02/ibuprofeno_400mg_ibuprofeno_10capsulas.png',
-            ],
-            [
-                'title' => 'Rivotril 0,5 mg Tablet - Clonazepam',
-                'description' => '100 Tablets',
-                'price' => 33.25,
-                'stock' => 0,
-                'image' =>
-                    'https://dmvfarma.vtexassets.com/arquivos/ids/271865/DIPIRONA%20500MG%20C20.png.png?v=638827583361130000',
-            ],
-            [
-                'title' => 'Dipirona Monoidratada 1g - CIMED',
-                'description' => '10 comprimidos',
-                'price' => 13.12,
-                'stock' => 150,
-                'image' =>
-                    'https://airela.com.br/wp-content/uploads/2024/02/ibuprofeno_400mg_ibuprofeno_10capsulas.png',
-            ],
-            [
-                'title' => 'Rivotril 0,5 mg Tablet - Clonazepam',
-                'description' => '100 Tablets',
-                'price' => 33.25,
-                'stock' => 0,
-                'image' =>
-                    'https://dmvfarma.vtexassets.com/arquivos/ids/271865/DIPIRONA%20500MG%20C20.png.png?v=638827583361130000',
-            ],
-            [
-                'title' => 'Dipirona Monoidratada 1g - CIMED',
-                'description' => '10 comprimidos',
-                'price' => 13.12,
-                'stock' => 150,
-                'image' =>
-                    'https://airela.com.br/wp-content/uploads/2024/02/ibuprofeno_400mg_ibuprofeno_10capsulas.png',
-            ],
-            [
-                'title' => 'Rivotril 0,5 mg Tablet - Clonazepam',
-                'description' => '100 Tablets',
-                'price' => 33.25,
-                'stock' => 0,
-                'image' =>
-                    'https://dmvfarma.vtexassets.com/arquivos/ids/271865/DIPIRONA%20500MG%20C20.png.png?v=638827583361130000',
-            ],
-            [
-                'title' => 'Dipirona Monoidratada 1g - CIMED',
-                'description' => '10 comprimidos',
-                'price' => 13.12,
-                'stock' => 150,
-                'image' =>
-                    'https://airela.com.br/wp-content/uploads/2024/02/ibuprofeno_400mg_ibuprofeno_10capsulas.png',
-            ],
-            [
-                'title' => 'Rivotril 0,5 mg Tablet - Clonazepam',
-                'description' => '100 Tablets',
-                'price' => 33.25,
-                'stock' => 0,
-                'image' =>
-                    'https://dmvfarma.vtexassets.com/arquivos/ids/271865/DIPIRONA%20500MG%20C20.png.png?v=638827583361130000',
-            ],
-        ];
-
-    @endphp
     <div class="container my-5">
         <div class="row d-flex">
             <div class="col-4 my-4">
@@ -78,8 +9,7 @@
             </div>
             <div class="col-4 d-flex align-items-center">
                 <div class="form-check form-check-inline ms-5 mt-2">
-                    <input class="form-check-input" type="checkbox" id="todosCheckbox" name="filter[]" value="todos"
-                        checked>
+                    <input class="form-check-input" type="checkbox" id="todosCheckbox" name="filter[]" value="todos" checked>
                     <label class="form-check-label" for="todosCheckbox">Todos</label>
                 </div>
                 <div class="form-check form-check-inline mt-2">
@@ -138,26 +68,30 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($products as $product)
+                        @foreach ($stocks as $stock)
                             <tr style="--bs-table-bg: {{ $loop->index % 2 == 0 ? '#0252590D' : '#00717226' }}">
+
                                 <td class="d-flex align-items-center text-start">
-                                    <img src="{{ $product['image'] }}" alt="{{ $product['title'] }}" width="150"
-                                        height="150" class="me-3">
+                                    <img src="{{ $stock->medicine->image ? asset('storage/' . $stock->medicine->image) : 'https://via.placeholder.com/150' }}"
+                                        alt="{{ $stock->medicine->fantasy_name ?? 'Produto' }}"
+                                        style="max-height: 100px; width: auto;" class="me-3 rounded">
                                     <div>
-                                        <strong>{{ $product['title'] }}</strong><br>
-                                        <small>{{ $product['description'] }}</small>
+                                        <strong>{{ $stock->medicine->fantasy_name ?? 'Sem nome' }}</strong><br>
+                                        <small>{{ $stock->medicine->description ?? 'Sem descrição' }}</small>
                                     </div>
                                 </td>
-                                <td class="fw-bold">R$ {{ number_format($product['price'], 2, ',', '.') }}</td>
-                                <td>{{ $product['stock'] }}</td>
+
+                                <td class="fw-bold">R$ {{ number_format($stock->medicine->price ?? 0, 2, ',', '.') }}</td>
+                                <td>{{ $stock->quantity }}</td>
                                 <td>
-                                    @if ($product['stock'] > 0)
+                                    @if ($stock->quantity > 0)
                                         <span class="badge bg-success px-3 py-2 rounded-pill">ATIVO</span>
                                     @else
                                         <span class="badge bg-warning text-dark px-3 py-2 rounded-pill">INATIVO</span>
                                     @endif
                                     <a href="#" class="btn btn-outline-dark btn-sm ms-2 rounded-pill">EDITAR</a>
                                 </td>
+
                             </tr>
                         @endforeach
                     </tbody>

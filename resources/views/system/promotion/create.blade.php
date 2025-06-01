@@ -16,7 +16,9 @@
                         @foreach ($medicines as $medicine)
                             <div class="form-check d-flex align-items-center mb-3" style="height: 80px;">
                                 <input class="form-check-input me-3" type="radio" name="medicine_id"
-                                    id="medicine{{ $medicine->id }}" value="{{ $medicine->id }}" required>
+                                    id="medicine{{ $medicine->id }}" value="{{ $medicine->id }}"
+                                    data-price="{{ $medicine->price }}"
+                                    data-min-price="{{ $medicine->min_promotional_price }}" required>
                                 <label class="form-check-label d-flex align-items-center w-100"
                                     for="medicine{{ $medicine->id }}">
                                     <img src="{{ $medicine->image ? asset('storage/' . $medicine->image) : 'https://via.placeholder.com/80' }}"
@@ -42,14 +44,19 @@
                         </div>
                         <div class="col-3">
                             <label for="price" class="form-label">Preço Normal*</label>
-                            <input type="text" class="form-control input-bg" id="price" name="price"
-                                placeholder="R$" value="">
+                            <input type="text" class="form-control input-bg" id="price" placeholder="R$"
+                                value="" disabled>
                         </div>
                         <div class="col-6">
                             <label for="promotional_price" class="form-label">Preço Promotional*</label>
                             <input type="text" class="form-control input-bg" id="promotional_price"
                                 name="promotional_price" placeholder="R$" value="">
+                            <span id="minPriceBadge" class="badge bg-info text-dark mt-2 d-none">
+                                Valor mínimo: R$ 0,00
+                            </span>
                         </div>
+
+
                         <div class="col-6">
                             <label for="start_date" class="form-label">Data de Início*</label>
                             <input type="date" class="form-control input-bg" id="start_date" name="start_date" required>
@@ -71,16 +78,40 @@
     </div>
     </div>
     <div class="line mt-5"></div>
+
 @section('javascript')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const radioButtons = document.querySelectorAll('input[name="medicine_id"]');
             const codeInput = document.getElementById('medicine_code_display');
+            const priceInput = document.getElementById('price');
+            const minPriceBadge = document.getElementById('minPriceBadge');
 
             radioButtons.forEach(radio => {
                 radio.addEventListener('change', function() {
                     if (this.checked) {
                         codeInput.value = this.value;
+
+                        const price = this.getAttribute('data-price');
+                        const minPrice = this.getAttribute('data-min-price');
+
+                        if (price) {
+                            priceInput.value = parseFloat(price).toLocaleString('pt-BR', {
+                                style: 'currency',
+                                currency: 'BRL'
+                            });
+                        }
+
+                        if (minPrice) {
+                            minPriceBadge.classList.remove('d-none');
+                            minPriceBadge.innerText = 'Valor mínimo: ' + parseFloat(minPrice)
+                                .toLocaleString('pt-BR', {
+                                    style: 'currency',
+                                    currency: 'BRL'
+                                });
+                        } else {
+                            minPriceBadge.classList.add('d-none');
+                        }
                     }
                 });
             });

@@ -44,15 +44,15 @@
                             <tr>
                                 <td class="d-flex align-items-center text-start">
                                     <img src="{{ $medicine->image ? asset('storage/' . $medicine->image) : 'https://via.placeholder.com/150' }}"
-                                        alt="{{ $medicine->fantasy_name }}" width="150" height="150"
-                                        class="me-3 rounded">
+                                        alt="{{ $medicine->fantasy_name }}" width="120" height="120"
+                                        class="me-3 rounded my-3">
                                     <div>
                                         <strong>{{ $medicine->fantasy_name }}</strong><br>
                                         <small>{{ $medicine->description ?? 'Sem descrição' }}</small>
                                     </div>
                                 </td>
                                 <td class="fw-bold">R$ {{ number_format($medicine->price, 2, ',', '.') }}</td>
-                                <td>{{ $medicine->stock }}</td>
+                                <td>{{ $medicine->quantity }}</td>
                                 <td>
                                     <form action="{{ route('medicine.edit', $medicine->id) }}" method="GET"
                                         class="d-inline">

@@ -34,10 +34,15 @@
                     <div class="row g-3 shadow rounded-4" style="padding:20px;">
                         <h2 class="fw-medium">Informações do Produto</h2>
 
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <label for="fantasy-name" class="form-label">Nome Fantasia*</label>
                             <input type="text" class="form-control input-bg" id="fantasy_name" name="fantasy_name"
                                 value="{{ old('fantasy_name', $medicine->fantasy_name) }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="price" class="form-label">Preço*</label>
+                            <input type="number" class="form-control input-bg" id="price" name="price"
+                                value="{{ old('price', $medicine->price) }}" step="0.01" min="0">
                         </div>
 
                         <div class="col-6">

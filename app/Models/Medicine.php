@@ -9,10 +9,12 @@ class Medicine extends Model
 
     protected $fillable = [
         'fantasy_name',
+        'price',
         'type',
         'form',
         'dosage',
         'maker',
+        'quantity',
         'description',
         'image',
         'active_ingredient_id'];
@@ -21,7 +23,7 @@ class Medicine extends Model
     {
         return $this->belongsTo(ActiveIngredient::class);
     }
-    
+
     public function promotion()
     {
         return $this->hasOne(Promotion::class);
