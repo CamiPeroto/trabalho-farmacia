@@ -15,8 +15,8 @@ class PromotionController extends Controller
 }
       public function create()
     {
-        $promotions = Promotion::all();
-        return view('promotion.create', ['promotions' => $promotions]);
+        $medicines = Medicine::all(); 
+        return view('system.promotion.create', ['medicines' => $medicines]);
     }
 
     public function store(Request $request)

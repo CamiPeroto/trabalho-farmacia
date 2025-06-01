@@ -17,6 +17,11 @@ class Medicine extends Model
         'image',
         'active_ingredient_id'];
 
+    public function activeIngredient()
+    {
+        return $this->belongsTo(ActiveIngredient::class);
+    }
+    
     public function promotion()
     {
         return $this->hasOne(Promotion::class);

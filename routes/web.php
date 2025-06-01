@@ -51,7 +51,7 @@ Route::put('/edit-medicine/{medicine}', [MedicineController::class, 'update'])->
 Route::delete('/medicine/{medicine}', [MedicineController::class, 'destroy'])->name('medicine.destroy');
 
 //Promoções
-Route::get('/promotions', [PromotionController::class, 'index'])->name('medicine.index');
+Route::get('/promotions', [PromotionController::class, 'index'])->name('promotion.index');
 Route::get('/create-promotions', [PromotionController::class, 'create'])->name('promotion.create');
 Route::post('/store-promotion', [PromotionController::class, 'store'])->name('promotion.store');
 // Route::get('/show-promotion/{promotion}', [PromotionController::class, 'show'])->name('promotion.show');

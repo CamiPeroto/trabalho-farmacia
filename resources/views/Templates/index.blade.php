@@ -99,7 +99,7 @@
                     <li><a class="dropdown-item fw-bold fs-6" href="{{ route('ingredient.index') }}">Principio
                             Ativo</a></li>
                     <li><a class="dropdown-item fw-bold fs-6" href="{{ route('medicine.index') }}">Remédios</a></li>
-                    <li><a class="dropdown-item fw-bold fs-6" href="{{ route('medicine.index') }}">Promoções</a></li>
+                    <li><a class="dropdown-item fw-bold fs-6" href="{{ route('promotion.index') }}">Promoções</a></li>
                     <li><a class="dropdown-item fw-bold fs-6" href="{{ route('drugstore.index') }}">Filiais</a></li>
                 </ul>
             </div>

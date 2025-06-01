@@ -4,10 +4,27 @@
 @section('content')
 <div class="container my-5">
     <div class="row d-flex">
-        <div class="col-4 my-4">
-            <h3 class="fw-bold">Produtos em Promoção</h3>
+            <div class="col-4 my-4">
+                <h3 class="fw-bold">Produtos em Promoção</h3>
+            </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="col-6 d-flex align-items-center justify-content-start">
+                <form class="d-flex justify-content-center me-5" role="search" action="{{ url('/search') }}" method="GET">
+                    <div class="position-relative w-100">
+                        <i class="fi fi-rr-search position-absolute"
+                            style="left: 18px; top: 50%; transform: translateY(-50%); color: gray; z-index: 2;"></i>
+                        <input class="form-control search-sm ps-5 me-2" type="search" placeholder="Pesquisar..."
+                            aria-label="Buscar" name="q">
+                    </div>
+                </form>
+            </div>
+            <div class="col-6 d-flex justify-content-end align-items-center">
+                <a class="ms-2 text-decoration-none" href="{{ route('promotion.create') }}">
+                    <i class="fi fi-rr-plus-small fs-3 btn-icon-bg shadow"></i>
+                </a>
+            </div>
+        </div>
     <x-alert />
     <div class="row my-5">
         <div class="col-12">
@@ -21,7 +38,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($promotions as $promotion)
+                    @forelse($promotions as $promotion)
                         <tr>
                             <td class="d-flex align-items-center text-start">
                                 <img src="{{ $promotion->medicine->image ? asset('storage/' . $promotion->medicine->image) : 'https://via.placeholder.com/150' }}"
@@ -45,7 +62,13 @@
                                 </form>
                             </td>
                         </tr>
-                    @endforeach
+                        @empty
+                            <tr>
+                                <td colspan="4" class="text-center alert alert-danger">
+                                    Nenhuma promoção encontrada!
+                                </td>
+                            </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

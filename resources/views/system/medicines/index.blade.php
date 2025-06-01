@@ -40,7 +40,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($medicines as $medicine)
+                        @forelse ($medicines as $medicine)
                             <tr>
                                 <td class="d-flex align-items-center text-start">
                                     <img src="{{ $medicine->image ? asset('storage/' . $medicine->image) : 'https://via.placeholder.com/150' }}"
@@ -69,11 +69,15 @@
                                             APAGAR
                                         </button>
                                     </form>
-                                    
-
                                 </td>
                             </tr>
-                        @endforeach
+                            @empty
+                            <tr>
+                                <td colspan="4" class="text-center alert alert-danger">
+                                    Nenhum remédio encontrado!
+                                </td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
