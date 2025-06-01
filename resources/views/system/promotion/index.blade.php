@@ -42,7 +42,7 @@
                         <tr>
                             <td class="d-flex align-items-center text-start">
                                 <img src="{{ $promotion->medicine->image ? asset('storage/' . $promotion->medicine->image) : 'https://via.placeholder.com/150' }}"
-                                    alt="{{ $promotion->medicine->fantasy_name }}" width="150" height="150"
+                                    alt="{{ $promotion->medicine->fantasy_name }}" width="130" height="130"
                                     class="me-3 rounded my-3">
                                 <div>
                                     <strong>{{ $promotion->medicine->fantasy_name }}</strong><br>

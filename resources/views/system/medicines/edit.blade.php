@@ -17,7 +17,7 @@
                     <div class="card shadow" style="width: 32rem;" id="card-medicine">
                         <img id="preview-image"
                             src="{{ $medicine->image ? asset('storage/' . $medicine->image) : 'https://pixcap.com/cdn/library/template/1729793843829/thumbnail/Medicine_Bottle_Jar_3D_Icon_transparent_emp_800.webp' }}"
-                            class="card-img-top" style="height: 300px; object-fit: contain;"
+                            class="card-img-top my-3" style="height: 300px; object-fit: contain;"
                             alt="Pré-visualização da imagem">
                         <div class="card-body d-flex justify-content-center">
                             <input type="file" class="form-control upload-img" name="image" id="image"
