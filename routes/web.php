@@ -59,6 +59,15 @@ Route::get('/edit-promotion/{promotion}', [PromotionController::class, 'edit'])-
 Route::put('/edit-promotion/{promotion}', [PromotionController::class, 'update'])->name('promotion.update');
 Route::delete('/promotion/{promotion}', [PromotionController::class, 'destroy'])->name('promotion.destroy');
 
+//Estoque
+Route::get('/stock', [StockController::class, 'index'])->name('stock.index');
+Route::get('/create-stock', [StockController::class, 'create'])->name('stock.create');
+Route::post('/store-stock', [StockController::class, 'store'])->name('stock.store');
+// Route::get('/show-stock/{stock}', [StockController::class, 'show'])->name('stock.show');
+Route::get('/edit-stock/{stock}', [StockController::class, 'edit'])->name('stock.edit');
+Route::put('/edit-stock/{stock}', [StockController::class, 'update'])->name('stock.update');
+Route::delete('/stock/{stock}', [StockController::class, 'destroy'])->name('stock.destroy');
+
 //Orçamentos
 Route::get('/budget', [BudgetController::class, 'index'])->name('budget.index');
 //Filais
@@ -67,5 +76,5 @@ Route::get('/drugstore', [DrugStoreController::class, 'index'])->name('drugstore
 Route::get('/stock', [StockController::class, 'index'])->name('stock.index');
 // Profile
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
-// Profile
+// Vendas
 Route::get('/sale', [SaleController::class, 'index'])->name('sale.index');
