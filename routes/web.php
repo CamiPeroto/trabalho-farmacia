@@ -7,6 +7,7 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\StockController;
@@ -44,10 +45,19 @@ Route::delete('/ingredient/{ingredient}', [ActiveIngredientController::class, 'd
 Route::get('/medicines', [MedicineController::class, 'index'])->name('medicine.index');
 Route::get('/create-medicines', [MedicineController::class, 'create'])->name('medicine.create');
 Route::post('/store-medicine', [MedicineController::class, 'store'])->name('medicine.store');
-Route::get('/show-medicine/{medicine}', [MedicineController::class, 'show'])->name('medicine.show');
+// Route::get('/show-medicine/{medicine}', [MedicineController::class, 'show'])->name('medicine.show');
 Route::get('/edit-medicine/{medicine}', [MedicineController::class, 'edit'])->name('medicine.edit');
 Route::put('/edit-medicine/{medicine}', [MedicineController::class, 'update'])->name('medicine.update');
 Route::delete('/medicine/{medicine}', [MedicineController::class, 'destroy'])->name('medicine.destroy');
+
+//Promoções
+Route::get('/promotions', [PromotionController::class, 'index'])->name('medicine.index');
+Route::get('/create-promotions', [PromotionController::class, 'create'])->name('promotion.create');
+Route::post('/store-promotion', [PromotionController::class, 'store'])->name('promotion.store');
+// Route::get('/show-promotion/{promotion}', [PromotionController::class, 'show'])->name('promotion.show');
+Route::get('/edit-promotion/{promotion}', [PromotionController::class, 'edit'])->name('promotion.edit');
+Route::put('/edit-promotion/{promotion}', [PromotionController::class, 'update'])->name('promotion.update');
+Route::delete('/promotion/{promotion}', [PromotionController::class, 'destroy'])->name('promotion.destroy');
 
 //Orçamentos
 Route::get('/budget', [BudgetController::class, 'index'])->name('budget.index');

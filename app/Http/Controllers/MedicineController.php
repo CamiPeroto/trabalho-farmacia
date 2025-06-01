@@ -21,7 +21,7 @@ class MedicineController extends Controller
         $ingredients = ActiveIngredient::all();
         return view('system.medicines.create', ['ingredients' => $ingredients]);
     }
-
+    
     public function store(MedicineRequest $request)
     {
         $request->validated();

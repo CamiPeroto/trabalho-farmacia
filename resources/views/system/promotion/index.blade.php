@@ -1,0 +1,95 @@
+@extends('templates.index')
+
+
+@section('content')
+<div class="container my-5">
+    <div class="row d-flex">
+        <div class="col-4 my-4">
+            <h3 class="fw-bold">Produtos em Promoção</h3>
+        </div>
+    </div>
+    <x-alert />
+    <div class="row my-5">
+        <div class="col-12">
+            <table class="table align-middle text-center">
+                <thead class="table-light">
+                    <tr>
+                        <th class="text-start">Produtos</th>
+                        <th>Período</th>
+                        <th>Preço Promocional</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($promotions as $promotion)
+                        <tr>
+                            <td class="d-flex align-items-center text-start">
+                                <img src="{{ $promotion->medicine->image ? asset('storage/' . $promotion->medicine->image) : 'https://via.placeholder.com/150' }}"
+                                    alt="{{ $promotion->medicine->fantasy_name }}" width="150" height="150"
+                                    class="me-3 rounded">
+                                <div>
+                                    <strong>{{ $promotion->medicine->fantasy_name }}</strong><br>
+                                    <small>{{ $promotion->medicine->description ?? 'Sem descrição' }}</small>
+                                </div>
+                            </td>
+                            <td>{{ \Carbon\Carbon::parse($promotion->start_date)->format('d/m/Y') }} - {{ \Carbon\Carbon::parse($promotion->end_date)->format('d/m/Y') }}</td>
+                            <td class="fw-bold">R$ {{ number_format($promotion->price, 2, ',', '.') }}</td>
+                            <td>
+                                <a href="{{ route('promotion.edit', $promotion->id) }}"
+                                    class="btn btn-outline-warning btn-sm ms-2 rounded-pill">EDITAR</a>
+
+                                <form action="{{ route('promotion.destroy', $promotion->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-outline-danger btn-sm ms-2 rounded-pill">APAGAR</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@endsection
+
+@section('javascript')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const todosCheckbox = document.getElementById('todosCheckbox');
+            const ativoCheckbox = document.getElementById('ativoCheckbox');
+            const allRows = document.querySelectorAll('tbody tr');
+
+            function updateTable() {
+                allRows.forEach(row => {
+                    const statusBadge = row.querySelector('.badge');
+                    const isAtivo = statusBadge && statusBadge.textContent.trim() === 'ATIVO';
+
+                    if (ativoCheckbox.checked && !todosCheckbox.checked) {
+                        row.style.display = isAtivo ? '' : 'none';
+                    } else {
+                        row.style.display = '';
+                    }
+                });
+            }
+
+            todosCheckbox.addEventListener('change', () => {
+                if (todosCheckbox.checked) {
+                    ativoCheckbox.checked = false;
+                }
+                updateTable();
+            });
+
+            ativoCheckbox.addEventListener('change', () => {
+                if (ativoCheckbox.checked) {
+                    todosCheckbox.checked = false;
+                } else {
+                    todosCheckbox.checked = true;
+                }
+                updateTable();
+            });
+
+            updateTable();
+        });
+    </script>
+@endsection
