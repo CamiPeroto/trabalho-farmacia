@@ -114,7 +114,7 @@
                         <textarea class="form-control" id="description" name="description" rows="3"></textarea>
                     </div>
                     <div class="d-flex justify-content-end gap-2">
-                        <button type="submit" class="btn btn-warning fw-medium" id="cancel-ai">Cancelar</button>
+                        <a href="{{ route('ingredient.index') }}" class="btn btn-warning fw-medium" id="cancel-ai">Cancelar</a>
                         <button type="submit" class="btn btn-warning" id="ai-button">Salvar</button>
                     </div>
                 </form>
@@ -145,7 +145,7 @@
                         <textarea class="form-control" id="editDescription" name="description" rows="3"></textarea>
                     </div>
                     <div class="d-flex justify-content-end gap-2">
-                        <button type="button" class="btn btn-warning fw-medium"
+                        <button type="button" class="btn btn-outline-warning fw-medium"
                             data-bs-dismiss="modal">Cancelar</button>
                         <button type="submit" class="btn btn-warning">Salvar</button>
                     </div>

@@ -104,7 +104,7 @@
 
                         <!-- Botões -->
                         <div class="col-12 d-flex justify-content-end gap-3">
-                            <button type="reset" class="btn btn-warning fw-medium" id="cancel-button">Cancelar</button>
+                            <a href="{{ route('medicine.index') }}" class="btn btn-warning fw-medium" id="cancel-button">Cancelar</a>
                             <button type="submit" class="btn btn-warning" id="save-button">Salvar</button>
                         </div>
                     </div>

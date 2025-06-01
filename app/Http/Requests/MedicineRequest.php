@@ -28,7 +28,7 @@ class MedicineRequest extends FormRequest
             'form'                 => 'required',
             'dosage'               => 'required',
             'maker'                => 'required|string',
-            'quantity'             => 'required|integer|min:1',
+            'quantity'             => $this->isMethod('post') ? 'required|integer|min:1' : 'nullable',
             'image'                => $this->isMethod('post')
             ? 'required|image|mimes:jpeg,png,jpg,svg|max:3072'
             : 'nullable|image|mimes:jpeg,png,jpg,svg|max:3072',
