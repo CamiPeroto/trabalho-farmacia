@@ -14,6 +14,7 @@ class Stock extends Model
         'quantity',
         'unitary_price',
         'expiration_date',
+         'status',
         'entry_date',
     ];
      protected $casts = [

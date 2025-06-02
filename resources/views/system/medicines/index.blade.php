@@ -52,7 +52,7 @@
                                     </div>
                                 </td>
                                 <td class="fw-bold">R$ {{ number_format($medicine->price, 2, ',', '.') }}</td>
-                                <td>{{ $medicine->quantity }}</td>
+                                <td>{{ $medicine->stock->sum('quantity') }}</td>
                                 <td>
                                     <form action="{{ route('medicine.edit', $medicine->id) }}" method="GET"
                                         class="d-inline">

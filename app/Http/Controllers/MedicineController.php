@@ -15,120 +15,138 @@ class MedicineController extends Controller
 {
     public function index()
     {
-        $medicines = Medicine::all();
+        $medicines = Medicine::with('stock')->get();
         return view('system.medicines.index', ['medicines' => $medicines]);
     }
     public function create()
     {
         $ingredients = ActiveIngredient::all();
-        $nextId = \App\Models\Medicine::max('id') + 1;
-        
-        return view('system.medicines.create', 
-        [
-        'ingredients' => $ingredients,
-         'nextId' => $nextId 
-        ]);
+        $nextId      = \App\Models\Medicine::max('id') + 1;
+
+        return view('system.medicines.create',
+            [
+                'ingredients' => $ingredients,
+                'nextId'      => $nextId,
+            ]);
     }
-    
+
     public function store(MedicineRequest $request)
     {
-       $request->validated();
+        $request->validated();
 
-    DB::beginTransaction();
+        DB::beginTransaction();
 
-    try {
-        $imagePath = $request->hasFile('image')
+        try {
+            $imagePath = $request->hasFile('image')
             ? $request->file('image')->store('medicines', 'public')
             : null;
 
-        // Cria o remédio e armazena em $medicine
-        $medicine = Medicine::create([
-            'fantasy_name'         => $request->fantasy_name,
-            'price'                => $request->price,
-            'type'                 => $request->type,
-            'form'                 => $request->form,
-            'dosage'               => $request->dosage,
-            'maker'                => $request->maker,
-            'quantity'             => $request->quantity,
-            'description'          => $request->description,
-            'active_ingredient_id' => $request->active_ingredient_id,
-            'image'                => $imagePath,
-        ]);
+            // Cria o remédio e armazena em $medicine
+            $medicine = Medicine::create([
+                'fantasy_name'         => $request->fantasy_name,
+                'price'                => $request->price,
+                'type'                 => $request->type,
+                'form'                 => $request->form,
+                'dosage'               => $request->dosage,
+                'maker'                => $request->maker,
+                'quantity'             => $request->quantity,
+                'description'          => $request->description,
+                'active_ingredient_id' => $request->active_ingredient_id,
+                'image'                => $imagePath,
+            ]);
 
-        // Cria automaticamente o estoque
-        Stock::create([
-            'medicine_id'     => $medicine->id,
-            'quantity'        => $medicine->quantity,
-            'unitary_price'   => $medicine->price,
-            'entry_date'      => Carbon::now()->toDateString(),
-            'expiration_date' => Carbon::now()->addYears(2)->toDateString(),
-        ]);
+            // Cria automaticamente o estoque
+            Stock::create([
+                'medicine_id'     => $medicine->id,
+                'quantity'        => $medicine->quantity,
+                'unitary_price'   => $medicine->price,
+                'entry_date'      => Carbon::now()->toDateString(),
+                'expiration_date' => Carbon::now()->addYears(2)->toDateString(),
+            ]);
 
-        DB::commit();
+            DB::commit();
 
-        return redirect()->route('medicine.index')
-            ->with('success', 'Remédio cadastrado com sucesso!');
+            return redirect()->route('medicine.index')
+                ->with('success', 'Remédio cadastrado com sucesso!');
 
-    } catch (Exception $e) {
-        DB::rollBack();
-        Log::notice('Remédio não cadastrado.', ['error' => $e->getMessage()]);
+        } catch (Exception $e) {
+            DB::rollBack();
+            Log::notice('Remédio não cadastrado.', ['error' => $e->getMessage()]);
 
-        return back()->withInput()->with('error', 'Remédio não cadastrado');
+            return back()->withInput()->with('error', 'Remédio não cadastrado');
+        }
     }
-    }
+
     public function edit(Medicine $medicine)
     {
         $ingredients = ActiveIngredient::all();
-        return view('system.medicines.edit', [  'medicine' => $medicine,'ingredients' => $ingredients]);
+        return view('system.medicines.edit', ['medicine' => $medicine, 'ingredients' => $ingredients]);
     }
+
     public function update(MedicineRequest $request, Medicine $medicine)
-{
-    $request->validated();
+    {
+        $request->validated();
 
-    DB::beginTransaction();
+        DB::beginTransaction();
 
-    try {
-        // Se houver nova imagem, armazena e exclui a antiga
-        if ($request->hasFile('image')) {
-            // Exclui imagem antiga, se existir
-            if ($medicine->image && Storage::disk('public')->exists($medicine->image)) {
-                Storage::disk('public')->delete($medicine->image);
+        try {
+            // Se houver nova imagem, armazena e exclui a antiga
+            if ($request->hasFile('image')) {
+                // Exclui imagem antiga, se existir
+                if ($medicine->image && Storage::disk('public')->exists($medicine->image)) {
+                    Storage::disk('public')->delete($medicine->image);
+                }
+
+                $imagePath = $request->file('image')->store('medicines', 'public');
+            } else {
+                $imagePath = $medicine->image; // mantém a imagem atual
             }
 
-            $imagePath = $request->file('image')->store('medicines', 'public');
-        } else {
-            $imagePath = $medicine->image; // mantém a imagem atual
+            // Atualiza os dados
+            $medicine->update([
+                'fantasy_name'         => $request->fantasy_name,
+                'price'                => $request->price,
+                'type'                 => $request->type,
+                'form'                 => $request->form,
+                'dosage'               => $request->dosage,
+                'maker'                => $request->maker,
+                'description'          => $request->description,
+                'active_ingredient_id' => $request->active_ingredient_id,
+                'image'                => $imagePath,
+            ]);
+
+            DB::commit();
+
+            return redirect()->route('medicine.index')
+                ->with('success', 'Remédio atualizado com sucesso!');
+        } catch (Exception $e) {
+            DB::rollBack();
+            Log::error('Erro ao atualizar remédio.', ['error' => $e->getMessage()]);
+
+            return back()->withInput()->with('error', 'Erro ao atualizar o remédio.');
         }
-
-        // Atualiza os dados
-        $medicine->update([
-            'fantasy_name'         => $request->fantasy_name,
-            'price'                 => $request->price,
-            'type'                 => $request->type,
-            'form'                 => $request->form,
-            'dosage'               => $request->dosage,
-            'maker'                => $request->maker,
-            'description'          => $request->description,
-            'active_ingredient_id' => $request->active_ingredient_id,
-            'image'                => $imagePath,
-        ]);
-
-        DB::commit();
-
-        return redirect()->route('medicine.index')
-            ->with('success', 'Remédio atualizado com sucesso!');
-    } catch (Exception $e) {
-        DB::rollBack();
-        Log::error('Erro ao atualizar remédio.', ['error' => $e->getMessage()]);
-
-        return back()->withInput()->with('error', 'Erro ao atualizar o remédio.');
     }
-}
-public function destroy(Medicine $medicine)
+    public function destroy(Medicine $medicine)
     {
 
         try {
 
+            $totalStock = $medicine->stock()->count();
+
+            // Estoques que são inativos e com quantidade < 3
+            $deletableStock = $medicine->stock()
+                ->where('status', false)
+                ->where('quantity', '<', 3)
+                ->count();
+
+            // Se houver algum estoque que não é seguro, bloqueia
+            if ($deletableStock !== $totalStock) {
+                return redirect()->route('medicine.index')
+                    ->with('error', 'Remédio não foi excluído! Estoque ativo ou com quantidade suficiente.');
+            }
+
+            // Exclui todos os estoques restantes
+            $medicine->stock()->delete();
             $medicine->delete();
 
             Log::info('Remédio apagado.', ['medicine' => $medicine->id]);
@@ -140,7 +158,7 @@ public function destroy(Medicine $medicine)
             Log::info('Remédio não apagado.', ['error' => $e->getMessage()]);
 
             return redirect()->route('medicine.index')
-            ->with('error', 'Remédio não foi excluído!');
+                ->with('error', 'Remédio não foi excluído!');
 
         }
 

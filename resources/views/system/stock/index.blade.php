@@ -84,12 +84,13 @@
                                 <td class="fw-bold">R$ {{ number_format($stock->medicine->price ?? 0, 2, ',', '.') }}</td>
                                 <td>{{ $stock->quantity }}</td>
                                 <td>
-                                    @if ($stock->quantity > 0)
+                                    @if ($stock->status)
                                         <span class="badge bg-success px-3 py-2 rounded-pill">ATIVO</span>
                                     @else
                                         <span class="badge bg-warning text-dark px-3 py-2 rounded-pill">INATIVO</span>
                                     @endif
-                                    <a href="#" class="btn btn-outline-dark btn-sm ms-2 rounded-pill">EDITAR</a>
+                                    <a href="{{ route('stock.edit', $stock->id) }}"
+                                        class="btn btn-outline-dark btn-sm ms-2 rounded-pill">EDITAR</a>
                                 </td>
 
                             </tr>

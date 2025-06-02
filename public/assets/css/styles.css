@@ -261,6 +261,10 @@ body {
     border-radius: 25px;
     border: none;
 }
+#card-stock {
+    background-color: var(--bg-primary-color) !important;
+    height: 58vh;
+}
 
 .dropdown .btn-secondary:hover {
     color: #000000 !important;
