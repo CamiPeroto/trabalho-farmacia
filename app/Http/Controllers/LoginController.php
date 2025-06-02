@@ -44,7 +44,7 @@ class LoginController extends Controller
         //   //Atribuir as permissões ao usuário
         //   $user->syncPermissions($permissions);
         //Redirecionar o usuário
-        return redirect()->route('dashboard.index');
+        return redirect()->route('medicine.index');
 
     }
 

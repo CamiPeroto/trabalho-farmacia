@@ -20,10 +20,12 @@ Route::get('/', function () {
 //Login
 // Route::get('/', [LoginController::class, 'index'])->name('login.index');
 Route::get('/login', [LoginController::class, 'index'])->name('login.index');
+Route::post('/login', [LoginController::class, 'loginProcess'])->name('login.process'); 
 Route::get('/register', [RegisterController::class, 'index'])->name('register.index');
 // Route::get('/logout', [LoginController::class, 'destroy'])->name('login.destroy'); 
 // Route::get('/create-user-login', [LoginController::class, 'create'])->name('login.create-user');
 // Route::post('/store-user-login', [LoginController::class, 'store'])->name('login.store-user');
+
 //Recuperar senha
 // Route::get('/forgot-password', [ForgotPasswordController::class, 'showForgotPassword'])
 // ->name('forgot-password.show');
@@ -34,6 +36,9 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register.in
 // Route::post('/reset-password', [ForgotPasswordController::class, 'submitResetPassword'])
 // ->name('reset-password.submit');
 
+//Rotas privadas
+Route::group(['middleware' => 'auth'], function()
+{
 //Princípio Ativo
 Route::get('/ingredient', [ActiveIngredientController::class, 'index'])->name('ingredient.index');
 Route::post('/ingredient', [ActiveIngredientController::class, 'store'])->name('ingredient.store');
@@ -78,3 +83,4 @@ Route::get('/stock', [StockController::class, 'index'])->name('stock.index');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 // Vendas
 Route::get('/sale', [SaleController::class, 'index'])->name('sale.index');
+});
