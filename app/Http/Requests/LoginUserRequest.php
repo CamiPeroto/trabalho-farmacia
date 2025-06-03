@@ -26,7 +26,7 @@ class LoginUserRequest extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6',
+            'password' => 'required|min:6|confirmed',
         ];
     }
 
@@ -39,6 +39,7 @@ class LoginUserRequest extends FormRequest
             'email.unique' => 'O e-mail já está cadastrado!',
             'password.required' => 'Campo senha é obrigatório!',
             'password.min' => 'Senha com no mínimo :min caracteres!',
+            'password.confirmed' => 'As senhas não coincidem!',
         ];
     }
 }

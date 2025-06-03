@@ -79,7 +79,18 @@ class RoleSeeder extends Seeder
             'create-promotions',
             'update-promotions',
             'destroy-promotions',
+
+            'index-drugstore',
         ]);
+
+        if (!Role::where('name', 'Cliente')->first()) {
+            $client = Role::create([
+                'name' => 'Cliente',
+                'guard_name' => 'web',
+            ]);
+        } else {
+            $client = Role::where('name', 'Cliente')->first();
+        }
 
     }
 }

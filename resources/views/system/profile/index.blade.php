@@ -8,7 +8,11 @@
                     <img src="https://www.svgrepo.com/show/384674/account-avatar-profile-user-11.svg" width="50"
                         alt="Avatar">
                     <div>
-                        <h5 class="mb-0 text-uppercase text-primary fw-bold">Rafael Gasperin</h5>
+                        <h5 class="mb-0 text-uppercase text-primary fw-bold">
+                            @if (auth()->check())
+                                {{ auth()->user()->name }}
+                            @endif
+                        </h5>
                     </div>
                 </div>
             </div>
@@ -19,7 +23,7 @@
                     <input type="text" class="form-control" value="Vendedor" readonly>
                 </div>
                 <div class="col-6">
-                    <label class="form-label small">Codigo de Vendedor</label>
+                    <label class="form-label small">Codigo de Funcionário</label>
                     <input type="text" class="form-control" value="0001" readonly>
                 </div>
             </div>

@@ -6,8 +6,9 @@
             <div class="card card-bg shadow-lg p-4" style="max-width: 450px; width: 100%;">
                 <div class="card-body">
                     <h4 class="text-center mb-4">Criar Conta</h4>
+                    <x-alert />
 
-                    <form action="{{ url('/register') }}" method="POST">
+                    <form action="{{ route('login.store-user') }}" method="POST">
                         @csrf
 
                         <div class="mb-3">
@@ -20,16 +21,11 @@
                             <input type="email" class="form-control" id="email" name="email" required>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="phone" class="form-label">Telefone</label>
-                            <input type="tel" class="form-control" id="phone" name="phone" required>
-                        </div>
-
                         <div class="mb-3 position-relative">
                             <label for="password" class="form-label">Senha</label>
                             <input type="password" class="form-control" id="password" name="password" required>
-                            <span class="position-absolute top-60 end-0 me-3"
-                                onclick="togglePassword('password', this)" style="cursor: pointer;">
+                            <span class="position-absolute top-60 end-0 me-3" onclick="togglePassword('password', this)"
+                                style="cursor: pointer;">
                                 <i class="fi fi-rr-eye"></i>
                             </span>
                         </div>
@@ -50,7 +46,8 @@
                     </form>
 
                     <div class="text-center mt-3">
-                        <small>Já tem uma conta? <a href="{{ url('/login') }}" class="text-decoration-none text-black fw-bold">Entrar</a></small>
+                        <small>Já tem uma conta? <a href="{{ url('/login') }}"
+                                class="text-decoration-none text-black fw-bold">Entrar</a></small>
                     </div>
                 </div>
             </div>

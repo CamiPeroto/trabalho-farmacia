@@ -2,12 +2,12 @@
 
 @section('content')
     <div class="main-login">
-        <x-alert />
+       
         <div class="container d-flex justify-content-center align-items-center min-vh-100">
             <div class="card card-bg shadow-lg p-4" style="max-width: 400px; width: 100%;">
                 <div class="card-body">
                     <h4 class="text-center mb-4">Entrar na Conta</h4>
-
+                     <x-alert />
                     <form action="{{ route('login.process') }}" method="POST">
                         @csrf
                         @method('POST')

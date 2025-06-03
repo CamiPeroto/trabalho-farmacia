@@ -18,13 +18,13 @@ Route::get('/', function () {
 });
 
 //Login
-// Route::get('/', [LoginController::class, 'index'])->name('login.index');
+
 Route::get('/login', [LoginController::class, 'index'])->name('login.index');
 Route::post('/login', [LoginController::class, 'loginProcess'])->name('login.process'); 
 Route::get('/register', [RegisterController::class, 'index'])->name('register.index');
 // Route::get('/logout', [LoginController::class, 'destroy'])->name('login.destroy'); 
-// Route::get('/create-user-login', [LoginController::class, 'create'])->name('login.create-user');
-// Route::post('/store-user-login', [LoginController::class, 'store'])->name('login.store-user');
+
+Route::post('/store-user-login', [LoginController::class, 'store'])->name('login.store-user');
 
 //Recuperar senha
 // Route::get('/forgot-password', [ForgotPasswordController::class, 'showForgotPassword'])
@@ -76,7 +76,7 @@ Route::delete('/stock/{stock}', [StockController::class, 'destroy'])->name('stoc
 //Orçamentos
 Route::get('/budget', [BudgetController::class, 'index'])->name('budget.index');
 //Filais
-Route::get('/drugstore', [DrugStoreController::class, 'index'])->name('drugstore.index');
+Route::get('/drugstore', [DrugStoreController::class, 'index'])->name('drugstore.index')->middleware('permission:index-drugstore');
 // Profile
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 // Vendas

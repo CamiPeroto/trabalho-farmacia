@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Spatie\Permission\Models\Permission;
 
 class LoginController extends Controller
 {
@@ -31,19 +32,23 @@ class LoginController extends Controller
         //Obter o usuário autenticado
         $user = Auth::user();
         $user = User::find($user->id);
-        // //Verificar se a permissão é super-admin, acesso a todas as páginas
-        //   if($user->hasRole('Super Admin')){
-        //     //O usuário tem todas as permissões
-        //     $permissions = Permission::pluck('name')->toArray();
+        //Verificar se a permissão é super-admin, acesso a todas as páginas
+        if ($user->hasRole('Super Admin')) {
+            //O usuário tem todas as permissões
+            $permissions = Permission::pluck('name')->toArray();
 
-        //   }else{
-        //     //Recuperar no banco as permissões que o papel possui
-        //     $permissions = $user->getPermissionsViaRoles()->pluck('name')
-        //     ->toArray();
-        //   }
-        //   //Atribuir as permissões ao usuário
-        //   $user->syncPermissions($permissions);
-        //Redirecionar o usuário
+        } else {
+            //Recuperar no banco as permissões que o papel possui
+            $permissions = $user->getPermissionsViaRoles()->pluck('name')
+                ->toArray();
+        }
+        //Atribuir as permissões ao usuário
+        $user->syncPermissions($permissions);
+        
+        if ($user->hasRole('Cliente')) {
+            return redirect('/'); 
+        }
+
         return redirect()->route('medicine.index');
 
     }
@@ -68,9 +73,8 @@ class LoginController extends Controller
                 'email'    => $request->email,
                 'password' => $request->password,
             ]);
-
-            // //Cadastrar um papel para o usuário
-            // $user->assignRole('Aluno');
+            //Cadastrar um papel para o usuário
+            $user->assignRole('Cliente');
             // Salvar log
             Log::info('Usuário cadastrado.', ['id' => $user->id]);
 

@@ -54,7 +54,7 @@ class UserSeeder extends Seeder
                 'email'    => 'geovane@gmail.com.br',
                 'password' => Hash::make('123456a', ['rounds' => 12]),
             ]);
-             $employee->assignRole('Super Admin');
+             $employee->assignRole('Funcionário');
 
         }
     }

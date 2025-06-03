@@ -54,7 +54,10 @@
                         <div class="d-flex justify-content-center align-items-center">
                             <i class="fi fi-rr-hand-wave p-2 mr-4 fw-2"></i>
                             <div class="link-nav-button">
-                                <span class="fw-bold ">Olá, Vendedor!</span>
+                                <span class="fw-bold ">Olá, @if (auth()->check())
+                                        {{ auth()->user()->name }}
+                                    @endif
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -98,9 +101,14 @@
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item fw-bold fs-6" href="{{ route('ingredient.index') }}">Principio
                             Ativo</a></li>
-                    <li><a class="dropdown-item fw-bold fs-6" href="{{ route('medicine.index') }}">Remédios</a></li>
-                    <li><a class="dropdown-item fw-bold fs-6" href="{{ route('promotion.index') }}">Promoções</a></li>
-                    <li><a class="dropdown-item fw-bold fs-6" href="{{ route('drugstore.index') }}">Filiais</a></li>
+
+                    @can('index-stock')
+                        <li><a class="dropdown-item fw-bold fs-6" href="{{ route('stock.index') }}">Estoque</a></li>
+                    @endcan
+
+                    @can('index-drugstore')
+                        <li><a class="dropdown-item fw-bold fs-6" href="{{ route('drugstore.index') }}">Filiais</a></li>
+                    @endcan
                 </ul>
             </div>
             <a href="{{ route('sale.index') }}" class="px-4 py-2 footer-button fw-bold text-decoration-none">
@@ -109,9 +117,11 @@
             <a href="{{ route('medicine.index') }}" class="px-4 py-2 footer-button  fw-bold text-decoration-none">
                 Produtos
             </a>
-            <a href="{{ route('stock.index') }}" class="px-4 py-2 footer-button fw-bold text-decoration-none">
-                Estoque
-            </a>
+            @can('index-stock')
+                <a href="{{ route('promotion.index') }}" class="px-4 py-2 footer-button fw-bold text-decoration-none">
+                    Promoções
+                </a>
+            @endcan
             <a href="{{ route('budget.index') }}" class="px-4 py-2 footer-button  fw-bold text-decoration-none">
                 Fornecedores
             </a>
