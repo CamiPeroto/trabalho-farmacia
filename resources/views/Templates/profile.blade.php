@@ -77,7 +77,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('/') }}">
+                        <a href="{{ route('login.destroy')}}">
                             <i class="fi fi-rr-sign-out-alt"></i>
                             <p>Sair</p>
                         </a>

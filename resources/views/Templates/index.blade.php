@@ -62,7 +62,7 @@
                         </div>
                     </div>
 
-                    <a href="{{ url('/profile') }}">
+                    <a href="{{ route('login.destroy')}}">
                         <div class="nav-btn me-4">
                             <div class="d-flex justify-content-center align-items-center">
                                 <i class="fi fi-rr-user p-2 mr-4 fw-2"></i>
