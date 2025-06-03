@@ -62,7 +62,7 @@
                         </div>
                     </div>
 
-                    <a href="{{ route('login.destroy')}}">
+                    <a href="{{ route('profile.index')}}">
                         <div class="nav-btn me-4">
                             <div class="d-flex justify-content-center align-items-center">
                                 <i class="fi fi-rr-user p-2 mr-4 fw-2"></i>
@@ -73,7 +73,7 @@
                         </div>
                     </a>
 
-                    <a href="{{ url('/login') }}">
+                    <a href="{{ route('login.destroy')}}">
                         <div class="nav-btn" style=" width: 85px;">
                             <div class="d-flex justify-content-center align-items-center">
                                 <i class="fi fi-rr-leave p-2 mr-4 fw-2"></i>
@@ -120,7 +120,7 @@
             @can('index-stock')
                 <a href="{{ route('promotion.index') }}" class="px-4 py-2 footer-button fw-bold text-decoration-none">
                     Promoções
-                </a>
+            </a>
             @endcan
             <a href="{{ route('budget.index') }}" class="px-4 py-2 footer-button  fw-bold text-decoration-none">
                 Fornecedores
