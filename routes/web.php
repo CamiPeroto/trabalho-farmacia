@@ -40,45 +40,43 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register.in
 Route::group(['middleware' => 'auth'], function()
 {
 //Princípio Ativo
-Route::get('/ingredient', [ActiveIngredientController::class, 'index'])->name('ingredient.index');
-Route::post('/ingredient', [ActiveIngredientController::class, 'store'])->name('ingredient.store');
-Route::get('/ingredient/{ingredient}', [ActiveIngredientController::class, 'edit'])->name('ingredient.edit');
-Route::put('/ingredient/{ingredient}', [ActiveIngredientController::class, 'update'])->name('ingredient.update');
-Route::delete('/ingredient/{ingredient}', [ActiveIngredientController::class, 'destroy'])->name('ingredient.destroy');
+Route::get('/ingredient', [ActiveIngredientController::class, 'index'])->name('ingredient.index')->middleware('permission:index-active-ingredient');
+Route::post('/ingredient', [ActiveIngredientController::class, 'store'])->name('ingredient.store')->middleware('permission:create-active-ingredient');
+Route::get('/ingredient/{ingredient}', [ActiveIngredientController::class, 'edit'])->name('ingredient.edit')->middleware('permission:update-active-ingredient');
+Route::put('/ingredient/{ingredient}', [ActiveIngredientController::class, 'update'])->name('ingredient.update')->middleware('permission:update-active-ingredient');
+Route::delete('/ingredient/{ingredient}', [ActiveIngredientController::class, 'destroy'])->name('ingredient.destroy')->middleware('permission:destroy-active-ingredient');
 
 //Remédios
-Route::get('/medicines', [MedicineController::class, 'index'])->name('medicine.index');
-Route::get('/create-medicines', [MedicineController::class, 'create'])->name('medicine.create');
-Route::post('/store-medicine', [MedicineController::class, 'store'])->name('medicine.store');
+Route::get('/medicines', [MedicineController::class, 'index'])->name('medicine.index')->middleware('permission:index-medicine');
+Route::get('/create-medicines', [MedicineController::class, 'create'])->name('medicine.create')->middleware('permission:create-medicine');
+Route::post('/store-medicine', [MedicineController::class, 'store'])->name('medicine.store')->middleware('permission:create-medicine');
 // Route::get('/show-medicine/{medicine}', [MedicineController::class, 'show'])->name('medicine.show');
-Route::get('/edit-medicine/{medicine}', [MedicineController::class, 'edit'])->name('medicine.edit');
-Route::put('/edit-medicine/{medicine}', [MedicineController::class, 'update'])->name('medicine.update');
-Route::delete('/medicine/{medicine}', [MedicineController::class, 'destroy'])->name('medicine.destroy');
+Route::get('/edit-medicine/{medicine}', [MedicineController::class, 'edit'])->name('medicine.edit')->middleware('permission:edit-medicine');
+Route::put('/edit-medicine/{medicine}', [MedicineController::class, 'update'])->name('medicine.update')->middleware('permission:edit-medicine');
+Route::delete('/medicine/{medicine}', [MedicineController::class, 'destroy'])->name('medicine.destroy')->middleware('permission:destroy-medicine');
 
 //Promoções
-Route::get('/promotions', [PromotionController::class, 'index'])->name('promotion.index');
-Route::get('/create-promotions', [PromotionController::class, 'create'])->name('promotion.create');
-Route::post('/store-promotion', [PromotionController::class, 'store'])->name('promotion.store');
+Route::get('/promotions', [PromotionController::class, 'index'])->name('promotion.index')->middleware('permission:index-promotions');
+Route::get('/create-promotions', [PromotionController::class, 'create'])->name('promotion.create')->middleware('permission:create-promotions');
+Route::post('/store-promotion', [PromotionController::class, 'store'])->name('promotion.store')->middleware('permission:create-promotions');
 // Route::get('/show-promotion/{promotion}', [PromotionController::class, 'show'])->name('promotion.show');
-Route::get('/edit-promotion/{promotion}', [PromotionController::class, 'edit'])->name('promotion.edit');
-Route::put('/edit-promotion/{promotion}', [PromotionController::class, 'update'])->name('promotion.update');
-Route::delete('/promotion/{promotion}', [PromotionController::class, 'destroy'])->name('promotion.destroy');
+Route::get('/edit-promotion/{promotion}', [PromotionController::class, 'edit'])->name('promotion.edit')->middleware('permission:update-promotions');
+Route::put('/edit-promotion/{promotion}', [PromotionController::class, 'update'])->name('promotion.update')->middleware('permission:update-promotions');
+Route::delete('/promotion/{promotion}', [PromotionController::class, 'destroy'])->name('promotion.destroy')->middleware('permission:destroy-promotions');
 
 //Estoque
-Route::get('/stock', [StockController::class, 'index'])->name('stock.index');
-Route::get('/create-stock', [StockController::class, 'create'])->name('stock.create');
-Route::post('/store-stock', [StockController::class, 'store'])->name('stock.store');
+Route::get('/stock', [StockController::class, 'index'])->name('stock.index')->middleware('permission:index-stock');
+// Route::get('/create-stock', [StockController::class, 'create'])->name('stock.create');
+// Route::post('/store-stock', [StockController::class, 'store'])->name('stock.store');
 // Route::get('/show-stock/{stock}', [StockController::class, 'show'])->name('stock.show');
-Route::get('/edit-stock/{stock}', [StockController::class, 'edit'])->name('stock.edit');
-Route::put('/edit-stock/{stock}', [StockController::class, 'update'])->name('stock.update');
-Route::delete('/stock/{stock}', [StockController::class, 'destroy'])->name('stock.destroy');
+Route::get('/edit-stock/{stock}', [StockController::class, 'edit'])->name('stock.edit')->middleware('permission:update-stock');
+Route::put('/edit-stock/{stock}', [StockController::class, 'update'])->name('stock.update')->middleware('permission:update-stock');
+Route::delete('/stock/{stock}', [StockController::class, 'destroy'])->name('stock.destroy')->middleware('permission:destroy-stock');
 
 //Orçamentos
 Route::get('/budget', [BudgetController::class, 'index'])->name('budget.index');
 //Filais
 Route::get('/drugstore', [DrugStoreController::class, 'index'])->name('drugstore.index');
-// Estoque
-Route::get('/stock', [StockController::class, 'index'])->name('stock.index');
 // Profile
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 // Vendas
