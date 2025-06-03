@@ -122,9 +122,11 @@
                     Promoções
             </a>
             @endcan
+            @can('index-budget')
             <a href="{{ route('budget.index') }}" class="px-4 py-2 footer-button  fw-bold text-decoration-none">
                 Fornecedores
             </a>
+            @endcan
         </div>
     </div>
 

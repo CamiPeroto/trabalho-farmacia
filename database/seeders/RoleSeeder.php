@@ -81,6 +81,8 @@ class RoleSeeder extends Seeder
             'destroy-promotions',
 
             'index-drugstore',
+            'index-budget',
+
         ]);
 
         if (!Role::where('name', 'Cliente')->first()) {

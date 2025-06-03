@@ -74,7 +74,7 @@ Route::put('/edit-stock/{stock}', [StockController::class, 'update'])->name('sto
 Route::delete('/stock/{stock}', [StockController::class, 'destroy'])->name('stock.destroy')->middleware('permission:destroy-stock');
 
 //Orçamentos
-Route::get('/budget', [BudgetController::class, 'index'])->name('budget.index');
+Route::get('/budget', [BudgetController::class, 'index'])->name('budget.index')->middleware('permission:index-budget');
 //Filais
 Route::get('/drugstore', [DrugStoreController::class, 'index'])->name('drugstore.index')->middleware('permission:index-drugstore');
 // Profile
