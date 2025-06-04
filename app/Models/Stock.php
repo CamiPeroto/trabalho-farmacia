@@ -28,6 +28,11 @@ class Stock extends Model
         return $this->belongsTo(Medicine::class);
     }
 
+    public function drugstore()
+{
+    return $this->belongsTo(Drugstore::class);
+}
+
     // // Relação com itens da nota fiscal (caso esteja rastreando a origem)
     // public function purchaseNfItem()
     // {

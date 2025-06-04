@@ -59,7 +59,6 @@ Route::delete('/medicine/{medicine}', [MedicineController::class, 'destroy'])->n
 Route::get('/promotions', [PromotionController::class, 'index'])->name('promotion.index')->middleware('permission:index-promotions');
 Route::get('/create-promotions', [PromotionController::class, 'create'])->name('promotion.create')->middleware('permission:create-promotions');
 Route::post('/store-promotion', [PromotionController::class, 'store'])->name('promotion.store')->middleware('permission:create-promotions');
-// Route::get('/show-promotion/{promotion}', [PromotionController::class, 'show'])->name('promotion.show');
 Route::get('/edit-promotion/{promotion}', [PromotionController::class, 'edit'])->name('promotion.edit')->middleware('permission:update-promotions');
 Route::put('/edit-promotion/{promotion}', [PromotionController::class, 'update'])->name('promotion.update')->middleware('permission:update-promotions');
 Route::delete('/promotion/{promotion}', [PromotionController::class, 'destroy'])->name('promotion.destroy')->middleware('permission:destroy-promotions');
@@ -68,17 +67,23 @@ Route::delete('/promotion/{promotion}', [PromotionController::class, 'destroy'])
 Route::get('/stock', [StockController::class, 'index'])->name('stock.index')->middleware('permission:index-stock');
 // Route::get('/create-stock', [StockController::class, 'create'])->name('stock.create');
 // Route::post('/store-stock', [StockController::class, 'store'])->name('stock.store');
-// Route::get('/show-stock/{stock}', [StockController::class, 'show'])->name('stock.show');
 Route::get('/edit-stock/{stock}', [StockController::class, 'edit'])->name('stock.edit')->middleware('permission:update-stock');
 Route::put('/edit-stock/{stock}', [StockController::class, 'update'])->name('stock.update')->middleware('permission:update-stock');
 Route::delete('/stock/{stock}', [StockController::class, 'destroy'])->name('stock.destroy')->middleware('permission:destroy-stock');
 
-//Orçamentos
-Route::get('/budget', [BudgetController::class, 'index'])->name('budget.index')->middleware('permission:index-budget');
+
 //Filais
 Route::get('/drugstore', [DrugStoreController::class, 'index'])->name('drugstore.index')->middleware('permission:index-drugstore');
-// Profile
-Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+Route::post('/drugstore', [DrugstoreController::class, 'store'])->name('drugstore.store')->middleware('permission:create-drugstore');
+Route::put('/drugstore/{drugstore}', [DrugstoreController::class, 'update'])->name('drugstore.update')->middleware('permission:update-drugstore');
+Route::delete('/drugstore/{drugstore}', [DrugstoreController::class, 'destroy'])->name('drugstore.destroy')->middleware('permission:destroy-drugstore');
+
+
 // Vendas
 Route::get('/sale', [SaleController::class, 'index'])->name('sale.index');
+//Orçamentos
+Route::get('/budget', [BudgetController::class, 'index'])->name('budget.index')->middleware('permission:index-budget');
+// Profile
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+
 });

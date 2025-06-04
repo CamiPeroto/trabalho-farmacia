@@ -86,8 +86,22 @@
                         </tr>
                     </tfoot>
                 </table>
+                <!-- Paginação -->
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                    <div>Linhas por página:
+                        <select class="form-select d-inline-block w-auto ms-2">
+                            <option>10</option>
+                        </select>
+                    </div>
+                    <div class="text-muted">1–5 of 15</div>
+                    <div>
+                        <button class="btn btn-sm btn-light">&lt;</button>
+                        <button class="btn btn-sm btn-light">&gt;</button>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
     </div>
     <div class="line mt-5"></div>
 @endsection
@@ -114,7 +128,8 @@
                         <textarea class="form-control" id="description" name="description" rows="3"></textarea>
                     </div>
                     <div class="d-flex justify-content-end gap-2">
-                        <a href="{{ route('ingredient.index') }}" class="btn btn-warning fw-medium" id="cancel-ai">Cancelar</a>
+                        <a href="{{ route('ingredient.index') }}" class="btn btn-warning fw-medium"
+                            id="cancel-ai">Cancelar</a>
                         <button type="submit" class="btn btn-warning" id="ai-button">Salvar</button>
                     </div>
                 </form>
@@ -157,7 +172,7 @@
 {{-- Card Principio Ativo --}}
 <script>
     const editModal = document.getElementById('editActiveModal');
-    editModal.addEventListener('show.bs.modal', function (event) {
+    editModal.addEventListener('show.bs.modal', function(event) {
         const button = event.relatedTarget;
 
         const id = button.getAttribute('data-id');
