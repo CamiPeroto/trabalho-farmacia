@@ -117,7 +117,7 @@
             <a href="{{ route('medicine.index') }}" class="px-4 py-2 footer-button  fw-bold text-decoration-none">
                 Produtos
             </a>
-            @can('index-stock')
+            @can('index-promotions')
                 <a href="{{ route('promotion.index') }}" class="px-4 py-2 footer-button fw-bold text-decoration-none">
                     Promoções
             </a>

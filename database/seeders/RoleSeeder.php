@@ -47,6 +47,9 @@ class RoleSeeder extends Seeder
             'update-stock',
             'destroy-stock',
 
+            'index-drugstore',
+            'index-budget',
+
             'index-role-permission',
             'update-role-permission',
         ]);
@@ -79,9 +82,6 @@ class RoleSeeder extends Seeder
             'create-promotions',
             'update-promotions',
             'destroy-promotions',
-
-            'index-drugstore',
-            'index-budget',
 
         ]);
 
