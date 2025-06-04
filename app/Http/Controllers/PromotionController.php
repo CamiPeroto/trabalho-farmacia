@@ -5,19 +5,30 @@ use App\Models\Medicine;
 use App\Models\Promotion;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class PromotionController extends Controller
 {
     public function index()
     {
-        $promotions = Promotion::with('medicine')->get();
+        $drugstoreId = Auth::user()->drugstore_id;
+
+        $promotions = Promotion::whereHas('medicine.stock', function ($query) use ($drugstoreId) {
+            $query->where('drugstore_id', $drugstoreId);
+        })->with('medicine')->get();
 
         return view('system.promotion.index', ['promotions' => $promotions]);
     }
     public function create()
     {
-        $medicines = Medicine::with('stock')->get();
+        $drugstoreId = Auth::user()->drugstore_id;
+
+        $medicines = Medicine::whereHas('stock', function ($query) use ($drugstoreId) {
+            $query->where('drugstore_id', $drugstoreId);
+        })->with(['stock' => function ($query) use ($drugstoreId) {
+            $query->where('drugstore_id', $drugstoreId);
+        }])->get();
 
         foreach ($medicines as $medicine) {
             $latestStock                     = $medicine->stock->sortByDesc('entry_date')->first();
@@ -29,6 +40,12 @@ class PromotionController extends Controller
 
     public function store(Request $request)
     {
+        if ($request->has('promotional_price')) {
+        $request->merge([
+            'promotional_price' => str_replace(',', '.', $request->promotional_price),
+        ]);
+    }
+
         $request->validate([
             'medicine_id'       => 'required|exists:medicines,id',
             'start_date'        => 'required|date',
@@ -36,26 +53,30 @@ class PromotionController extends Controller
             'promotional_price' => 'required|numeric|min:0',
         ]);
 
-        $medicine = Medicine::with('activeIngredient')->find($request->medicine_id);
+        $medicine    = Medicine::with('activeIngredient')->find($request->medicine_id);
+        $drugstoreId = Auth::user()->drugstore_id;
 
-        // 1. Verifica se já há promoção ativa com mesmo princípio ativo
         $activeIngredientId = $medicine->active_ingredient_id;
 
-        $alreadyInPromotion = Promotion::whereHas('medicine', function ($query) use ($activeIngredientId) {
-            $query->where('active_ingredient_id', $activeIngredientId);
+        // Verifica se já há promoção ativa com mesmo princípio ativo NA MESMA FILIAL
+        $alreadyInPromotion = Promotion::whereHas('medicine.stock', function ($query) use ($drugstoreId) {
+            $query->where('drugstore_id', $drugstoreId);
         })
+            ->whereHas('medicine', function ($query) use ($activeIngredientId) {
+                $query->where('active_ingredient_id', $activeIngredientId);
+            })
             ->where('end_date', '>=', now())
             ->exists();
 
         if ($alreadyInPromotion) {
-            return back()->with('error', 'Já existe um medicamento com o mesmo princípio ativo em promoção.');
+            return back()->with('error', 'Já existe um medicamento com o mesmo princípio ativo em promoção nesta filial.');
         }
 
-        // 2. Verifica preço mínimo baseado no valor de compra (estoque mais recente)
-        $latestStock = $medicine->stock()->latest('entry_date')->first();
+        // Verifica preço mínimo baseado no valor de compra (estoque mais recente)
+        $latestStock = $medicine->stock()->where('drugstore_id', $drugstoreId)->latest('entry_date')->first();
 
         if (! $latestStock) {
-            return back()->with('error', 'Este medicamento não possui estoque registrado.');
+            return back()->with('error', 'Este medicamento não possui estoque registrado na sua filial.');
         }
 
         $minPrice = $latestStock->unitary_price * 1.10;
@@ -85,6 +106,12 @@ class PromotionController extends Controller
 
     public function update(Request $request, Promotion $promotion)
     {
+      if ($request->has('promotional_price')) {
+        $request->merge([
+            'promotional_price' => str_replace(',', '.', trim($request->promotional_price)),
+        ]);
+    }  
+
         $request->validate([
             'promotional_price' => 'required|numeric|min:0',
             'start_date'        => 'required|date',
@@ -93,19 +120,6 @@ class PromotionController extends Controller
 
         $medicine = $promotion->medicine()->with('activeIngredient')->first();
 
-        // Verifica se há outra promoção com o mesmo princípio ativo em andamento (excluindo a atual)
-        $activeIngredientId = $medicine->active_ingredient_id;
-
-        $alreadyInPromotion = Promotion::whereHas('medicine', function ($query) use ($activeIngredientId) {
-            $query->where('active_ingredient_id', $activeIngredientId);
-        })
-            ->where('id', '!=', $promotion->id)
-            ->where('end_date', '>=', now())
-            ->exists();
-
-        if ($alreadyInPromotion) {
-            return back()->with('error', 'Já existe outro medicamento com o mesmo princípio ativo em promoção.');
-        }
 
         $latestStock = $medicine->stock()->latest('entry_date')->first();
 

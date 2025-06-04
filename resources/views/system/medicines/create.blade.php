@@ -36,7 +36,7 @@
                                 value="{{ old('fantasy_name') }}">
                         </div>
                         <div class="col-md-6">
-                            <label for="price" class="form-label">Preço*</label>
+                            <label for="price" class="form-label">Preço de Compra*</label>
                             <input type="number" class="form-control input-bg" id="price" name="price"value="{{ old('price') }}" step="0.01" min="0" placeholder="R$:">
                         </div>
 

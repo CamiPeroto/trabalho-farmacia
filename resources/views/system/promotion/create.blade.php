@@ -15,15 +15,10 @@
                         <h5 class="fw-bold mb-3">Escolha o Remédio</h5>
                         @foreach ($medicines as $medicine)
                             <div class="form-check d-flex align-items-center mb-3" style="height: 80px;">
-                                <input 
-                                    class="form-check-input me-3" 
-                                    type="radio" name="medicine_id"
-                                    id="medicine{{ $medicine->id }}" 
-                                    value="{{ $medicine->id }}"
+                                <input class="form-check-input me-3" type="radio" name="medicine_id"
+                                    id="medicine{{ $medicine->id }}" value="{{ $medicine->id }}"
                                     data-price="{{ $medicine->price }}"
-                                    data-min-price="{{ $medicine->min_promotional_price ?? 0 }}"
-                                    required
-                                 >
+                                    data-min-price="{{ $medicine->min_promotional_price ?? 0 }}" required>
                                 <label class="form-check-label d-flex align-items-center w-100"
                                     for="medicine{{ $medicine->id }}">
                                     <img src="{{ $medicine->image ? asset('storage/' . $medicine->image) : 'https://via.placeholder.com/80' }}"
@@ -86,11 +81,12 @@
 
 @section('javascript')
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener('DOMContentLoaded', function() {
     const radioButtons = document.querySelectorAll('input[name="medicine_id"]');
     const codeInput = document.getElementById('medicine_code_display');
     const priceInput = document.getElementById('price');
     const minPriceBadge = document.getElementById('minPriceBadge');
+    const form = document.querySelector('form'); // seleciona o form da página
 
     radioButtons.forEach(radio => {
         radio.addEventListener('change', function() {
@@ -119,7 +115,17 @@
             }
         });
     });
+
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            const promotionalPriceInput = document.getElementById('promotional_price');
+            if (promotionalPriceInput) {
+                promotionalPriceInput.value = promotionalPriceInput.value.replace(',', '.');
+            }
+        });
+    }
 });
+
     </script>
 @endsection
 @endsection

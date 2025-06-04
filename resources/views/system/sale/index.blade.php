@@ -1,113 +1,84 @@
 @extends('templates.index')
 
-
 @section('content')
-    @php
-        $products = [
-            [
-                'title' => 'Dipirona Monoidratada 1g - CIMED',
-                'description' => '10 comprimidos',
-                'price' => 13.12,
-                'quantity' => 1,
-                'image' =>
-                    'https://airela.com.br/wp-content/uploads/2024/02/ibuprofeno_400mg_ibuprofeno_10capsulas.png',
-            ],
-            [
-                'title' => 'Rivotril 0,5 mg Tablet - Clonazepam',
-                'description' => '100 Tablets',
-                'price' => 33.25,
-                'quantity' => 2,
-                'image' =>
-                    'https://dmvfarma.vtexassets.com/arquivos/ids/271865/DIPIRONA%20500MG%20C20.png.png?v=638827583361130000',
-            ],
-        ];
-
-    @endphp
     <div class="container my-5">
-        <div class="row d-flex">
-            <div class="col-4 my-4">
+        <div class="row">
+            <div class="col-12 my-3">
+                <x-alert />
                 <h3 class="fw-bold">Venda de Produtos</h3>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-6 d-flex align-items-center justify-content-start">
-                <form class="d-flex justify-content-center me-5" role="search" action="{{ url('/search') }}" method="GET">
-                    <div class="position-relative w-100">
-                        <i class="fi fi-rr-search position-absolute"
-                            style="left: 18px; top: 50%; transform: translateY(-50%); color: gray; z-index: 2;"></i>
-                        <input class="form-control search-sm ps-5 me-2" type="search" placeholder="Pesquisar..."
-                            aria-label="Buscar" name="q">
-                    </div>
-                </form>
-            </div>
-            <div class="col-6 d-flex justify-content-end align-items-center">
-                <a class="ms-2 text-decoration-none" href="{{ url('/medicines') }}">
-                    <i class="fi fi-rr-plus-small fs-3 btn-icon-bg shadow"></i>
-                </a>
-            </div>
-        </div>
-        <div class="row my-5">
-            <div class="col-12">
-                <table class="table align-middle text-center">
-                    <thead class="table-light">
-                        <tr>
-                            <th class="text-start">Produtos</th>
-                            <th>Preço</th>
-                            <th>Quantidade</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($products as $product)
-                            <tr style="--bs-table-bg: {{ $loop->index % 2 == 0 ? '#0252590D' : '#00717226' }}">
-                                <td class="d-flex align-items-center text-start">
-                                    <img src="{{ $product['image'] }}" alt="{{ $product['title'] }}" width="150"
-                                        height="150" class="me-3">
-                                    <div>
-                                        <strong>{{ $product['title'] }}</strong><br>
-                                        <small>{{ $product['description'] }}</small>
+
+            <form action="#" class="row">
+                @csrf
+
+                <!-- Coluna esquerda: lista de produtos -->
+                <div class="col-6 d-flex justify-content-center">
+                    <div class="w-100 shadow rounded-4 p-3" style="max-height: 30rem; overflow-y: auto;">
+                        <h5 class="fw-bold mb-3">Selecione o Produto</h5>
+                        @foreach ($medicines as $medicine)
+                            <div class="form-check d-flex align-items-center justify-content-between mb-3"
+                                style="height: 80px;">
+                                <input class="form-check-input me-3" type="checkbox"
+                                    name="medicines[{{ $medicine->id }}][id]" id="medicine{{ $medicine->id }}"
+                                    value="{{ $medicine->id }}" data-unit-price="{{ $medicine->unit_price }}">
+                                <label class="form-check-label flex-grow-1" for="medicine{{ $medicine->id }}">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <img src="{{ $medicine->image ? asset('storage/' . $medicine->image) : 'https://via.placeholder.com/80' }}"
+                                            alt="{{ $medicine->fantasy_name }}" class="rounded" width="60"
+                                            height="60">
+                                        <div>
+                                            <strong>{{ $medicine->fantasy_name }}</strong><br>
+                                            <small>{{ $medicine->description ?? 'Sem descrição' }}</small>
+                                        </div>
                                     </div>
-                                </td>
-                                <td class="fw-bold">R$ {{ number_format($product['price'], 2, ',', '.') }}</td>
-                                <td>
-                                    <div
-                                        class="d-inline-flex border  border-black rounded-pill overflow-hidden align-items-center">
-                                        <button class="btn btn-sm px-3 border-end" type="button"
-                                            onclick="decrementQuantity(this)">−</button>
-                                        <span class="px-3 text-center fw-bold" style="min-width: 40px;"
-                                            data-quantity>1</span>
-                                        <button class="btn btn-sm px-3 border-start" type="button"
-                                            onclick="incrementQuantity(this)">+</button>
-                                    </div>
-                                </td>
-                            </tr>
+                                </label>
+                                <input type="number"  class="form-control" name="medicines[{{ $medicine->id }}][quantity]" min="1"
+                                    value="1" style="width: 60px; max-height:40px;">
+                                <div class="fw-bold ms-3" style="min-width: 100px; text-align: right;">
+                                    R$ {{ number_format($medicine->unit_price, 2, ',', '.') }}
+                                </div>
+                            </div>
                         @endforeach
+                    </div>
+                </div>
 
-                        @php
-                            $totalBg = count($products) % 2 == 0 ? '#0252590D' : '#00717226';
-                        @endphp
+                <!-- Coluna direita: formulário venda -->
+                <div class="col-6">
+                    <div class="row g-3 shadow rounded-4 mt-1 p-4" style="min-height: 30rem;">
+                        <h4 class="fw-medium mb-4">Detalhes da Venda</h4>
 
-                        <tr style="--bs-table-bg: {{ $totalBg }};">
-                            <td colspan="2" class="fw-bold text-end py-5"
-                                style="font-size: 1.25rem; padding-right: 5rem;">
-                                Total:
-                            </td>
-                            <td class="fw-bold" style="font-size: 1.25rem;">
-                                <span class="p-3 badge badge-total rounded-pill text-bg-dark fs-5 shadow">123,45</span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <label for="cpf" class="form-label">CPF do Cliente</label>
-                <input type="text" class="form-control input-bg" id="cpf" placeholder="000.000.000-00">
-            </div>
-        </div>
-        <div class="col-12 d-flex justify-content-end gap-3" style="">
-            <button type="submit" class="btn btn-warning rounded-5 fw-medium" id="cancel-sale">Cancelar</button>
-            <button type="submit" class="btn btn-warning rounded-5" id="sale-button">Finalizar Venda</button>
+                        <div class="col-6">
+                            <label for="price_display" class="form-label">Id da Venda</label>
+                            <input type="text" class="form-control" id="price_display" disabled placeholder="1"> 
+                        </div>
+                        <div class="col-6">
+                            <label for="price_display" class="form-label">Cód Vendedor</label>
+                           <input type="text" class="form-control" disabled value="{{ $sellerId }}">
+                        </div>
+
+                        <div class="col-12">
+                            <label for="cpf" class="form-label">CPF do Cliente</label>
+                            <input type="text" class="form-control" id="cpf" name="cpf"
+                                placeholder="000.000.000-00" maxlength="14" required>
+                        </div>
+
+
+
+                        <div class="col-12">
+                            <label for="total_display" class="form-label">Total</label>
+                            <input type="text" class="form-control fw-bold" id="total_display" disabled
+                                placeholder="R$ 0,00">
+                        </div>
+
+                        <!-- Botões -->
+                        <div class="col-12 d-flex justify-content-end gap-3 mt-4">
+                            <button type="reset" class="btn btn-warning fw-medium" id="cancel-button">Cancelar</button>
+                            <button type="submit" class="btn btn-success" id="submit-button">Finalizar Venda</button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
         </div>
     </div>
 @endsection
@@ -115,40 +86,54 @@
 @section('javascript')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const todosCheckbox = document.getElementById('todosCheckbox');
-            const ativoCheckbox = document.getElementById('ativoCheckbox');
-            const allRows = document.querySelectorAll('tbody tr');
+            const medicineCheckboxes = document.querySelectorAll('input[type="checkbox"][name^="medicines"]');
+            const totalDisplay = document.getElementById('total_display');
 
-            function updateTable() {
-                allRows.forEach(row => {
-                    const statusBadge = row.querySelector('.badge');
-                    const isAtivo = statusBadge && statusBadge.textContent.trim() === 'ATIVO';
-
-                    if (ativoCheckbox.checked && !todosCheckbox.checked) {
-                        row.style.display = isAtivo ? '' : 'none';
-                    } else {
-                        row.style.display = '';
+            function updateTotal() {
+                let total = 0;
+                medicineCheckboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        const id = checkbox.value;
+                        const quantityInput = document.querySelector(
+                            `input[name="medicines[${id}][quantity]"]`);
+                        const quantity = quantityInput ? parseInt(quantityInput.value) || 0 : 0;
+                        const unitPrice = parseFloat(checkbox.getAttribute('data-unit-price')) || 0;
+                        total += quantity * unitPrice;
                     }
+                });
+                totalDisplay.value = total.toLocaleString('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL'
                 });
             }
 
-            todosCheckbox.addEventListener('change', () => {
-                if (todosCheckbox.checked) {
-                    ativoCheckbox.checked = false;
+            medicineCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateTotal);
+                const id = checkbox.value;
+                const quantityInput = document.querySelector(`input[name="medicines[${id}][quantity]"]`);
+                if (quantityInput) {
+                    quantityInput.addEventListener('input', () => {
+                        if (checkbox.checked) {
+                            updateTotal();
+                        }
+                    });
                 }
-                updateTable();
             });
 
-            ativoCheckbox.addEventListener('change', () => {
-                if (ativoCheckbox.checked) {
-                    todosCheckbox.checked = false;
-                } else {
-                    todosCheckbox.checked = true;
-                }
-                updateTable();
-            });
+            // Inicializa total
+            updateTotal();
 
-            updateTable();
+            // Botão cancelar reseta tudo
+            document.getElementById('cancel-button').addEventListener('click', () => {
+                medicineCheckboxes.forEach(checkbox => checkbox.checked = false);
+                medicineCheckboxes.forEach(checkbox => {
+                    const id = checkbox.value;
+                    const quantityInput = document.querySelector(
+                        `input[name="medicines[${id}][quantity]"]`);
+                    if (quantityInput) quantityInput.value = 1;
+                });
+                totalDisplay.value = '';
+            });
         });
     </script>
 @endsection
