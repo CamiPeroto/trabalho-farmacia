@@ -20,14 +20,6 @@
                 'image' =>
                     'https://dmvfarma.vtexassets.com/arquivos/ids/271865/DIPIRONA%20500MG%20C20.png.png?v=638827583361130000',
             ],
-            [
-                'title' => 'Dipirona Monoidratada 1g - CIMED',
-                'description' => '10 comprimidos',
-                'price' => 13.12,
-                'quantity' => 1,
-                'image' =>
-                    'https://airela.com.br/wp-content/uploads/2024/02/ibuprofeno_400mg_ibuprofeno_10capsulas.png',
-            ],
         ];
 
     @endphp

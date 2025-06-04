@@ -2,16 +2,27 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Drugstore;
 use App\Models\Stock;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class StockController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $stocks = Stock::with('medicine')->get();
-        return view('system.stock.index', ['stocks' => $stocks]);
+         $query = Stock::with(['medicine', 'drugstore']);
+
+    if ($request->has('drugstore')) {
+        $query->where('drugstore_id', $request->drugstore);
+    }
+
+    $stocks = $query->get();
+    $drugstores = Drugstore::orderBy('name')->get();
+
+    return view('system.stock.index', [
+        'stocks' => $stocks,
+        'drugstores' => $drugstores,
+    ]);
     }
     public function edit(Stock $stock)
     {

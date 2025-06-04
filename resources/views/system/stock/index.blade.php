@@ -39,14 +39,17 @@
                         </div>
                         <div class="text-start">
                             <div class="fw-bold">Filiais</div>
-                            <small class="text-dark">Ponta Grossa</small>
+                            <small class="text-dark">Selecionar: </small>
                         </div>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Ponta Grossa</a></li>
-                        <li><a class="dropdown-item" href="#">Curitiba</a></li>
-                        <li><a class="dropdown-item" href="#">Londrina</a></li>
-                        <li><a class="dropdown-item" href="#">Maringá</a></li>
+                        @foreach ($drugstores as $drugstore)
+                            <li>
+                                <a class="dropdown-item" href="{{ route('stock.index', ['drugstore' => $drugstore->id]) }}">
+                                    {{ $drugstore->name }}
+                                </a>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -64,13 +67,13 @@
                             <th class="text-start">Produtos</th>
                             <th>Preço</th>
                             <th>Estoque</th>
+                            <th>Filial</th>
                             <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($stocks as $stock)
                             <tr style="--bs-table-bg: {{ $loop->index % 2 == 0 ? '#0252590D' : '#00717226' }}">
-
                                 <td class="d-flex align-items-center text-start">
                                     <img src="{{ $stock->medicine->image ? asset('storage/' . $stock->medicine->image) : 'https://via.placeholder.com/150' }}"
                                         alt="{{ $stock->medicine->fantasy_name ?? 'Produto' }}"
@@ -83,6 +86,7 @@
 
                                 <td class="fw-bold">R$ {{ number_format($stock->medicine->price ?? 0, 2, ',', '.') }}</td>
                                 <td>{{ $stock->quantity }}</td>
+                                  <td>{{ $stock->drugstore->name ?? 'N/A' }}</td>
                                 <td>
                                     @if ($stock->status)
                                         <span class="badge bg-success px-3 py-2 rounded-pill">ATIVO</span>

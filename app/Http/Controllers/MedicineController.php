@@ -7,6 +7,7 @@ use App\Models\Medicine;
 use App\Models\Stock;
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -15,7 +16,14 @@ class MedicineController extends Controller
 {
     public function index()
     {
-        $medicines = Medicine::with('stock')->get();
+        $drugstoreId = Auth::user()->drugstore_id;
+
+        $medicines = Medicine::whereHas('stock', function ($query) use ($drugstoreId) {
+            $query->where('drugstore_id', $drugstoreId);
+        })->with(['stock' => function ($query) use ($drugstoreId) {
+            $query->where('drugstore_id', $drugstoreId);
+        }])->get();
+
         return view('system.medicines.index', ['medicines' => $medicines]);
     }
     public function create()
@@ -55,13 +63,19 @@ class MedicineController extends Controller
                 'image'                => $imagePath,
             ]);
 
+            $drugstoreId = Auth::user()->drugstore_id;
+            if (! $drugstoreId) {
+            }
+
             // Cria automaticamente o estoque
+            Log::info('Criando estoque com drugstore_id', ['drugstore_id' => $drugstoreId]);
             Stock::create([
                 'medicine_id'     => $medicine->id,
                 'quantity'        => $medicine->quantity,
                 'unitary_price'   => $medicine->price,
                 'entry_date'      => Carbon::now()->toDateString(),
                 'expiration_date' => Carbon::now()->addYears(2)->toDateString(),
+                'drugstore_id'    => $drugstoreId,
             ]);
 
             DB::commit();

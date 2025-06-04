@@ -11,6 +11,7 @@ class Stock extends Model
     protected $fillable = [
         'medicine_id',
         // 'purchase_nf_item_id',
+        'drugstore_id',
         'quantity',
         'unitary_price',
         'expiration_date',
