@@ -41,13 +41,16 @@
                         @forelse($promotions as $promotion)
                             <tr>
                                 <td class="d-flex align-items-center text-start">
-                                    <img src="{{ $promotion->medicine->image ? asset('storage/' . $promotion->medicine->image) : 'https://via.placeholder.com/150' }}"
-                                        alt="{{ $promotion->medicine->fantasy_name }}" width="130" height="130"
-                                        class="me-3 rounded my-3">
-                                    <div>
-                                        <strong>{{ $promotion->medicine->fantasy_name }}</strong><br>
-                                        <small>{{ $promotion->medicine->description ?? 'Sem descrição' }}</small>
-                                    </div>
+                                    <a href="{{ route('medicine.show', $promotion->medicine->id) }}"
+                                        class="d-flex align-items-center text-decoration-none text-dark">
+                                        <img src="{{ $promotion->medicine->image ? asset('storage/' . $promotion->medicine->image) : 'https://via.placeholder.com/150' }}"
+                                            alt="{{ $promotion->medicine->fantasy_name }}" width="130" height="130"
+                                            class="me-3 rounded my-3" style="cursor: pointer;">
+                                        <div>
+                                            <strong>{{ $promotion->medicine->fantasy_name }}</strong><br>
+                                            <small>{{ $promotion->medicine->description ?? 'Sem descrição' }}</small>
+                                        </div>
+                                    </a>
                                 </td>
                                 <td class="fw-bold">
                                     {{ \Carbon\Carbon::parse($promotion->start_date)->format('d/m/Y') }} -
