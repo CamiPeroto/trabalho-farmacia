@@ -15,7 +15,7 @@
                         src="{{ $medicine->image ? asset('storage/' . $medicine->image) : asset('assets/img/model-medicine.webp') }}"
                         style="height: 300px; object-fit: contain; margin-top: 2rem;" alt="Imagem do produto">
                     <div class="card-body text-center">
-                        <span class="fw-bold">{{ $medicine->fantasy_name }}</span>
+                        <span class="fw-bold text-body-secondary">{{ $medicine->fantasy_name }}</span>
                     </div>
                 </div>
             </div>
