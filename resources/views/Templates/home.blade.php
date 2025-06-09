@@ -55,8 +55,14 @@
                             <div class="d-flex justify-content-center align-items-center">
                                 <i class="fi fi-rr-user p-2 mr-4 fw-2"></i>
                                 <div class="link-nav-button">
-                                    <span class="fw-bold ">Bem-vindo!</span>
-                                    <span class="small ">Entrar ou cadastrar</span>
+                                    @if (auth()->check())
+                                        <span class="fw-bold">Olá, {{ auth()->user()->name }}</span>
+                                    @else
+                                        <div class="link-nav-button">
+                                            <span class="fw-bold">Bem-vindo!</span>
+                                            <span class="small">Entrar ou cadastrar</span>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
