@@ -26,6 +26,7 @@ class MedicineController extends Controller
 
         return view('system.medicines.index', ['medicines' => $medicines]);
     }
+
     public function create()
     {
         $ingredients = ActiveIngredient::all();
@@ -36,6 +37,12 @@ class MedicineController extends Controller
                 'ingredients' => $ingredients,
                 'nextId'      => $nextId,
             ]);
+    }
+    public function show(Medicine $medicine)
+    {
+        $ingredients = ActiveIngredient::all();
+
+        return view('system.medicines.view', ['medicine'=> $medicine,'ingredients' => $ingredients]);
     }
 
     public function store(MedicineRequest $request)

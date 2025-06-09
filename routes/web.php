@@ -50,7 +50,7 @@ Route::delete('/ingredient/{ingredient}', [ActiveIngredientController::class, 'd
 Route::get('/medicines', [MedicineController::class, 'index'])->name('medicine.index')->middleware('permission:index-medicine');
 Route::get('/create-medicines', [MedicineController::class, 'create'])->name('medicine.create')->middleware('permission:create-medicine');
 Route::post('/store-medicine', [MedicineController::class, 'store'])->name('medicine.store')->middleware('permission:create-medicine');
-// Route::get('/show-medicine/{medicine}', [MedicineController::class, 'show'])->name('medicine.show');
+Route::get('/show-medicine/{medicine}', [MedicineController::class, 'show'])->name('medicine.show');
 Route::get('/edit-medicine/{medicine}', [MedicineController::class, 'edit'])->name('medicine.edit')->middleware('permission:edit-medicine');
 Route::put('/edit-medicine/{medicine}', [MedicineController::class, 'update'])->name('medicine.update')->middleware('permission:edit-medicine');
 Route::delete('/medicine/{medicine}', [MedicineController::class, 'destroy'])->name('medicine.destroy')->middleware('permission:destroy-medicine');

@@ -43,13 +43,15 @@
                         @forelse ($medicines as $medicine)
                             <tr>
                                 <td class="d-flex align-items-center text-start">
-                                    <img src="{{ $medicine->image ? asset('storage/' . $medicine->image) : 'https://via.placeholder.com/150' }}"
-                                        alt="{{ $medicine->fantasy_name }}" width="120" height="120"
-                                        class="me-3 rounded my-3">
-                                    <div>
-                                        <strong>{{ $medicine->fantasy_name }}</strong><br>
-                                        <small>{{ $medicine->description ?? 'Sem descrição' }}</small>
-                                    </div>
+                                    <a href="{{ route('medicine.show', $medicine->id) }}"
+                                        class="d-flex align-items-center text-decoration-none text-dark">
+                                        <img src="{{ $medicine->image ? asset('storage/' . $medicine->image) : 'https://via.placeholder.com/150' }}"
+                                            alt="{{ $medicine->fantasy_name }}" width="120" height="120"
+                                            class="me-3 rounded my-3" style="cursor: pointer;">
+                                        <div>
+                                            <strong>{{ $medicine->fantasy_name }}</strong><br>
+                                            <small>{{ $medicine->description ?? 'Sem descrição' }}</small>
+                                        </div>
                                 </td>
                                 <td class="fw-bold">R$ {{ number_format($medicine->price, 2, ',', '.') }}</td>
                                 <td>{{ $medicine->stock->sum('quantity') }}</td>
@@ -60,10 +62,10 @@
                                             EDITAR
                                         </button>
                                     </form>
-                                    
+
                                     <form action="{{ route('medicine.destroy', $medicine->id) }}" method="POST"
                                         class="d-inline">
-                                          @csrf
+                                        @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-outline-danger btn-sm ms-2 rounded-pill">
                                             APAGAR
@@ -71,7 +73,7 @@
                                     </form>
                                 </td>
                             </tr>
-                            @empty
+                        @empty
                             <tr>
                                 <td colspan="4" class="text-center alert alert-danger">
                                     Nenhum remédio encontrado!
@@ -80,22 +82,22 @@
                         @endforelse
                     </tbody>
                 </table>
-                 <!-- Paginação -->
-        <div class="d-flex justify-content-between align-items-center mt-3">
-            <div>Linhas por página:
-                <select class="form-select d-inline-block w-auto ms-2">
-                    <option>10</option>
-                </select>
-            </div>
-            <div class="text-muted">1–5 of 15</div>
-            <div>
-                <button class="btn btn-sm btn-light">&lt;</button>
-                <button class="btn btn-sm btn-light">&gt;</button>
+                <!-- Paginação -->
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                    <div>Linhas por página:
+                        <select class="form-select d-inline-block w-auto ms-2">
+                            <option>10</option>
+                        </select>
+                    </div>
+                    <div class="text-muted">1–5 of 15</div>
+                    <div>
+                        <button class="btn btn-sm btn-light">&lt;</button>
+                        <button class="btn btn-sm btn-light">&gt;</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-            </div>
-        </div>
 
     </div>
 @endsection
