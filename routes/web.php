@@ -5,9 +5,12 @@ use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\DrugStoreController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MedicineController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\StockController;
 use Illuminate\Support\Facades\Route;
@@ -86,6 +89,35 @@ Route::post('/sale', [SaleController::class, 'store'])->name('sale.store');
 Route::get('/budget', [BudgetController::class, 'index'])->name('budget.index')->middleware('permission:index-budget');
 // Profile
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+
+//Papéis
+Route::get('/index-role', [RoleController::class, 'index'])->name('role.index')
+->middleware('permission:index-role'); //listar os papéis
+Route::get('/create-role', [RoleController::class, 'create'])->name('role.create')
+->middleware('permission:create-role');
+Route::post('/store-role', [RoleController::class, 'store'])->name('role.store')
+->middleware('permission:create-role');; //post para salvar creates
+Route::get('/edit-role/{role}', [RoleController::class, 'edit'])->name('role.edit')
+->middleware('permission:edit-role');
+Route::put('/update-role/{role}', [RoleController::class, 'update'])->name('role.update')
+->middleware('permission:edit-role'); //put recomendado para atualizar no banco
+Route::delete('/destroy-role/{role}', [RoleController::class, 'destroy'])->name('role.destroy')
+->middleware('permission:destroy-role'); // delete para apagar registros
+
+//Permissões do papel 
+Route::get('/index-role-permission/{role}', [RolePermissionController::class, 'index'])->name('role-permission.index')
+->middleware('permission:index-role-permission'); 
+Route::get('/update-role-permission/{role}/{permission}', [RolePermissionController::class, 'update'])->name('role-permission.update')
+->middleware('permission:update-role-permission'); 
+
+// Permissões ou páginas
+Route::get('/index-permission', [PermissionController::class, 'index'])->name('permission.index');
+Route::get('/show-permission/{permission}', [PermissionController::class, 'show'])->name('permission.show');
+Route::get('/create-permission', [PermissionController::class, 'create'])->name('permission.create');
+Route::post('/store-permission', [PermissionController::class, 'store'])->name('permission.store');
+Route::get('/edit-permission/{permission}', [PermissionController::class, 'edit'])->name('permission.edit');
+Route::put('/update-permission/{permission}', [PermissionController::class, 'update'])->name('permission.update');
+Route::delete('/destroy-permission/{permission}', [PermissionController::class, 'destroy'])->name('permission.destroy');
 
 
 });
