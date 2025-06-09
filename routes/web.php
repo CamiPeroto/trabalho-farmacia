@@ -3,7 +3,6 @@
 use App\Http\Controllers\ActiveIngredientController;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\DrugStoreController;
-use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\ProfileController;
@@ -87,5 +86,6 @@ Route::post('/sale', [SaleController::class, 'store'])->name('sale.store');
 Route::get('/budget', [BudgetController::class, 'index'])->name('budget.index')->middleware('permission:index-budget');
 // Profile
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+
 
 });

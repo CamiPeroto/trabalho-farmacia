@@ -47,18 +47,20 @@ class SaleController extends Controller
 
         $totalValue = 0;
 
-        foreach ($request->medicines as $medicineData) {
-            if (! isset($medicineData['id']) || ! isset($medicineData['quantity'])) {
-                return back()->with('error', 'Dados do produto inválidos.');
+        foreach ($request->medicines as $medicineId) {
+            $quantity = $request->quantities[$medicineId] ?? 0;
+
+            if ($quantity <= 0) {
+                return back()->with('error', 'Quantidade inválida para o produto selecionado.');
             }
 
-            $stock = Stock::where('medicine_id', $medicineData['id'])->first();
+            $stock = Stock::where('medicine_id', $medicineId)->first();
 
-            if (! $stock || $stock->quantity < $medicineData['quantity']) {
+            if (! $stock || $stock->quantity < $quantity) {
                 return back()->with('error', 'Estoque insuficiente para o produto selecionado.');
             }
 
-            $totalValue += $stock->unitary_price * $medicineData['quantity'];
+            $totalValue += $stock->unitary_price * $quantity;
         }
 
         $sale = Sale::create([
@@ -68,15 +70,16 @@ class SaleController extends Controller
             'total_value' => $totalValue,
         ]);
 
-        foreach ($request->medicines as $medicineData) {
-            $stock = Stock::where('medicine_id', $medicineData['id'])->first();
+        foreach ($request->medicines as $medicineId) {
+            $quantity = $request->quantities[$medicineId];
 
-            $stock->quantity -= $medicineData['quantity'];
+            $stock = Stock::where('medicine_id', $medicineId)->first();
+            $stock->quantity -= $quantity;
             $stock->save();
 
             $sale->products()->create([
-                'medicine_id' => $medicineData['id'],
-                'quantity'    => $medicineData['quantity'],
+                'medicine_id' => $medicineId,
+                'quantity'    => $quantity,
                 'unit_price'  => $stock->unitary_price,
             ]);
         }

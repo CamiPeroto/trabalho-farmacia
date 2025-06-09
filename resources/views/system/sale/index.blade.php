@@ -15,9 +15,9 @@
                         @foreach ($medicines as $medicine)
                             <div class="form-check d-flex align-items-center justify-content-between mb-3"
                                 style="height: 80px;">
-                                <input class="form-check-input me-3" type="checkbox"
-                                    name="medicines[{{ $medicine->id }}][id]" id="medicine{{ $medicine->id }}"
-                                    value="{{ $medicine->id }}" data-unit-price="{{ $medicine->unit_price }}">
+                                <input class="form-check-input me-3" type="checkbox" name="medicines[]"
+                                    id="medicine{{ $medicine->id }}" value="{{ $medicine->id }}"
+                                    data-unit-price="{{ $medicine->unit_price }}">
                                 <label class="form-check-label flex-grow-1" for="medicine{{ $medicine->id }}">
                                     <div class="d-flex align-items-center gap-3">
                                         <img src="{{ $medicine->image ? asset('storage/' . $medicine->image) : 'https://via.placeholder.com/80' }}"
@@ -29,7 +29,7 @@
                                         </div>
                                     </div>
                                 </label>
-                                <input type="number" class="form-control" name="medicines[{{ $medicine->id }}][quantity]"
+                                <input type="number" class="form-control" name="quantities[{{ $medicine->id }}]"
                                     min="1" value="1" style="width: 60px; max-height:40px;">
                                 <div class="fw-bold ms-3" style="min-width: 100px; text-align: right;">
                                     R$ {{ number_format($medicine->unit_price, 2, ',', '.') }}
@@ -79,7 +79,7 @@
 @section('javascript')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const medicineCheckboxes = document.querySelectorAll('input[type="checkbox"][name^="medicines"]');
+            const medicineCheckboxes = document.querySelectorAll('input[type="checkbox"][name="medicines[]"]');
             const totalDisplay = document.getElementById('total_display');
 
             function updateTotal() {
@@ -87,8 +87,7 @@
                 medicineCheckboxes.forEach(checkbox => {
                     if (checkbox.checked) {
                         const id = checkbox.value;
-                        const quantityInput = document.querySelector(
-                            `input[name="medicines[${id}][quantity]"]`);
+                        const quantityInput = document.querySelector(`input[name="quantities[${id}]"]`);
                         const quantity = quantityInput ? parseInt(quantityInput.value) || 0 : 0;
                         const unitPrice = parseFloat(checkbox.getAttribute('data-unit-price')) || 0;
                         total += quantity * unitPrice;
@@ -103,7 +102,7 @@
             medicineCheckboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', updateTotal);
                 const id = checkbox.value;
-                const quantityInput = document.querySelector(`input[name="medicines[${id}][quantity]"]`);
+                const quantityInput = document.querySelector(`input[name="quantities[${id}]"]`);
                 if (quantityInput) {
                     quantityInput.addEventListener('input', () => {
                         if (checkbox.checked) {
@@ -121,8 +120,7 @@
                 medicineCheckboxes.forEach(checkbox => checkbox.checked = false);
                 medicineCheckboxes.forEach(checkbox => {
                     const id = checkbox.value;
-                    const quantityInput = document.querySelector(
-                        `input[name="medicines[${id}][quantity]"]`);
+                    const quantityInput = document.querySelector(`input[name="quantities[${id}]"]`);
                     if (quantityInput) quantityInput.value = 1;
                 });
                 totalDisplay.value = '';
