@@ -7,11 +7,8 @@
                 <x-alert />
                 <h3 class="fw-bold">Venda de Produtos</h3>
             </div>
-
-            <form action="#" class="row">
+            <form action="{{ route('sale.store') }}" method="POST" class="row">
                 @csrf
-
-                <!-- Coluna esquerda: lista de produtos -->
                 <div class="col-6 d-flex justify-content-center">
                     <div class="w-100 shadow rounded-4 p-3" style="max-height: 30rem; overflow-y: auto;">
                         <h5 class="fw-bold mb-3">Selecione o Produto</h5>
@@ -32,8 +29,8 @@
                                         </div>
                                     </div>
                                 </label>
-                                <input type="number"  class="form-control" name="medicines[{{ $medicine->id }}][quantity]" min="1"
-                                    value="1" style="width: 60px; max-height:40px;">
+                                <input type="number" class="form-control" name="medicines[{{ $medicine->id }}][quantity]"
+                                    min="1" value="1" style="width: 60px; max-height:40px;">
                                 <div class="fw-bold ms-3" style="min-width: 100px; text-align: right;">
                                     R$ {{ number_format($medicine->unit_price, 2, ',', '.') }}
                                 </div>
@@ -42,18 +39,17 @@
                     </div>
                 </div>
 
-                <!-- Coluna direita: formulário venda -->
                 <div class="col-6">
                     <div class="row g-3 shadow rounded-4 mt-1 p-4" style="min-height: 30rem;">
                         <h4 class="fw-medium mb-4">Detalhes da Venda</h4>
 
                         <div class="col-6">
                             <label for="price_display" class="form-label">Id da Venda</label>
-                            <input type="text" class="form-control" id="price_display" disabled placeholder="1"> 
+                            <input type="text" class="form-control" id="price_display" disabled placeholder="1">
                         </div>
                         <div class="col-6">
                             <label for="price_display" class="form-label">Cód Vendedor</label>
-                           <input type="text" class="form-control" disabled value="{{ $sellerId }}">
+                            <input type="text" class="form-control" disabled value="{{ $sellerId }}">
                         </div>
 
                         <div class="col-12">
@@ -61,8 +57,6 @@
                             <input type="text" class="form-control" id="cpf" name="cpf"
                                 placeholder="000.000.000-00" maxlength="14" required>
                         </div>
-
-
 
                         <div class="col-12">
                             <label for="total_display" class="form-label">Total</label>
@@ -77,7 +71,6 @@
                         </div>
                     </div>
                 </div>
-
             </form>
         </div>
     </div>

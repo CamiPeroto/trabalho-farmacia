@@ -81,6 +81,8 @@ Route::delete('/drugstore/{drugstore}', [DrugstoreController::class, 'destroy'])
 
 // Vendas
 Route::get('/sale', [SaleController::class, 'index'])->name('sale.index');
+Route::post('/sale', [SaleController::class, 'store'])->name('sale.store');
+
 //Orçamentos
 Route::get('/budget', [BudgetController::class, 'index'])->name('budget.index')->middleware('permission:index-budget');
 // Profile
