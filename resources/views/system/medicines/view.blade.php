@@ -62,7 +62,7 @@
 
                     <div class="col-4">
                         <label class="form-label fw-bold">Quantidade:</label>
-                        <p class="text-body-tertiary">{{ $medicine->quantity }}</p>
+                        <p class="text-body-tertiary">{{ $medicine->stock->sum('quantity') }}</p>
                     </div>
 
                     <div class="col-4">

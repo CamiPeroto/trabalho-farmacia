@@ -80,13 +80,19 @@
                                         style="max-height: 120px; width: auto;" class="me-3 rounded">
                                     <div>
                                         <strong>{{ $stock->medicine->fantasy_name ?? 'Sem nome' }}</strong><br>
-                                        <small>{{ $stock->medicine->description ?? 'Sem descrição' }}</small>
+                                        
+                                        @if ($stock->quantity < 20)
+                                            <span class="badge bg-danger mt-2 d-inline-flex align-items-center p-2">
+                                                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                                                <small>Estoque mínimo!</small>
+                                            </span>
+                                        @endif
                                     </div>
                                 </td>
 
                                 <td class="fw-bold">R$ {{ number_format($stock->medicine->price ?? 0, 2, ',', '.') }}</td>
                                 <td>{{ $stock->quantity }}</td>
-                                  <td>{{ $stock->drugstore->name ?? 'N/A' }}</td>
+                                <td>{{ $stock->drugstore->name ?? 'N/A' }}</td>
                                 <td>
                                     @if ($stock->status)
                                         <span class="badge bg-success px-3 py-2 rounded-pill">ATIVO</span>

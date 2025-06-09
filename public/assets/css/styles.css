@@ -336,6 +336,13 @@ body {
 
 /* Fim da Tabela Principio Ativo */
 /* Inicio da pagina Cadastrar Remedios */
+.description-limit {
+    display: inline-block;
+    max-width: 450px; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 #medicine-header {
     margin-left: 8rem;
 }

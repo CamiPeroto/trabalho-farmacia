@@ -50,8 +50,11 @@
                                             class="me-3 rounded my-3" style="cursor: pointer;">
                                         <div>
                                             <strong>{{ $medicine->fantasy_name }}</strong><br>
-                                            <small>{{ $medicine->description ?? 'Sem descrição' }}</small>
+                                            <small class="description-limit" title="{{ $medicine->description }}">
+                                                {{ $medicine->description ?? 'Sem descrição' }}
+                                            </small>
                                         </div>
+                                    </a>
                                 </td>
                                 <td class="fw-bold">R$ {{ number_format($medicine->price, 2, ',', '.') }}</td>
                                 <td>{{ $medicine->stock->sum('quantity') }}</td>
