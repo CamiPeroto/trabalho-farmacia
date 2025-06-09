@@ -77,7 +77,8 @@
                                 <td class="d-flex align-items-center text-start">
                                     <img src="{{ $stock->medicine->image ? asset('storage/' . $stock->medicine->image) : 'https://via.placeholder.com/150' }}"
                                         alt="{{ $stock->medicine->fantasy_name ?? 'Produto' }}"
-                                        style="max-height: 120px; width: auto;" class="me-3 rounded">
+                                        width="120" height="120"
+                                        style="me-3 rounded my-3" style="cursor: pointer;">
                                     <div>
                                         <strong>{{ $stock->medicine->fantasy_name ?? 'Sem nome' }}</strong><br>
                                         
