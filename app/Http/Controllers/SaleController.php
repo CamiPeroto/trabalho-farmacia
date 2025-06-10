@@ -35,9 +35,12 @@ class SaleController extends Controller
             'medicines' => 'required|array|min:1',
         ]);
 
+        // Remove máscara do CPF
+        $cpf = preg_replace('/[^0-9]/', '', $request->cpf);
+
         // Busca ou cria cliente pelo CPF
         $client = Client::firstOrCreate(
-            ['cpf' => $request->cpf],
+            ['cpf' => $cpf],
             [
                 'name'         => 'Cliente sem nome', // Pode ser um padrão, ou você pode pedir nome no form
                 'email'        => null,               // Ou algum email padrão, se for nullable
