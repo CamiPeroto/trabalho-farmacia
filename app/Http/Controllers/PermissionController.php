@@ -27,7 +27,7 @@ class PermissionController extends Controller
             $whenQuery->where('title', 'like', '%' . $request->title . '%');
         })
         ->orderByDesc('title')
-        ->paginate(40)
+        ->paginate(10)
         ->withQueryString();
         
         // Salvar log

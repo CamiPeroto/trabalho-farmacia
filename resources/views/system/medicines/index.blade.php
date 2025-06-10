@@ -85,19 +85,7 @@
                         @endforelse
                     </tbody>
                 </table>
-                <!-- Paginação -->
-                <div class="d-flex justify-content-between align-items-center mt-3">
-                    <div>Linhas por página:
-                        <select class="form-select d-inline-block w-auto ms-2">
-                            <option>10</option>
-                        </select>
-                    </div>
-                    <div class="text-muted">1–5 of 15</div>
-                    <div>
-                        <button class="btn btn-sm btn-light">&lt;</button>
-                        <button class="btn btn-sm btn-light">&gt;</button>
-                    </div>
-                </div>
+                <x-pagination :paginator="$medicines" />
             </div>
         </div>
     </div>

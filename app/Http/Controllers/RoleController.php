@@ -13,7 +13,7 @@ class RoleController extends Controller
     public function index()
     {
         //Recuperar os registros do banco de dados
-        $roles = Role::orderBy('name')->paginate(40);
+        $roles = Role::orderBy('name')->paginate();
 
         //Salvar log
         Log::info('Listar papéis', ['action_user_id' => Auth::id()]);

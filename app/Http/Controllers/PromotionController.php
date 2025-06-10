@@ -16,7 +16,7 @@ class PromotionController extends Controller
 
         $promotions = Promotion::whereHas('medicine.stock', function ($query) use ($drugstoreId) {
             $query->where('drugstore_id', $drugstoreId);
-        })->with('medicine')->get();
+        })->with('medicine')->paginate(10);
 
         return view('system.promotion.index', ['promotions' => $promotions]);
     }

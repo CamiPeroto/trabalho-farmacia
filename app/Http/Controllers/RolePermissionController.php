@@ -28,7 +28,7 @@ class RolePermissionController extends Controller
             ->pluck('permission_id')
             ->all();
         //Recuperar todas as permissões do banco de dados 
-       $permissions = Permission::get();
+       $permissions = Permission::paginate(10);
 
        Log::info('Listar permissões do papel', ['role_id' => $role->id, 'action_user_id' => Auth::id()]);
        //Carregar a view

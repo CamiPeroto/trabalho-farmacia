@@ -11,7 +11,7 @@ class ActiveIngredientController extends Controller
 {
     public function index()
     {
-        $ingredients = ActiveIngredient::all();
+        $ingredients = ActiveIngredient::paginate(10);
         return view('system.active-ingredient.index', ['ingredients' => $ingredients ]);
     }
 

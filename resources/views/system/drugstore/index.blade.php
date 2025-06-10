@@ -87,18 +87,7 @@
         </table>
 
         <!-- Paginação -->
-        <div class="d-flex justify-content-between align-items-center mt-3">
-            <div>Linhas por página:
-                <select class="form-select d-inline-block w-auto ms-2">
-                    <option>10</option>
-                </select>
-            </div>
-            <div class="text-muted">1–5 of 15</div>
-            <div>
-                <button class="btn btn-sm btn-light">&lt;</button>
-                <button class="btn btn-sm btn-light">&gt;</button>
-            </div>
-        </div>
+        <x-pagination :paginator="$drugstores" />
     </div>
 
     <!-- Bootstrap Icons -->
@@ -171,13 +160,11 @@
                         </div>
                     </div>
 
-                   <div class="d-flex justify-content-end gap-2">
+                    <div class="d-flex justify-content-end gap-2">
                         <a href="{{ route('drugstore.index') }}" class="btn btn-warning fw-medium"
                             id="cancel-ai">Cancelar</a>
                         <button type="submit" class="btn btn-warning" id="ai-button">Salvar</button>
                     </div>
-
-
                 </form>
             </div>
         </div>

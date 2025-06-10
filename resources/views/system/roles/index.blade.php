@@ -74,8 +74,7 @@
                     </tbody>
                 </table>
 
-                {{-- Imprimir a paginação --}}
-                {{ $roles->links() }}
+              <x-pagination :paginator="$roles" />
 
             </div>
         </div>

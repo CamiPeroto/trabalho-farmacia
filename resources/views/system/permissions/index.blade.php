@@ -117,10 +117,7 @@
 
                     </tbody>
                 </table>
-
-                {{-- Imprimir a paginação --}}
-                {{ $permissions->links() }}
-
+                <x-pagination :paginator="$permissions" />
             </div>
         </div>
     </div>

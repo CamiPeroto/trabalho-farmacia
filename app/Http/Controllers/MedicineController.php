@@ -22,7 +22,7 @@ class MedicineController extends Controller
             $query->where('drugstore_id', $drugstoreId);
         })->with(['stock' => function ($query) use ($drugstoreId) {
             $query->where('drugstore_id', $drugstoreId);
-        }])->get();
+        }])->paginate(10);
 
         return view('system.medicines.index', ['medicines' => $medicines]);
     }

@@ -48,7 +48,8 @@
                                             class="me-3 rounded my-3" style="cursor: pointer;">
                                         <div>
                                             <strong>{{ $promotion->medicine->fantasy_name }}</strong><br>
-                                            <small class="description-limit" title="{{ $promotion->medicine->description }}">
+                                            <small class="description-limit"
+                                                title="{{ $promotion->medicine->description }}">
                                                 {{ $promotion->medicine->description ?? 'Sem descrição' }}</small>
                                         </div>
                                     </a>
@@ -85,6 +86,7 @@
                         @endforelse
                     </tbody>
                 </table>
+                <x-pagination :paginator="$promotions" />
             </div>
         </div>
     </div>

@@ -16,7 +16,7 @@ class StockController extends Controller
         $query->where('drugstore_id', $request->drugstore);
     }
 
-    $stocks = $query->get();
+    $stocks = $query->paginate(10);
     $drugstores = Drugstore::orderBy('name')->get();
 
     return view('system.stock.index', [

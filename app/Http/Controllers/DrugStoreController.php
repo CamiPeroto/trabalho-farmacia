@@ -11,7 +11,7 @@ class DrugStoreController extends Controller
 {
     public function index()
     {
-        $drugstores = Drugstore::all();
+        $drugstores = Drugstore::paginate(10);
         return view('system.drugstore.index', ['drugstores' => $drugstores]);
     }
     public function store(Request $request)
