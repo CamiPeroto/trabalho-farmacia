@@ -45,7 +45,7 @@
                                 <td class="d-flex align-items-center text-start">
                                     <a href="{{ route('medicine.show', $medicine->id) }}"
                                         class="d-flex align-items-center text-decoration-none text-dark">
-                                        <img src="{{ $medicine->image ? asset('storage/' . $medicine->image) : 'https://via.placeholder.com/150' }}"
+                                        <img src="{{ $medicine->image ? (Str::startsWith($medicine->image, 'assets') ? asset($medicine->image) : asset('storage/' . $medicine->image)) : 'https://via.placeholder.com/150' }}"
                                             alt="{{ $medicine->fantasy_name }}" width="120" height="120"
                                             class="me-3 rounded my-3" style="cursor: pointer;">
                                         <div>

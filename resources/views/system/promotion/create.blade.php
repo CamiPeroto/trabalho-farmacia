@@ -21,7 +21,7 @@
                                     data-min-price="{{ $medicine->min_promotional_price ?? 0 }}" required>
                                 <label class="form-check-label d-flex align-items-center w-100"
                                     for="medicine{{ $medicine->id }}">
-                                    <img src="{{ $medicine->image ? asset('storage/' . $medicine->image) : 'https://via.placeholder.com/80' }}"
+                                    <img src="{{ $medicine->image ? (Str::startsWith($medicine->image, 'assets') ? asset($medicine->image) : asset('storage/' . $medicine->image)) : 'https://via.placeholder.com/80' }}"
                                         alt="{{ $medicine->fantasy_name }}" class="rounded me-3" width="60"
                                         height="60">
                                     <div>
@@ -81,51 +81,51 @@
 
 @section('javascript')
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-    const radioButtons = document.querySelectorAll('input[name="medicine_id"]');
-    const codeInput = document.getElementById('medicine_code_display');
-    const priceInput = document.getElementById('price');
-    const minPriceBadge = document.getElementById('minPriceBadge');
-    const form = document.querySelector('form'); // seleciona o form da página
+        document.addEventListener('DOMContentLoaded', function() {
+            const radioButtons = document.querySelectorAll('input[name="medicine_id"]');
+            const codeInput = document.getElementById('medicine_code_display');
+            const priceInput = document.getElementById('price');
+            const minPriceBadge = document.getElementById('minPriceBadge');
+            const form = document.querySelector('form'); // seleciona o form da página
 
-    radioButtons.forEach(radio => {
-        radio.addEventListener('change', function() {
-            if (this.checked) {
-                codeInput.value = this.value;
+            radioButtons.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    if (this.checked) {
+                        codeInput.value = this.value;
 
-                const price = this.getAttribute('data-price');
-                const minPrice = parseFloat(this.getAttribute('data-min-price'));
+                        const price = this.getAttribute('data-price');
+                        const minPrice = parseFloat(this.getAttribute('data-min-price'));
 
-                if (price) {
-                    priceInput.value = parseFloat(price).toLocaleString('pt-BR', {
-                        style: 'currency',
-                        currency: 'BRL'
-                    });
-                }
+                        if (price) {
+                            priceInput.value = parseFloat(price).toLocaleString('pt-BR', {
+                                style: 'currency',
+                                currency: 'BRL'
+                            });
+                        }
 
-                if (minPrice && !isNaN(minPrice) && minPrice > 0) {
-                    minPriceBadge.classList.remove('d-none');
-                    minPriceBadge.innerText = 'Valor mínimo: ' + minPrice.toLocaleString('pt-BR', {
-                        style: 'currency',
-                        currency: 'BRL'
-                    });
-                } else {
-                    minPriceBadge.classList.add('d-none');
-                }
+                        if (minPrice && !isNaN(minPrice) && minPrice > 0) {
+                            minPriceBadge.classList.remove('d-none');
+                            minPriceBadge.innerText = 'Valor mínimo: ' + minPrice.toLocaleString(
+                                'pt-BR', {
+                                    style: 'currency',
+                                    currency: 'BRL'
+                                });
+                        } else {
+                            minPriceBadge.classList.add('d-none');
+                        }
+                    }
+                });
+            });
+
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    const promotionalPriceInput = document.getElementById('promotional_price');
+                    if (promotionalPriceInput) {
+                        promotionalPriceInput.value = promotionalPriceInput.value.replace(',', '.');
+                    }
+                });
             }
         });
-    });
-
-    if (form) {
-        form.addEventListener('submit', function(e) {
-            const promotionalPriceInput = document.getElementById('promotional_price');
-            if (promotionalPriceInput) {
-                promotionalPriceInput.value = promotionalPriceInput.value.replace(',', '.');
-            }
-        });
-    }
-});
-
     </script>
 @endsection
 @endsection

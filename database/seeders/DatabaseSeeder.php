@@ -16,7 +16,9 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             DrugstoreSeeder::class,
             UserSeeder::class,
-            
+            ActiveIngredientSeeder::class,
+            MedicineSeeder::class,
+
         ]);
     }
 }

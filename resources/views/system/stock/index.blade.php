@@ -75,13 +75,12 @@
                         @foreach ($stocks as $stock)
                             <tr style="--bs-table-bg: {{ $loop->index % 2 == 0 ? '#0252590D' : '#00717226' }}">
                                 <td class="d-flex align-items-center text-start">
-                                    <img src="{{ $stock->medicine->image ? asset('storage/' . $stock->medicine->image) : 'https://via.placeholder.com/150' }}"
-                                        alt="{{ $stock->medicine->fantasy_name ?? 'Produto' }}"
-                                        width="120" height="120"
-                                        style="me-3 rounded my-3" style="cursor: pointer;">
+                                    <img src="{{ $stock->medicine->image ? (Str::startsWith($stock->medicine->image, 'assets') ? asset($stock->medicine->image) : asset('storage/' . $stock->medicine->image)) : 'https://via.placeholder.com/150' }}"
+                                        alt="{{ $stock->medicine->fantasy_name }}" width="120" height="120"
+                                        class="me-3 rounded my-3" style="cursor: pointer;">
                                     <div>
                                         <strong>{{ $stock->medicine->fantasy_name ?? 'Sem nome' }}</strong><br>
-                                        
+
                                         @if ($stock->quantity < 20)
                                             <span class="badge bg-danger mt-2 d-inline-flex align-items-center p-2">
                                                 <i class="bi bi-exclamation-triangle-fill me-2"></i>

@@ -43,7 +43,7 @@
                                 <td class="d-flex align-items-center text-start">
                                     <a href="{{ route('medicine.show', $promotion->medicine->id) }}"
                                         class="d-flex align-items-center text-decoration-none text-dark">
-                                        <img src="{{ $promotion->medicine->image ? asset('storage/' . $promotion->medicine->image) : 'https://via.placeholder.com/150' }}"
+                                        <img src="{{ $promotion->medicine->image ? (Str::startsWith($promotion->medicine->image, 'assets') ? asset($promotion->medicine->image) : asset('storage/' . $promotion->medicine->image)) : 'https://via.placeholder.com/150' }}"
                                             alt="{{ $promotion->medicine->fantasy_name }}" width="130" height="130"
                                             class="me-3 rounded my-3" style="cursor: pointer;">
                                         <div>
