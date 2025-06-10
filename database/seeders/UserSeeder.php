@@ -62,5 +62,15 @@ class UserSeeder extends Seeder
              $employee->assignRole('Funcionário');
 
         }
+        if (! User::where('email', 'pedro@gmail.com.br')->first()) {
+            $client = User::create([
+                'name'     => 'Pedro',
+                'email'    => 'pedro@gmail.com.br',
+                'password' => Hash::make('123456a', ['rounds' => 12]),
+                'drugstore_id' => 1,
+            ]);
+             $client->assignRole('Cliente');
+
+        }
     }
 }
