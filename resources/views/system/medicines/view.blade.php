@@ -12,7 +12,11 @@
             <div class="col-6 d-flex justify-content-center">
                 <div class="card shadow" style="width: 32rem;" id="card-medicine">
                     <img id="preview-image"
-                        src="{{ $medicine->image ? asset('storage/' . $medicine->image) : asset('assets/img/model-medicine.webp') }}"
+                        src="{{ $medicine->image
+                            ? (Str::startsWith($medicine->image, 'assets')
+                                ? asset($medicine->image)
+                                : asset('storage/' . $medicine->image))
+                            : asset('assets/img/model-medicine.webp') }}"
                         style="height: 300px; object-fit: contain; margin-top: 2rem;" alt="Imagem do produto">
                     <div class="card-body text-center">
                         <span class="fw-bold text-body-secondary">{{ $medicine->fantasy_name }}</span>
@@ -77,7 +81,8 @@
 
                     <!-- Botão de voltar -->
                     <div class="col-12 d-flex justify-content-end">
-                        <a href="{{ route('medicine.index') }}" class="btn btn-warning fw-medium" id="cancel-button">Voltar</a>
+                        <a href="{{ route('medicine.index') }}" class="btn btn-warning fw-medium"
+                            id="cancel-button">Voltar</a>
                     </div>
                 </div>
             </div>
