@@ -20,9 +20,9 @@
                                     data-unit-price="{{ $medicine->unit_price }}">
                                 <label class="form-check-label flex-grow-1" for="medicine{{ $medicine->id }}">
                                     <div class="d-flex align-items-center gap-3">
-                                        <img src="{{ $medicine->image ? asset('storage/' . $medicine->image) : 'https://via.placeholder.com/80' }}"
-                                            alt="{{ $medicine->fantasy_name }}" class="rounded" width="60"
-                                            height="60">
+                                        <img src="{{ $medicine->image ? (Str::startsWith($medicine->image, 'assets') ? asset($medicine->image) : asset('storage/' . $medicine->image)) : 'https://via.placeholder.com/80' }}"
+                                        alt="{{ $medicine->fantasy_name }}" class="rounded me-3" width="60"
+                                        height="60">
                                         <div>
                                             <strong>{{ $medicine->fantasy_name }}</strong><br>
                                             <small>{{ $medicine->description ?? 'Sem descrição' }}</small>
