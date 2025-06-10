@@ -21,7 +21,7 @@ class MedicineSeeder extends Seeder
 
         $products = [
             [
-                'fantasy_name' => 'Paracetamol 500mg',
+                'fantasy_name' => 'Paracetamol- 500mg',
                 'price' => 10.50,
                 'type' => 'Comprimido',
                 'form' => 'Oral',
@@ -33,7 +33,7 @@ class MedicineSeeder extends Seeder
                 'image' => 'assets/img/paracetamol.jpg'
             ],
             [
-                'fantasy_name' => 'Ibuprofeno 200mg',
+                'fantasy_name' => 'Ibuprofeno - 200mg',
                 'price' => 15.00,
                 'type' => 'Comprimido',
                 'form' => 'Oral',
@@ -45,7 +45,7 @@ class MedicineSeeder extends Seeder
                 'image' => 'assets/img/ibuprofeno.png'
             ],
             [
-                'fantasy_name' => 'Amoxicilina 250mg',
+                'fantasy_name' => 'Amoxicilina- 250mg',
                 'price' => 25.00,
                 'type' => 'Cápsula',
                 'form' => 'Oral',
@@ -56,6 +56,31 @@ class MedicineSeeder extends Seeder
                 'active_ingredient_id' => 3,
                 'image' => 'assets/img/amoxilina.png'
             ],
+            [
+                'fantasy_name' => 'Dorflex - 36 Comprimidos',
+                'price' => 20.00,
+                'type' => 'Comprimido',
+                'form' => 'Oral',
+                'dosage' => '250mg',
+                'maker' => 'Sanofi',
+                'quantity' => 200,
+                'description' => 'Relaxante Muscular.',
+                'active_ingredient_id' => 3,
+                'image' => 'assets/img/dorflex.png'
+            ],
+              [
+                'fantasy_name' => 'Agemoxi - 100ml',
+                'price' => 30.00,
+                'type' => 'Solução Injetável',
+                'form' => 'Oral',
+                'dosage' => '100ml',
+                'maker' => 'Sanofi',
+                'quantity' => 100,
+                'description' => 'Para aliviar a dor de dente.',
+                'active_ingredient_id' => 3,
+                'image' => 'assets/img/agemoxi.png'
+            ],
+
         ];
 
         DB::beginTransaction();

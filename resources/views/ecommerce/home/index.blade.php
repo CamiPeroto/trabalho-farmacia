@@ -1,7 +1,7 @@
 @extends('templates.home')
 
 @section('content')
-    @php
+    {{-- @php
         $products = [
             [
                 'title' => 'Omeprazol 20mg - 10 cápsulas',
@@ -40,7 +40,7 @@
                     'https://dmvfarma.vtexassets.com/arquivos/ids/271865/DIPIRONA%20500MG%20C20.png.png?v=638827583361130000',
             ],
         ];
-    @endphp
+    @endphp --}}
 
     <div class="bg-footer text-dark py-3">
         <div class="container d-flex flex-wrap justify-content-center align-items-center gap-3">
@@ -88,32 +88,35 @@
         <div class="row p-5">
             <div class="swiper mySwiper" id="mySwiperPrimary">
                 <div class="swiper-wrapper">
-                    @foreach ($products as $product)
-                        @php
-                            $originalPrice = $product['original_price'] ?? $product['price'] * 1.2;
-                            $discountPercent = round(100 - ($product['price'] / $originalPrice) * 100);
-                        @endphp
-                        <div class="swiper-slide">
-                            <div class="card h-100">
-                                @if ($discountPercent > 0)
-                                    <div class="discount-badge">
-                                        -{{ $discountPercent }}%
-                                    </div>
-                                @endif
-                                <img src="{{ $product['image'] }}" class="card-img-top" alt="{{ $product['title'] }}">
-                                <div class="card-body text-start">
-                                    <h6 class="mb-2">{{ $product['title'] }}</h6>
-                                    <span class="text-price-other mb-0">
-                                        R$ {{ number_format($product['price'], 2, ',', '.') }}
-                                    </span>
-                                    <p class="fw-bold fs-3 mb-2">
-                                        R$ {{ number_format($product['price'], 2, ',', '.') }}
-                                    </p>
-                                    <a href="#" class="btn-buy-home text-center btn-sm">Comprar</a>
+                     @foreach ($products as $product)
+                    @php
+                        $image = Str::startsWith($product->image, 'assets')
+                            ? asset($product->image)
+                            : asset('storage/' . $product->image);
+                        $originalPrice = $product->price * 1.2;
+                        $discountPercent = round(100 - ($product->price / $originalPrice) * 100);
+                    @endphp
+                    <div class="swiper-slide">
+                        <div class="card h-100">
+                            @if ($discountPercent > 0)
+                                <div class="discount-badge">
+                                    -{{ $discountPercent }}%
                                 </div>
+                            @endif
+                            <img src="{{ $image }}" class="card-img-top" alt="{{ $product->fantasy_name }}">
+                            <div class="card-body text-start">
+                                <h6 class="mb-2">{{ $product->fantasy_name }}</h6>
+                                <span class="text-price-other mb-0">
+                                    R$ {{ number_format($product->price, 2, ',', '.') }}
+                                </span>
+                                <p class="fw-bold fs-3 mb-2">
+                                    R$ {{ number_format($product->price, 2, ',', '.') }}
+                                </p>
+                                <a href="#" class="btn-buy-home text-center btn-sm">Comprar</a>
                             </div>
                         </div>
-                    @endforeach
+                    </div>
+                @endforeach
                 </div>
             </div>
         </div>

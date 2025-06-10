@@ -3,6 +3,7 @@
 use App\Http\Controllers\ActiveIngredientController;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\DrugStoreController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\PermissionController;
@@ -15,9 +16,7 @@ use App\Http\Controllers\SaleController;
 use App\Http\Controllers\StockController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('ecommerce.home.index');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 //Login
 
