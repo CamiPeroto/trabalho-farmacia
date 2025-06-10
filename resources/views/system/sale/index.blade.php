@@ -21,8 +21,8 @@
                                 <label class="form-check-label flex-grow-1" for="medicine{{ $medicine->id }}">
                                     <div class="d-flex align-items-center gap-3">
                                         <img src="{{ $medicine->image ? (Str::startsWith($medicine->image, 'assets') ? asset($medicine->image) : asset('storage/' . $medicine->image)) : 'https://via.placeholder.com/80' }}"
-                                        alt="{{ $medicine->fantasy_name }}" class="rounded me-3" width="60"
-                                        height="60">
+                                            alt="{{ $medicine->fantasy_name }}" class="rounded me-3" width="60"
+                                            height="60">
                                         <div>
                                             <strong>{{ $medicine->fantasy_name }}</strong><br>
                                             <small>{{ $medicine->description ?? 'Sem descrição' }}</small>
@@ -78,53 +78,76 @@
 
 @section('javascript')
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const medicineCheckboxes = document.querySelectorAll('input[type="checkbox"][name="medicines[]"]');
-            const totalDisplay = document.getElementById('total_display');
+    document.addEventListener('DOMContentLoaded', function() {
+        const medicineCheckboxes = document.querySelectorAll('input[type="checkbox"][name="medicines[]"]');
+        const totalDisplay = document.getElementById('total_display');
+        const cpfInput = document.getElementById('cpf');
 
-            function updateTotal() {
-                let total = 0;
-                medicineCheckboxes.forEach(checkbox => {
-                    if (checkbox.checked) {
-                        const id = checkbox.value;
-                        const quantityInput = document.querySelector(`input[name="quantities[${id}]"]`);
-                        const quantity = quantityInput ? parseInt(quantityInput.value) || 0 : 0;
-                        const unitPrice = parseFloat(checkbox.getAttribute('data-unit-price')) || 0;
-                        total += quantity * unitPrice;
-                    }
-                });
-                totalDisplay.value = total.toLocaleString('pt-BR', {
-                    style: 'currency',
-                    currency: 'BRL'
-                });
+        // Máscara de CPF
+        cpfInput.addEventListener('input', function () {
+            let value = cpfInput.value.replace(/\D/g, ''); // Remove tudo que não for número
+
+            if (value.length > 11) {
+                value = value.slice(0, 11); 
             }
 
+            // Aplica a máscara
+            if (value.length > 9) {
+                value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{1,2})/, "$1.$2.$3-$4");
+            } else if (value.length > 6) {
+                value = value.replace(/(\d{3})(\d{3})(\d{1,3})/, "$1.$2.$3");
+            } else if (value.length > 3) {
+                value = value.replace(/(\d{3})(\d{1,3})/, "$1.$2");
+            }
+
+            cpfInput.value = value;
+        });
+
+        // Função para atualizar o total
+        function updateTotal() {
+            let total = 0;
             medicineCheckboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', updateTotal);
-                const id = checkbox.value;
-                const quantityInput = document.querySelector(`input[name="quantities[${id}]"]`);
-                if (quantityInput) {
-                    quantityInput.addEventListener('input', () => {
-                        if (checkbox.checked) {
-                            updateTotal();
-                        }
-                    });
-                }
-            });
-
-            // Inicializa total
-            updateTotal();
-
-            // Botão cancelar reseta tudo
-            document.getElementById('cancel-button').addEventListener('click', () => {
-                medicineCheckboxes.forEach(checkbox => checkbox.checked = false);
-                medicineCheckboxes.forEach(checkbox => {
+                if (checkbox.checked) {
                     const id = checkbox.value;
                     const quantityInput = document.querySelector(`input[name="quantities[${id}]"]`);
-                    if (quantityInput) quantityInput.value = 1;
-                });
-                totalDisplay.value = '';
+                    const quantity = quantityInput ? parseInt(quantityInput.value) || 0 : 0;
+                    const unitPrice = parseFloat(checkbox.getAttribute('data-unit-price')) || 0;
+                    total += quantity * unitPrice;
+                }
             });
+            totalDisplay.value = total.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            });
+        }
+
+        // Eventos para checkbox e quantidade
+        medicineCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', updateTotal);
+            const id = checkbox.value;
+            const quantityInput = document.querySelector(`input[name="quantities[${id}]"]`);
+            if (quantityInput) {
+                quantityInput.addEventListener('input', () => {
+                    if (checkbox.checked) {
+                        updateTotal();
+                    }
+                });
+            }
         });
-    </script>
+
+        // Inicializa total
+        updateTotal();
+
+        // Botão cancelar reseta tudo
+        document.getElementById('cancel-button').addEventListener('click', () => {
+            medicineCheckboxes.forEach(checkbox => checkbox.checked = false);
+            medicineCheckboxes.forEach(checkbox => {
+                const id = checkbox.value;
+                const quantityInput = document.querySelector(`input[name="quantities[${id}]"]`);
+                if (quantityInput) quantityInput.value = 1;
+            });
+            totalDisplay.value = '';
+        });
+    });
+</script>
 @endsection
