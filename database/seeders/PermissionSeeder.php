@@ -34,6 +34,11 @@ class PermissionSeeder extends Seeder
             ['title' => 'Listar filiais', 'name' => 'index-drugstore'],
             ['title' => 'Listar fornecedores', 'name' => 'index-budget'],
 
+            ['title' => 'Listar papéis', 'name' => 'index-role'],
+            ['title' => 'Criar papel', 'name' => 'create-role'],
+            ['title' => 'Editar papel', 'name' => 'edit-role'],
+            ['title' => 'Apagar papel', 'name' => 'destroy-role'],
+
             ['title' => 'Listar permissões do papel', 'name' => 'index-role-permission'],
             ['title' => 'Editar permissões do papel', 'name' => 'update-role-permission'],
         ];

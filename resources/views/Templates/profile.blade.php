@@ -19,6 +19,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11.2.8/swiper-bundle.min.css">
 
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+
+
     <link rel="stylesheet" href="{{ url('assets/vendor/ckeditor5.css') }}">
 
     <link rel="stylesheet" href="{{ url('assets/css/plugins.min.css') }}" />
@@ -42,42 +45,59 @@
             <div class="sidebar-content">
                 <ul class="nav nav-secondary">
                     <li class="nav-item">
-                        <a data-bs-toggle="collapse" href="#submenuPerfil" role="button" aria-expanded="true" aria-controls="submenuPerfil">
+                        <a data-bs-toggle="collapse" href="#submenuPerfil" role="button" aria-expanded="true"
+                            aria-controls="submenuPerfil">
                             <i class="fi fi-rr-user"></i>
                             <p>Perfil</p>
                             <span class="caret"></span>
                         </a>
-                        <div class="collapse show" id="submenuPerfil">
+                        <div class="collapse" id="submenuPerfil">
                             <ul class="nav nav-collapse">
                                 <li class="nav-item">
-                                    <a href="#" class="d-flex align-items-center active bg-grey px-2 py-1">
-                                        <i class="fi fi-rr-star d-flex m-1"></i>
-                                        <span class="ms-1">Vendedor</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="d-flex align-items-center">
-                                        <i class="fi fi-rr-star d-flex m-1"></i>
-                                        <span>Dados Pessoais</span>
+                                    <a href="#">
+                                        <i class="fi fi-rr-clock"></i>
+                                        <p>Histórico de Comissões</p>
                                     </a>
                                 </li>
                             </ul>
                         </div>
                     </li>
+                     @can('index-stock')
+                        <li class="nav-item">
+                            <a data-bs-toggle="collapse" href="#submenuPerfil" role="button" aria-expanded="true"
+                                aria-controls="submenuPerfil">
+                                <i class="fi fi-rr-document"></i>
+                                <p>Permissões</p>
+                                <span class="caret"></span>
+                            </a>
+                            <div class="collapse" id="submenuPerfil">
+                                <ul class="nav nav-collapse">
+                                    <li class="nav-item">
+                                        <a href="{{ url('/index-permission') }}"
+                                            class="d-flex align-items-center active  px-2 py-1">
+                                            <i class="fi fi-rr-copy"></i>
+                                            <span class="ms-1">Páginas</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url('/index-role') }}" class="d-flex align-items-center">
+                                            <i class="fi fi-rr-address-book"></i>
+                                            <span>Papéis</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    @endcan
+
                     <li class="nav-item">
-                        <a href="#">
-                            <i class="fi fi-rr-clock"></i>
-                            <p>Histórico de Comissões</p>
-                        </a>
-                    </li>
-                     <li class="nav-item">
                         <a href="{{ url('/medicines') }}">
                             <i class="fi fi-rr-computer"></i>
                             <p>Sistema</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('login.destroy')}}">
+                        <a href="{{ route('login.destroy') }}">
                             <i class="fi fi-rr-sign-out-alt"></i>
                             <p>Sair</p>
                         </a>
