@@ -45,7 +45,8 @@
 
                         <div class="col-6">
                             <label for="price_display" class="form-label">Id da Venda</label>
-                            <input type="text" class="form-control" id="price_display" disabled placeholder="1">
+                            <input type="text" class="form-control" id="price_display" disabled
+                                value="{{ $nextSaleId }}">
                         </div>
                         <div class="col-6">
                             <label for="price_display" class="form-label">Cód Vendedor</label>

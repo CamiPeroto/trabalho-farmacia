@@ -26,7 +26,14 @@ class SaleController extends Controller
             $medicine->unit_price = $medicine->price + 5;
             return $medicine;
         });
-        return view('system.sale.index', ['medicines' => $medicines, 'sellerId' => $user->id]);
+        $lastSale   = Sale::orderBy('id', 'desc')->first();
+        $nextSaleId = $lastSale ? $lastSale->id + 1 : 1;
+
+        return view('system.sale.index', [
+            'medicines'  => $medicines,
+            'sellerId'   => $user->id,
+            'nextSaleId' => $nextSaleId,
+        ]);
     }
     public function store(Request $request)
     {
