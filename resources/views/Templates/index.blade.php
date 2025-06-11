@@ -62,7 +62,7 @@
                         </div>
                     </div>
 
-                    <a href="{{ route('profile.index')}}">
+                    <a href="{{ route('profile.index') }}">
                         <div class="nav-btn me-4">
                             <div class="d-flex justify-content-center align-items-center">
                                 <i class="fi fi-rr-user p-2 mr-4 fw-2"></i>
@@ -73,7 +73,7 @@
                         </div>
                     </a>
 
-                    <a href="{{ route('login.destroy')}}">
+                    <a href="{{ route('login.destroy') }}">
                         <div class="nav-btn" style=" width: 85px;">
                             <div class="d-flex justify-content-center align-items-center">
                                 <i class="fi fi-rr-leave p-2 mr-4 fw-2"></i>
@@ -99,8 +99,10 @@
                     <i class="fi fi-rr-menu-burger d-flex" style="font-size: 18px;"></i>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item fw-bold fs-6" href="{{ route('ingredient.index') }}">Principio
-                            Ativo</a></li>
+                    @can('index-active-ingredient')
+                        <li><a class="dropdown-item fw-bold fs-6" href="{{ route('ingredient.index') }}">Principio
+                                Ativo</a></li>
+                    @endcan
 
                     @can('index-stock')
                         <li><a class="dropdown-item fw-bold fs-6" href="{{ route('stock.index') }}">Estoque</a></li>
@@ -111,21 +113,24 @@
                     @endcan
                 </ul>
             </div>
+
             <a href="{{ route('sale.index') }}" class="px-4 py-2 footer-button fw-bold text-decoration-none">
                 Vendas
             </a>
-            <a href="{{ route('medicine.index') }}" class="px-4 py-2 footer-button  fw-bold text-decoration-none">
-                Produtos
-            </a>
+            @can('index-medicine')
+                <a href="{{ route('medicine.index') }}" class="px-4 py-2 footer-button  fw-bold text-decoration-none">
+                    Produtos
+                </a>
+            @endcan
             @can('index-promotions')
                 <a href="{{ route('promotion.index') }}" class="px-4 py-2 footer-button fw-bold text-decoration-none">
                     Promoções
-            </a>
+                </a>
             @endcan
             @can('index-budget')
-            <a href="{{ route('budget.index') }}" class="px-4 py-2 footer-button  fw-bold text-decoration-none">
-                Fornecedores
-            </a>
+                <a href="{{ route('budget.index') }}" class="px-4 py-2 footer-button  fw-bold text-decoration-none">
+                    Fornecedores
+                </a>
             @endcan
         </div>
     </div>
