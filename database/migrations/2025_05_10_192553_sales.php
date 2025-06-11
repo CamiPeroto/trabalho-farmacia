@@ -11,7 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+          Schema::create('sales', function (Blueprint $table) {
+            $table->id(); //PK para itens-sale
+            $table->foreignId('client_id')->constrained('clients'); //FK de clients
+            $table->date('sale'); //data da venda
+            $table->text('description');
+            $table->decimal('total_value'); //valor total
+            $table->timestamps();
+        });
     }
 
     /**
@@ -19,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+         Schema::dropIfExists('sales');
     }
 };
