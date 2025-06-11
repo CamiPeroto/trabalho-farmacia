@@ -78,76 +78,76 @@
 
 @section('javascript')
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const medicineCheckboxes = document.querySelectorAll('input[type="checkbox"][name="medicines[]"]');
-        const totalDisplay = document.getElementById('total_display');
-        const cpfInput = document.getElementById('cpf');
+        document.addEventListener('DOMContentLoaded', function() {
+            const medicineCheckboxes = document.querySelectorAll('input[type="checkbox"][name="medicines[]"]');
+            const totalDisplay = document.getElementById('total_display');
+            const cpfInput = document.getElementById('cpf');
 
-        // Máscara de CPF
-        cpfInput.addEventListener('input', function () {
-            let value = cpfInput.value.replace(/\D/g, ''); // Remove tudo que não for número
+            // Máscara de CPF
+            cpfInput.addEventListener('input', function() {
+                let value = cpfInput.value.replace(/\D/g, ''); // Remove tudo que não for número
 
-            if (value.length > 11) {
-                value = value.slice(0, 11); 
-            }
-
-            // Aplica a máscara
-            if (value.length > 9) {
-                value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{1,2})/, "$1.$2.$3-$4");
-            } else if (value.length > 6) {
-                value = value.replace(/(\d{3})(\d{3})(\d{1,3})/, "$1.$2.$3");
-            } else if (value.length > 3) {
-                value = value.replace(/(\d{3})(\d{1,3})/, "$1.$2");
-            }
-
-            cpfInput.value = value;
-        });
-
-        // Função para atualizar o total
-        function updateTotal() {
-            let total = 0;
-            medicineCheckboxes.forEach(checkbox => {
-                if (checkbox.checked) {
-                    const id = checkbox.value;
-                    const quantityInput = document.querySelector(`input[name="quantities[${id}]"]`);
-                    const quantity = quantityInput ? parseInt(quantityInput.value) || 0 : 0;
-                    const unitPrice = parseFloat(checkbox.getAttribute('data-unit-price')) || 0;
-                    total += quantity * unitPrice;
+                if (value.length > 11) {
+                    value = value.slice(0, 11);
                 }
-            });
-            totalDisplay.value = total.toLocaleString('pt-BR', {
-                style: 'currency',
-                currency: 'BRL'
-            });
-        }
 
-        // Eventos para checkbox e quantidade
-        medicineCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', updateTotal);
-            const id = checkbox.value;
-            const quantityInput = document.querySelector(`input[name="quantities[${id}]"]`);
-            if (quantityInput) {
-                quantityInput.addEventListener('input', () => {
+                // Aplica a máscara
+                if (value.length > 9) {
+                    value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{1,2})/, "$1.$2.$3-$4");
+                } else if (value.length > 6) {
+                    value = value.replace(/(\d{3})(\d{3})(\d{1,3})/, "$1.$2.$3");
+                } else if (value.length > 3) {
+                    value = value.replace(/(\d{3})(\d{1,3})/, "$1.$2");
+                }
+
+                cpfInput.value = value;
+            });
+
+            // Função para atualizar o total
+            function updateTotal() {
+                let total = 0;
+                medicineCheckboxes.forEach(checkbox => {
                     if (checkbox.checked) {
-                        updateTotal();
+                        const id = checkbox.value;
+                        const quantityInput = document.querySelector(`input[name="quantities[${id}]"]`);
+                        const quantity = quantityInput ? parseInt(quantityInput.value) || 0 : 0;
+                        const unitPrice = parseFloat(checkbox.getAttribute('data-unit-price')) || 0;
+                        total += quantity * unitPrice;
                     }
                 });
+                totalDisplay.value = total.toLocaleString('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL'
+                });
             }
-        });
 
-        // Inicializa total
-        updateTotal();
-
-        // Botão cancelar reseta tudo
-        document.getElementById('cancel-button').addEventListener('click', () => {
-            medicineCheckboxes.forEach(checkbox => checkbox.checked = false);
+            // Eventos para checkbox e quantidade
             medicineCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateTotal);
                 const id = checkbox.value;
                 const quantityInput = document.querySelector(`input[name="quantities[${id}]"]`);
-                if (quantityInput) quantityInput.value = 1;
+                if (quantityInput) {
+                    quantityInput.addEventListener('input', () => {
+                        if (checkbox.checked) {
+                            updateTotal();
+                        }
+                    });
+                }
             });
-            totalDisplay.value = '';
+
+            // Inicializa total
+            updateTotal();
+
+            // Botão cancelar reseta tudo
+            document.getElementById('cancel-button').addEventListener('click', () => {
+                medicineCheckboxes.forEach(checkbox => checkbox.checked = false);
+                medicineCheckboxes.forEach(checkbox => {
+                    const id = checkbox.value;
+                    const quantityInput = document.querySelector(`input[name="quantities[${id}]"]`);
+                    if (quantityInput) quantityInput.value = 1;
+                });
+                totalDisplay.value = '';
+            });
         });
-    });
-</script>
+    </script>
 @endsection

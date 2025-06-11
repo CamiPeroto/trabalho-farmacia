@@ -16,7 +16,7 @@
             <div class="card-header hstack">
                 <span class="ms-auto">
                     @can('create-role')
-                        <a href="{{ route('medicine.create') }}"
+                        <a href="{{ route('role.create') }}"
                             class="btn btn-light rounded-circle shadow d-flex align-items-center justify-content-center"
                             id="white-circle" style="width: 48px; height: 48px;">
                             <img src="{{ asset('assets/img/add-icon.png') }}" alt="+" style="width: 12px; height: 12px;">

@@ -1,47 +1,6 @@
 @extends('templates.home')
 
 @section('content')
-    {{-- @php
-        $products = [
-            [
-                'title' => 'Omeprazol 20mg - 10 cápsulas',
-                'price' => 11.9,
-                'image' =>
-                    'https://airela.com.br/wp-content/uploads/2024/02/ibuprofeno_400mg_ibuprofeno_10capsulas.png',
-            ],
-            [
-                'title' => 'Multivitamínico A-Z - 60 cápsulas',
-                'price' => 29.99,
-                'image' =>
-                    'https://dmvfarma.vtexassets.com/arquivos/ids/271865/DIPIRONA%20500MG%20C20.png.png?v=638827583361130000',
-            ],
-            [
-                'title' => 'Omeprazol 20mg - 10 cápsulas',
-                'price' => 11.9,
-                'image' =>
-                    'https://airela.com.br/wp-content/uploads/2024/02/ibuprofeno_400mg_ibuprofeno_10capsulas.png',
-            ],
-            [
-                'title' => 'Multivitamínico A-Z - 60 cápsulas',
-                'price' => 29.99,
-                'image' =>
-                    'https://dmvfarma.vtexassets.com/arquivos/ids/271865/DIPIRONA%20500MG%20C20.png.png?v=638827583361130000',
-            ],
-            [
-                'title' => 'Omeprazol 20mg - 10 cápsulas',
-                'price' => 11.9,
-                'image' =>
-                    'https://airela.com.br/wp-content/uploads/2024/02/ibuprofeno_400mg_ibuprofeno_10capsulas.png',
-            ],
-            [
-                'title' => 'Multivitamínico A-Z - 60 cápsulas',
-                'price' => 29.99,
-                'image' =>
-                    'https://dmvfarma.vtexassets.com/arquivos/ids/271865/DIPIRONA%20500MG%20C20.png.png?v=638827583361130000',
-            ],
-        ];
-    @endphp --}}
-
     <div class="bg-footer text-dark py-3">
         <div class="container d-flex flex-wrap justify-content-center align-items-center gap-3">
             <a href="#" class="footer-button text-decoration-none fs-5">
@@ -88,35 +47,42 @@
         <div class="row p-5">
             <div class="swiper mySwiper" id="mySwiperPrimary">
                 <div class="swiper-wrapper">
-                     @foreach ($products as $product)
-                    @php
-                        $image = Str::startsWith($product->image, 'assets')
-                            ? asset($product->image)
-                            : asset('storage/' . $product->image);
-                        $originalPrice = $product->price * 1.2;
-                        $discountPercent = round(100 - ($product->price / $originalPrice) * 100);
-                    @endphp
-                    <div class="swiper-slide">
-                        <div class="card h-100">
-                            @if ($discountPercent > 0)
-                                <div class="discount-badge">
-                                    -{{ $discountPercent }}%
+                    @foreach ($products as $product)
+                        @php
+                            $image = Str::startsWith($product->image, 'assets')
+                                ? asset($product->image)
+                                : asset('storage/' . $product->image);
+                            $originalPrice = $product->price * 1.2;
+                            $discountPercent = round(100 - ($product->price / $originalPrice) * 100);
+                        @endphp
+                        <div class="swiper-slide">
+                            <div class="card h-100">
+                                @if ($discountPercent > 0)
+                                    <div class="discount-badge">
+                                        -{{ $discountPercent }}%
+                                    </div>
+                                @endif
+                                <img src="{{ $image }}" class="card-img-top" alt="{{ $product->fantasy_name }}">
+                                <div class="card-body text-start">
+                                    <h6 class="mb-2">{{ $product->fantasy_name }}</h6>
+                                    <span class="text-price-other mb-0">
+                                        R$ {{ number_format($product->price, 2, ',', '.') }}
+                                    </span>
+                                    <p class="fw-bold fs-3 mb-2">
+                                        R$ {{ number_format($product->price, 2, ',', '.') }}
+                                    </p>
+                                    @auth
+                                        <a href="#"
+                                            onclick="handleBuy({{ $product->id }}, '{{ $product->fantasy_name }}', {{ $product->price }})"
+                                            class="btn-buy-home text-center btn-sm">Comprar</a>
+                                    @else
+                                        <a href="{{ route('login.index') }}"
+                                            class="btn-buy-home text-center btn-sm">Comprar</a>
+                                    @endauth
                                 </div>
-                            @endif
-                            <img src="{{ $image }}" class="card-img-top" alt="{{ $product->fantasy_name }}">
-                            <div class="card-body text-start">
-                                <h6 class="mb-2">{{ $product->fantasy_name }}</h6>
-                                <span class="text-price-other mb-0">
-                                    R$ {{ number_format($product->price, 2, ',', '.') }}
-                                </span>
-                                <p class="fw-bold fs-3 mb-2">
-                                    R$ {{ number_format($product->price, 2, ',', '.') }}
-                                </p>
-                                <a href="#" class="btn-buy-home text-center btn-sm">Comprar</a>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -134,19 +100,58 @@
                     @foreach ($products as $product)
                         <div class="swiper-slide">
                             <div class="card h-100">
-                                <img src="{{ $product['image'] }}" class="card-img-top" alt="{{ $product['title'] }}">
+                                <img src="{{ $product['image'] }}" class="card-img-top"
+                                    alt="{{ $product->fantasy_name }}">
                                 <div class="card-body text-start">
-                                    <h6 class="mb-2">{{ $product['title'] }}</h6>
+                                    <h6 class="mb-2">{{ $product->fantasy_name }}</h6>
                                     <p class="fw-bold fs-3 mb-2">
                                         R$ {{ number_format($product['price'], 2, ',', '.') }}
                                     </p>
-                                    <a href="#" class="btn-buy-home text-center btn-sm">Comprar</a>
+                                    @auth
+                                        <a href="#"
+                                            onclick="handleBuy({{ $product->id }}, '{{ $product->fantasy_name }}', {{ $product->price }})"
+                                            class="btn-buy-home text-center btn-sm">Comprar</a>
+                                    @else
+                                        <a href="{{ route('login.index') }}"
+                                            class="btn-buy-home text-center btn-sm">Comprar</a>
+                                    @endauth
                                 </div>
                             </div>
                         </div>
                     @endforeach
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
+        <div class="offcanvas-header">
+            <h5 id="cartOffcanvasLabel" class="fw-bold">Meu Carrinho</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+        </div>
+        <div class="offcanvas-body" id="cartItems">
+            <div class="alert alert-info text-center" role="alert">
+                Seu carrinho está vazio no momento.<br>
+                Para adicionar produtos ao carrinho, por favor <a href="{{ url('/login') }}" class="alert-link">Faça
+                    Login</a> ou <a href="{{ url('/register') }}" class="alert-link">Cadastre-se</a>
+            </div>
+        </div>
+        <div class="offcanvas-footer p-3 border-top">
+            <div class="d-flex justify-content-between mb-3">
+                <strong>Total:</strong>
+                <span id="cartTotal">R$ 0,00</span>
+            </div>
+
+            @auth
+                <!-- Usuário logado: botão para finalizar compra -->
+                <a href="#" class="btn btn-info w-100">
+                    Finalizar Compra
+                </a>
+            @else
+                <!-- Usuário não logado: botão direciona para login -->
+                <a href="{{ url('/login') }}" class="btn btn-info w-100">
+                    Faça login para finalizar a compra
+                </a>
+            @endauth
         </div>
     </div>
 @endsection
@@ -202,5 +207,97 @@
                 }
             }
         });
+
+        const isLoggedIn = @json(auth()->check());
+        let cart = [];
+        let cartBadge = document.getElementById('cartBadge');
+        let cartSummary = document.getElementById('cartSummary');
+        let cartItemsContainer = document.getElementById('cartItems');
+        let cartTotal = document.getElementById('cartTotal');
+
+        function handleBuy(id, name, price) {
+            const product = {
+                id,
+                name,
+                price
+            };
+
+            if (!isLoggedIn) {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Você precisa estar logado!',
+                    text: 'Faça login para adicionar itens ao carrinho.',
+                    showConfirmButton: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '{{ route('login.index') }}';
+                    }
+                });
+            } else {
+                addToCart(product);
+                let cartOffcanvas = new bootstrap.Offcanvas(document.getElementById('cartOffcanvas'));
+                cartOffcanvas.show();
+            }
+        }
+
+        function addToCart(product) {
+            let existingProduct = cart.find(p => p.id === product.id);
+            if (existingProduct) {
+                existingProduct.quantity += 1;
+            } else {
+                cart.push({
+                    ...product,
+                    quantity: 1
+                });
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            let total = 0;
+            let totalQuantity = 0;
+            cartItemsContainer.innerHTML = '';
+
+            cart.forEach(product => {
+                total += product.price * product.quantity;
+                totalQuantity += product.quantity;
+
+                cartItemsContainer.innerHTML += `
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <strong>${product.name}</strong><br>
+                        <small>Preço unitário: R$ ${product.price.toFixed(2)}</small>
+                    </div>
+                    <div class="text-end">
+                        <input type="number" min="1" class="form-control form-control-sm mb-2 text-center" style="width: 60px;" 
+                            value="${product.quantity}" onchange="updateQuantity(${product.id}, this.value)">
+                        <span>Total: R$ ${(product.price * product.quantity).toFixed(2)}</span>
+                    </div>
+                </div>
+                <hr>
+            `;
+            });
+
+            cartTotal.innerText = `R$ ${total.toFixed(2)}`;
+            cartSummary.innerText = `R$ ${total.toFixed(2)}`;
+
+            if (totalQuantity > 0) {
+                cartBadge.style.display = 'inline';
+                cartBadge.innerText = totalQuantity;
+            } else {
+                cartBadge.style.display = 'none';
+            }
+        }
+
+        function updateQuantity(productId, newQuantity) {
+            let product = cart.find(p => p.id === productId);
+            if (product) {
+                product.quantity = parseInt(newQuantity);
+                if (product.quantity < 1) {
+                    product.quantity = 1;
+                }
+                updateCartUI();
+            }
+        }
     </script>
 @endsection

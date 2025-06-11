@@ -50,37 +50,58 @@
                 </form>
 
                 <div class="d-flex align-items-center justify-content-center">
-                    <a href="{{ url('/login') }}">
-                        <div class="nav-btn me-4">
-                            <div class="d-flex justify-content-center align-items-center">
-                                <i class="fi fi-rr-user p-2 mr-4 fw-2"></i>
-                                <div class="link-nav-button">
-                                    @if (auth()->check())
+                    @if (auth()->check())
+                        <!-- Dropdown para usuário logado -->
+                        <div class="dropdown me-4">
+                            <a class="nav-btn dropdown-toggle text-decoration-none" href="#" role="button"
+                                id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <i class="fi fi-rr-user p-2 mr-4 fw-2"></i>
+                                    <div class="link-nav-button">
                                         <span class="fw-bold">Olá, {{ auth()->user()->name }}</span>
-                                    @else
-                                        <div class="link-nav-button">
-                                            <span class="fw-bold">Bem-vindo!</span>
-                                            <span class="small">Entrar ou cadastrar</span>
-                                        </div>
-                                    @endif
+                                    </div>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu rounded-lg position-absolute start-50 translate-middle-x mt-1" aria-labelledby="userDropdown">
+                                <li>
+                                    <a class="dropdown-item fw-bold" href="{{ route('login.destroy') }}">
+                                        <i class="fi fi-rr-leave me-2"></i> Sair
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    @else
+                        <!-- Usuário não logado -->
+                        <a href="{{ url('/login') }}">
+                            <div class="nav-btn me-4">
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <i class="fi fi-rr-user p-2 mr-4 fw-2"></i>
+                                    <div class="link-nav-button">
+                                        <span class="fw-bold">Bem-vindo!</span>
+                                        <span class="small">Entrar ou cadastrar</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    @endif
 
-                    <a href="#">
-                        <div class="nav-btn-card me-4">
+                    <a href="#" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas"
+                        aria-controls="cartOffcanvas">
+                        <div class="nav-btn-card me-4 position-relative">
                             <div class="d-flex justify-content-center align-items-center">
                                 <i class="fi fi-rr-shopping-cart pe-3 fw-2"></i>
                                 <div class="link-nav-button">
-                                    <span class="fw-bold ">Carrinho</span>
-                                    <span class="small ">R$ 00,00</span>
+                                    <span class="fw-bold">Carrinho</span>
+                                    <span class="small" id="cartSummary">R$ 0,00</span>
                                 </div>
+                                <span class="badge bg-danger position-absolute top-0 start-100 translate-middle"
+                                    id="cartBadge" style="display: none;">
+                                    0
+                                </span>
                             </div>
                         </div>
                     </a>
                 </div>
-
             </div>
         </div>
     </nav>

@@ -67,7 +67,7 @@
                                 <i class="fi fi-rr-file-edit"></i>
                             </a>
 
-                            <form action="#" method="POST">
+                            <form action="{{ route('drugstore.destroy', $drugstore->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm me-1"

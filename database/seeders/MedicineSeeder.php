@@ -21,7 +21,7 @@ class MedicineSeeder extends Seeder
 
         $products = [
             [
-                'fantasy_name' => 'Paracetamol- 500mg',
+                'fantasy_name' => 'Paracetamol - 500mg',
                 'price' => 10.50,
                 'type' => 'Comprimido',
                 'form' => 'Oral',
@@ -45,7 +45,7 @@ class MedicineSeeder extends Seeder
                 'image' => 'assets/img/ibuprofeno.png'
             ],
             [
-                'fantasy_name' => 'Amoxicilina- 250mg',
+                'fantasy_name' => 'Amoxicilina - 250mg',
                 'price' => 25.00,
                 'type' => 'Cápsula',
                 'form' => 'Oral',
