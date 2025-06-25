@@ -1,3 +1,8 @@
+# Sistema de Farmácia - Trabalho Acadêmico
+
+Este projeto foi desenvolvido como parte de um **trabalho acadêmico** com o objetivo de criar um **sistema completo para uma farmácia**, contemplando tanto um **e-commerce** para vendas online quanto um **sistema administrativo** para gestão de produtos, promoções e estoque.
+
+---
 ## Requisitos
 
 * PHP 8.2 ou superior
