@@ -5,9 +5,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Drugstore extends Model
 {
-    protected $table = 'drugstores';
+    protected $table = 'branches';
 
-    protected $fillable = ['name', 'location', 'status'];
+    protected $fillable = [
+        'name', 
+        'location', 
+        'status'
+    ];
 
     protected $casts = [
         'status' => 'boolean',

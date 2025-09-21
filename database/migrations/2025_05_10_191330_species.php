@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-          Schema::create('drugstores', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique();
-            $table->string('location');
-            $table->boolean('status')->default(true);
+           Schema::create('species', function (Blueprint $table) {
+            $table->id(); //PK, será usado em medicines
+            $table->string('name');
+            $table->text('description');
             $table->timestamps();
         });
+       
     }
 
     /**
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-         Schema::dropIfExists('drugstores');
+         Schema::dropIfExists('species');
     }
 };

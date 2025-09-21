@@ -14,11 +14,11 @@ return new class extends Migration
     Schema::create('purchase_nf_items', function (Blueprint $table) {
     $table->id();
     $table->foreignId('purchase_nf_id')->constrained('purchase_nfs')->onDelete('cascade');
-    $table->foreignId('medicine_id')->constrained('medicines');
+    $table->foreignId('product_id')->constrained('products');
     $table->integer('quantity');
     $table->decimal('unitary_price', 10, 2);
     $table->date('expiration_date');
-    $table->string('lot')->nullable(); //lote do medicamento 
+    $table->string('lot')->nullable(); //lote do medicamento
     $table->timestamps();
     });
     }

@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-           Schema::create('active_ingredients', function (Blueprint $table) {
-            $table->id(); //PK, será usado em medicines
-            $table->string('name');
-            $table->text('description');
-            $table->timestamps();
+         Schema::table('products', function (Blueprint $table) {
+            $table->decimal('price', 10, 2)->nullable()->after('name'); 
         });
-       
     }
 
     /**
@@ -25,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-         Schema::dropIfExists('active_ingredients');
+         Schema::table('products', function (Blueprint $table) {
+            $table->dropColumn('price');
+        });
     }
 };

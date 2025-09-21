@@ -8,7 +8,7 @@ class SaleProduct extends Model
 {
      protected $fillable = [
         'sale_id',
-        'medicine_id',
+        'product_id',
         'quantity',
         'unit_price',
     ];
@@ -17,8 +17,8 @@ class SaleProduct extends Model
     {
         return $this->belongsTo(Sale::class);
     }
-     public function medicine()
+     public function product()
     {
-        return $this->belongsTo(Medicine::class);
+        return $this->belongsTo(Product::class);
     }
 }

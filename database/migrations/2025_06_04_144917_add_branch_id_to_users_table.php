@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-        $table->foreignId('drugstore_id')
+        $table->foreignId('branch_id')
               ->nullable()
               ->constrained()
               ->nullOnDelete(); // Se a filial for apagada, o campo será definido como NULL
@@ -25,8 +25,8 @@ return new class extends Migration
     public function down(): void
     {
          Schema::table('users', function (Blueprint $table) {
-        $table->dropForeign(['drugstore_id']);
-        $table->dropColumn('drugstore_id');
+        $table->dropForeign(['branch_id']);
+        $table->dropColumn('branch_id');
     });
     }
 };

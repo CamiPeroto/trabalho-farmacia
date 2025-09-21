@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-         Schema::table('medicines', function (Blueprint $table) {
-        $table->string('image')->nullable()->after('description');
-    });
-      
+          Schema::create('branches', function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->unique();
+            $table->string('location');
+            $table->boolean('status')->default(true);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -22,9 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('medicines', function (Blueprint $table) {
-        $table->dropColumn('image');
-    });
-
+         Schema::dropIfExists('branches');
     }
 };

@@ -13,9 +13,9 @@ return new class extends Migration
     {
            Schema::create('stock', function (Blueprint $table) {
             $table->id(); //PK, será usado em medicines itens-sale
-            $table->foreignId('medicine_id')->constrained('medicines');
+            $table->foreignId('product_id')->constrained('products');
             $table->foreignId('purchase_nf_item_id')->nullable()->constrained('purchase_nf_items'); //rastrear a origem do item pela NF
-            $table->foreignId('drugstore_id')->constrained()->onDelete('cascade');
+            $table->foreignId('branch_id')->constrained()->onDelete('cascade');
             $table->integer('quantity');
             $table->decimal('unitary_price', 10, 2);
             $table->date('expiration_date'); //data de validade

@@ -10,7 +10,6 @@ class Role extends SpatieRole
 {
     use HasFactory;
     
-    
     //indicar o nome da tabela
     protected $table = 'roles';
 

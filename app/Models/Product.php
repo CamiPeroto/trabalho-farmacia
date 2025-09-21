@@ -3,25 +3,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Medicine extends Model
+class Product extends Model
 {
-    protected $table = 'medicines';
+    protected $table = 'products';
 
     protected $fillable = [
-        'fantasy_name',
+        'name',
         'price',
         'type',
-        'form',
-        'dosage',
+        'shape',
+        'weight',
+        'code_product',
         'maker',
         'quantity',
-        'description',
         'image',
-        'active_ingredient_id'];
-
-    public function activeIngredient()
+        'species_id'
+    ];
+    
+    public function species()
     {
-        return $this->belongsTo(ActiveIngredient::class);
+        return $this->belongsTo(Species::class);
     }
 
     public function promotion()
