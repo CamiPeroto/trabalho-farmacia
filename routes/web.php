@@ -14,9 +14,16 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\StockController;
+use App\Http\Controllers\AppointmentsController;
+use App\Http\Controllers\PetsController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/appointment/create', [AppointmentsController::class, 'create'])->name('create');
+Route::get('/pets/create', [PetsController::class, 'create'])->name('create');
+Route::get('/payment', [PaymentController::class, 'index'])->name('index');
 
 //Login
 
