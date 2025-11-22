@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Farmácia Barateira</title>
+    <title>Pet Store</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,7 +32,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand me-4" href="{{ url('/') }}">
-                <img src="{{ asset('assets/img/logo.png') }}" alt="Logo" width="150" height="50"
+                <img src="{{ asset('assets/img/logo.png') }}" alt="Logo" width="100" height="50"
                     class="d-inline-block align-text-top">
             </a>
 
@@ -118,7 +118,7 @@
 
         <div class="container py-4">
             <div class="row text-center text-md-start">
-                <div class="col-md-3 col-6 mb-3">
+                <div class="col-md-4 col-6 mb-3">
                     <h5 class="bold">Institucional</h5>
                     <a href="#" class="text-decoration-none footer-button">
                         <p>Sobre</p>
@@ -133,7 +133,7 @@
                         <p>Fale conosco</p>
                     </a>
                 </div>
-                <div class="col-md-3 col-6 mb-3">
+                <div class="col-md-4 col-6 mb-3">
                     <h5>Atendimento</h5>
                     <p class="text-orange"> (42) 4004-4041 </p>
                     <p class="mb-1">
@@ -143,7 +143,7 @@
                         Dom e feriados - 8h00 às 22h00
                     </p>
                 </div>
-                <div class="col-md-3 col-6 mb-3">
+                <div class="col-md-4 col-6 mb-3">
                     <h5>Suporte </h5>
                     <a href="#" class="text-decoration-none footer-button">
                         <p>Prazo de entrega</p>
@@ -155,20 +155,14 @@
                         <p>Troca e devolução</p>
                     </a>
                 </div>
-                <div class="col-md-3 col-6 mb-3">
-                    <img src="{{ asset('assets/img/anvisa.png') }}" alt="" class="img-footer">
-                </div>
             </div>
         </div>
 
         <div class="bg-light py-2">
             <div class="container text-center">
-                <small class="text-muted">© {{ date('Y') }} Copyright ©️ 2025 Fármacias Barateira - Todos os
-                    direitos reservados. RAZÃO SOCIAL | FÁRMACIAS E DROGARIAS BARATEIRA |CNPJ: 12.123.123/1234-12 | End:
-                    Av. Marechal Floriano Peixoto nº 999 - Hauer - Ponta Grossa - PR| CEP:84123-000 Farmacêutico
-                    Responsável: Conrado Maximiano Cruz, CRF/PR Nº 123456 OBS: "Preços exclusivos para produtos
-                    comercializados na Loja Virtual da Fármacias Barateira." Encarregado pelo tratamento de dados
-                    pessoais (DPO) | Camila Peroto | E-mail: dpo.lgpd@abarateira.com.br.</small>
+                <small class="text-muted">
+                    © {{ date('Y') }} Copyright ©️ 2025 Pet Store — Todos os direitos reservados.
+                </small>
             </div>
         </div>
     </footer>

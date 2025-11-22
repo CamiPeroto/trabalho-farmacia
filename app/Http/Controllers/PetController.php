@@ -7,12 +7,12 @@ use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class ActiveIngredientController extends Controller
+class PetController extends Controller
 {
     public function index()
     {
-        $ingredients = ActiveIngredient::paginate(10);
-        return view('system.active-ingredient.index', ['ingredients' => $ingredients ]);
+        $pets = ActiveIngredient::paginate(10);
+        return view('system.active-pet.index', ['pets' => $pets ]);
     }
 
     public function store(IngredientRequest $request)

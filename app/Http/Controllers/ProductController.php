@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
-class MedicineController extends Controller
+class ProductController extends Controller
 {
     public function index()
     {
