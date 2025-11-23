@@ -3,7 +3,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Drugstore extends Model
+class Branch extends Model
 {
     protected $table = 'branches';
 

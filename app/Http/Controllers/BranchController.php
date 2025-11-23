@@ -1,51 +1,49 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\Drugstore;
+use App\Models\Branch;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class BrancheController extends Controller
+class BranchController extends Controller
 {
     public function index()
     {
-        $drugstores = Drugstore::paginate(10);
-        return view('system.drugstore.index', ['drugstores' => $drugstores]);
+        $branches = Branch::paginate(10);
+        return view('system.branches.index', ['branches' => $branches]);
     }
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name'     => 'required|string|max:50|unique:drugstores,name',
+            'name'     => 'required|string|max:50|unique:branches,name',
             'location' => 'required|string|max:50',
         ]);
 
         DB::beginTransaction();
 
         try {
-            Drugstore::create([
+            Branch::create([
                 'name'     => $validated['name'],
                 'location' => $validated['location'],
                 'status'   => true,
             ]);
             DB::commit();
 
-            return redirect()->route('drugstore.index', )
-                ->with('success', 'Filial cadastrada com sucesso!');
+            return redirect()->route('branch.index', )->with('success', 'Filial cadastrada com sucesso!');
 
         } catch (Exception $e) {
             DB::rollBack();
             Log::notice('Filial não cadastrada.', ['error' => $e->getMessage()]);
             return back()->withInput()->with('error', 'Filial não cadastrada');
-
         }
     }
     public function update(Request $request, $id)
     {
         Log::info('Status recebido:', ['status' => $request->input('status')]);
         $validated = $request->validate([
-            'name'     => 'required|string|max:50|unique:drugstores,name,' . $id,
+            'name'     => 'required|string|max:50|unique:branchs,name,' . $id,
             'location' => 'required|string|max:50',
             'status'   => 'required|boolean',
         ]);
@@ -53,9 +51,9 @@ class BrancheController extends Controller
         DB::beginTransaction();
 
         try {
-            $drugstore = Drugstore::findOrFail($id);
+            $branch = Branch::findOrFail($id);
 
-            $drugstore->update([
+            $branch->update([
                 'name'     => $validated['name'],
                 'location' => $validated['location'],
                 'status'   => $validated['status'],
@@ -63,7 +61,7 @@ class BrancheController extends Controller
 
             DB::commit();
 
-            return redirect()->route('drugstore.index')
+            return redirect()->route('branch.index')
                 ->with('success', 'Filial atualizada com sucesso!');
 
         } catch (Exception $e) {
@@ -73,21 +71,19 @@ class BrancheController extends Controller
             return back()->withInput()->with('error', 'Erro ao atualizar filial');
         }
     }
-    public function destroy(Drugstore $drugstore)
+    public function destroy(Branch $branch)
     {
         try {
-            $drugstore->delete();
+            $branch->delete();
 
-            Log::info('Filial apagada.', ['drugstore_id' => $drugstore->id]);
+            Log::info('Filial apagada.', ['branch_id' => $branch->id]);
 
-            return redirect()->route('drugstore.index')
-                ->with('success', 'Filial excluída com sucesso!');
+            return redirect()->route('branch.index')->with('success', 'Filial excluída com sucesso!');
 
         } catch (Exception $e) {
             Log::error('Erro ao excluir filial.', ['error' => $e->getMessage()]);
 
-            return redirect()->route('drugstore.index')
-                ->with('error', 'Filial não foi excluída!');
+            return redirect()->route('branch.index')->with('error', 'Filial não foi excluída!');
         }
     }
 

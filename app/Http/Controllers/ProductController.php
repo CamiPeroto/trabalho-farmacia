@@ -1,9 +1,9 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Http\Requests\MedicineRequest;
+use App\Http\Requests\ProductRequest;
 use App\Models\ActiveIngredient;
-use App\Models\Medicine;
+use App\Models\Product;
 use App\Models\Stock;
 use Carbon\Carbon;
 use Exception;
@@ -18,34 +18,34 @@ class ProductController extends Controller
     {
         $drugstoreId = Auth::user()->drugstore_id;
 
-        $medicines = Medicine::whereHas('stock', function ($query) use ($drugstoreId) {
+        $products = Product::whereHas('stock', function ($query) use ($drugstoreId) {
             $query->where('drugstore_id', $drugstoreId);
         })->with(['stock' => function ($query) use ($drugstoreId) {
             $query->where('drugstore_id', $drugstoreId);
         }])->paginate(10);
 
-        return view('system.medicines.index', ['medicines' => $medicines]);
+        return view('system.products.index', ['products' => $products]);
     }
 
     public function create()
     {
         $ingredients = ActiveIngredient::all();
-        $nextId      = \App\Models\Medicine::max('id') + 1;
+        $nextId      = \App\Models\Product::max('id') + 1;
 
-        return view('system.medicines.create',
+        return view('system.products.create',
             [
                 'ingredients' => $ingredients,
                 'nextId'      => $nextId,
             ]);
     }
-    public function show(Medicine $medicine)
+    public function show(Product $product)
     {
         $ingredients = ActiveIngredient::all();
 
-        return view('system.medicines.view', ['medicine'=> $medicine,'ingredients' => $ingredients]);
+        return view('system.products.view', ['product'=> $product,'ingredients' => $ingredients]);
     }
 
-    public function store(MedicineRequest $request)
+    public function store(ProductRequest $request)
     {
         $request->validated();
 
@@ -53,11 +53,11 @@ class ProductController extends Controller
 
         try {
             $imagePath = $request->hasFile('image')
-            ? $request->file('image')->store('medicines', 'public')
+            ? $request->file('image')->store('products', 'public')
             : null;
 
-            // Cria o remédio e armazena em $medicine
-            $medicine = Medicine::create([
+            // Cria o remédio e armazena em $product
+            $product = Product::create([
                 'fantasy_name'         => $request->fantasy_name,
                 'price'                => $request->price,
                 'type'                 => $request->type,
@@ -77,9 +77,9 @@ class ProductController extends Controller
             // Cria automaticamente o estoque
             Log::info('Criando estoque com drugstore_id', ['drugstore_id' => $drugstoreId]);
             Stock::create([
-                'medicine_id'     => $medicine->id,
-                'quantity'        => $medicine->quantity,
-                'unitary_price'   => $medicine->price,
+                'product_id'     => $product->id,
+                'quantity'        => $product->quantity,
+                'unitary_price'   => $product->price,
                 'entry_date'      => Carbon::now()->toDateString(),
                 'expiration_date' => Carbon::now()->addYears(2)->toDateString(),
                 'drugstore_id'    => $drugstoreId,
@@ -87,7 +87,7 @@ class ProductController extends Controller
 
             DB::commit();
 
-            return redirect()->route('medicine.index')
+            return redirect()->route('product.index')
                 ->with('success', 'Remédio cadastrado com sucesso!');
 
         } catch (Exception $e) {
@@ -98,13 +98,13 @@ class ProductController extends Controller
         }
     }
 
-    public function edit(Medicine $medicine)
+    public function edit(Product $product)
     {
         $ingredients = ActiveIngredient::all();
-        return view('system.medicines.edit', ['medicine' => $medicine, 'ingredients' => $ingredients]);
+        return view('system.products.edit', ['product' => $product, 'ingredients' => $ingredients]);
     }
 
-    public function update(MedicineRequest $request, Medicine $medicine)
+    public function update(ProductRequest $request, Product $product)
     {
         $request->validated();
 
@@ -114,17 +114,17 @@ class ProductController extends Controller
             // Se houver nova imagem, armazena e exclui a antiga
             if ($request->hasFile('image')) {
                 // Exclui imagem antiga, se existir
-                if ($medicine->image && Storage::disk('public')->exists($medicine->image)) {
-                    Storage::disk('public')->delete($medicine->image);
+                if ($product->image && Storage::disk('public')->exists($product->image)) {
+                    Storage::disk('public')->delete($product->image);
                 }
 
-                $imagePath = $request->file('image')->store('medicines', 'public');
+                $imagePath = $request->file('image')->store('products', 'public');
             } else {
-                $imagePath = $medicine->image; // mantém a imagem atual
+                $imagePath = $product->image; // mantém a imagem atual
             }
 
             // Atualiza os dados
-            $medicine->update([
+            $product->update([
                 'fantasy_name'         => $request->fantasy_name,
                 'price'                => $request->price,
                 'type'                 => $request->type,
@@ -138,7 +138,7 @@ class ProductController extends Controller
 
             DB::commit();
 
-            return redirect()->route('medicine.index')
+            return redirect()->route('product.index')
                 ->with('success', 'Remédio atualizado com sucesso!');
         } catch (Exception $e) {
             DB::rollBack();
@@ -147,38 +147,38 @@ class ProductController extends Controller
             return back()->withInput()->with('error', 'Erro ao atualizar o remédio.');
         }
     }
-    public function destroy(Medicine $medicine)
+    public function destroy(Product $product)
     {
 
         try {
 
-            $totalStock = $medicine->stock()->count();
+            $totalStock = $product->stock()->count();
 
             // Estoques que são inativos e com quantidade < 3
-            $deletableStock = $medicine->stock()
+            $deletableStock = $product->stock()
                 ->where('status', false)
                 ->where('quantity', '<', 3)
                 ->count();
 
             // Se houver algum estoque que não é seguro, bloqueia
             if ($deletableStock !== $totalStock) {
-                return redirect()->route('medicine.index')
+                return redirect()->route('product.index')
                     ->with('error', 'Remédio não foi excluído! Estoque ativo ou com quantidade suficiente.');
             }
 
             // Exclui todos os estoques restantes
-            $medicine->stock()->delete();
-            $medicine->delete();
+            $product->stock()->delete();
+            $product->delete();
 
-            Log::info('Remédio apagado.', ['medicine' => $medicine->id]);
+            Log::info('Remédio apagado.', ['product' => $product->id]);
 
-            return redirect()->route('medicine.index')->with('success', 'Remédio excluído com sucesso!');
+            return redirect()->route('product.index')->with('success', 'Remédio excluído com sucesso!');
 
         } catch (Exception $e) {
 
             Log::info('Remédio não apagado.', ['error' => $e->getMessage()]);
 
-            return redirect()->route('medicine.index')
+            return redirect()->route('product.index')
                 ->with('error', 'Remédio não foi excluído!');
 
         }

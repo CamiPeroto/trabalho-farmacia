@@ -1,35 +1,34 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Http\Requests\IngredientRequest;
-use App\Models\ActiveIngredient;
+use App\Http\Requests\SpeciesRequest;
+use App\Models\Species;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class PetController extends Controller
+class SpecieController extends Controller
 {
     public function index()
     {
-        $pets = ActiveIngredient::paginate(10);
-        return view('system.active-pet.index', ['pets' => $pets ]);
+        $species = Species::paginate(10);
+        return view('system.active-specie.index', ['species' => $species ]);
     }
 
-    public function store(IngredientRequest $request)
+    public function store(SpeciesRequest $request)
     {
         $request->validated();
 
         DB::beginTransaction();
 
         try {
-            ActiveIngredient::create([
+            Species::create([
                 'name'        => $request->name,
                 'description' => $request->description,
             ]);
             DB::commit();
 
-            return redirect()->route('ingredient.index', )
-                ->with('success', 'Principio ativo cadastrado com sucesso!');
+            return redirect()->route('species.index')->with('success', 'Principio ativo cadastrado com sucesso!');
 
         } catch (Exception $e) {
             DB::rollBack();
@@ -39,13 +38,13 @@ class PetController extends Controller
         }
     }
 
-    public function edit(ActiveIngredient $ingredient){
+    public function edit(Species $species){
        
         //Carregar view 
-        return view('system.active-ingredient.index', ['ingredient' => $ingredient ]);
+        return view('system.active-species.index', ['species' => $species ]);
     }
     
-    public function update(IngredientRequest $request, ActiveIngredient $ingredient)
+    public function update(SpeciesRequest $request, Species $species)
     {
         $request->validated();
 
@@ -53,7 +52,7 @@ class PetController extends Controller
 
         try {
 
-            $ingredient->update([
+            $species->update([
                 'name'        => $request->name,
                 'description' => $request->description,
 
@@ -61,9 +60,9 @@ class PetController extends Controller
 
             DB::commit();
 
-            Log::info('Curso editado.', ['course_id' => $ingredient->id]);
+            Log::info('Curso editado.', ['course_id' => $species->id]);
 
-            return redirect()->route('ingredient.index')
+            return redirect()->route('species.index')
                 ->with('success', 'Principio ativo editado com sucesso!');
         } catch (Exception $e) {
 
@@ -74,22 +73,22 @@ class PetController extends Controller
         }
     }
 
-    public function destroy(ActiveIngredient $ingredient)
+    public function destroy(Species $species)
     {
 
         try {
 
-            $ingredient->delete();
+            $species->delete();
 
-            Log::info('Principio ativo apagado.', ['ingredient' => $ingredient->id]);
+            Log::info('Principio ativo apagado.', ['species' => $species->id]);
 
-            return redirect()->route('ingredient.index')->with('success', 'Principio ativo excluído com sucesso!');
+            return redirect()->route('species.index')->with('success', 'Principio ativo excluído com sucesso!');
 
         } catch (Exception $e) {
 
             Log::info('Principio ativo não apagado.', ['error' => $e->getMessage()]);
 
-            return redirect()->route('ingredient.index')
+            return redirect()->route('species.index')
             ->with('error', 'Principio ativo não foi excluído!');
 
         }
