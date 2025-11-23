@@ -11,6 +11,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\SaleController;
+use App\Http\Controllers\BranchesController;
 use App\Http\Controllers\SpeciesController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\AppointmentsController;
@@ -81,9 +82,9 @@ Route::delete('/stock/{stock}', [StockController::class, 'destroy'])->name('stoc
 
 //Filais
 Route::get('/branches', [BranchesController::class, 'index'])->name('branches.index')->middleware('permission:index-branches');
-Route::post('/branches', [BranchesController::class, 'store'])->name('branches.store')->middleware('permission:create-branches');
-Route::put('/branches/{branches}', [BranchesController::class, 'update'])->name('branches.update')->middleware('permission:update-branches');
-Route::delete('/branches/{branches}', [BranchesController::class, 'destroy'])->name('branches.destroy')->middleware('permission:destroy-branches');
+Route::post('/branches', [BranchesController::class, 'store'])->name('branch.store')->middleware('permission:create-branches');
+Route::put('/branches/{branches}', [BranchesController::class, 'update'])->name('branch.update')->middleware('permission:update-branches');
+Route::delete('/branches/{branches}', [BranchesController::class, 'destroy'])->name('branch.destroy')->middleware('permission:destroy-branches');
 
 
 // Vendas
