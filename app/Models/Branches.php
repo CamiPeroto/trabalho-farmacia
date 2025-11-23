@@ -19,6 +19,6 @@ class Branches extends Model
 
     public function stock()
     {
-        return $this->hasMany(Stock::class);
+        return $this->hasMany(Stock::class, 'branch_id');
     }
 }

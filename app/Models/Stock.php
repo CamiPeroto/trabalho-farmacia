@@ -34,4 +34,9 @@ class Stock extends Model
     {
         return $this->belongsTo(Species::class);
     }
+
+    public function branch()
+{
+    return $this->belongsTo(Branches::class, 'branch_id');
+}
 }
