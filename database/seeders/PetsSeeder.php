@@ -2,30 +2,54 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\Pet;
-use App\Models\Client;
-use App\Models\Species;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
 
 class PetsSeeder extends Seeder
 {
-    public function run()
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
     {
-        $clients = Client::all();
-        $species = Species::all();
-        
-        // Vamos criar alguns pets aleatórios
-        foreach ($clients as $index => $client) {
-            $speciesItem = $species->random(); // pega uma espécie aleatória
-            Pet::create([
-                'name'       => 'Pet ' . ($index + 1),
-                'species_id' => $speciesItem->id,
-                'race'       => 'Raça ' . ($index + 1),
-                'age'        => ($index + 1) . ' anos',
-                'weight'     => rand(2, 15) . ' kg',
-                'description'=> 'Descrição do pet ' . ($index + 1),
-                'client_id'  => $client->id,
-            ]);
+        $pets = [
+            [
+                'client_id'   => 1,
+                'species_id'  => 1,
+                'name'        => 'Rex',
+                'race'        => 'Labrador',
+                'age'         => '3',
+                'weight'      => '25kg',
+                'description' => 'Cachorro amigável e brincalhão',
+            ],
+            [
+                'client_id'   => 2,
+                'species_id'  => 2,
+                'name'        => 'Luna',
+                'race'        => 'Siamês',
+                'age'         => '2',
+                'weight'      => '5kg',
+                'description' => 'Gata calma e carinhosa',
+            ],
+            [
+                'client_id'   => 3,
+                'species_id'  => 1,
+                'name'        => 'Bolt',
+                'race'        => 'Pastor Alemão',
+                'age'         => '4',
+                'weight'      => '30kg',
+                'description' => 'Cachorro protetor e enérgico',
+            ],
+        ];
+
+        foreach ($pets as $data) {
+            if (!Pet::where('name', $data['name'])
+                ->where('client_id', $data['client_id'])
+                ->first()) {
+                
+                Pet::create($data);
+            }
         }
     }
 }
