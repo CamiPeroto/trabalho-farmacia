@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\Medicine;
+use App\Models\Product;
 use App\Models\Promotion;
 use Exception;
 use Illuminate\Http\Request;
@@ -12,30 +12,30 @@ class PromotionController extends Controller
 {
     public function index()
     {
-        $drugstoreId = Auth::user()->drugstore_id;
+        $branchId = Auth::user()->branch_id;
 
-        $promotions = Promotion::whereHas('medicine.stock', function ($query) use ($drugstoreId) {
-            $query->where('drugstore_id', $drugstoreId);
-        })->with('medicine')->paginate(10);
+        $promotions = Promotion::whereHas('product.stock', function ($query) use ($branchId) {
+            $query->where('branch_id', $branchId);
+        })->with('product')->paginate(10);
 
         return view('system.promotion.index', ['promotions' => $promotions]);
     }
     public function create()
     {
-        $drugstoreId = Auth::user()->drugstore_id;
+        $branchId = Auth::user()->branch_id;
 
-        $medicines = Medicine::whereHas('stock', function ($query) use ($drugstoreId) {
-            $query->where('drugstore_id', $drugstoreId);
-        })->with(['stock' => function ($query) use ($drugstoreId) {
-            $query->where('drugstore_id', $drugstoreId);
+        $products = Product::whereHas('stock', function ($query) use ($branchId) {
+            $query->where('branch_id', $branchId);
+        })->with(['stock' => function ($query) use ($branchId) {
+            $query->where('branch_id', $branchId);
         }])->get();
 
-        foreach ($medicines as $medicine) {
-            $latestStock                     = $medicine->stock->sortByDesc('entry_date')->first();
-            $medicine->min_promotional_price = $latestStock ? $latestStock->unitary_price * 1.10 : 0;
+        foreach ($products as $product) {
+            $latestStock                     = $product->stock->sortByDesc('entry_date')->first();
+            $product->min_promotional_price = $latestStock ? $latestStock->unitary_price * 1.10 : 0;
         }
 
-        return view('system.promotion.create', ['medicines' => $medicines]);
+        return view('system.promotion.create', ['products' => $products]);
     }
 
     public function store(Request $request)
@@ -47,23 +47,23 @@ class PromotionController extends Controller
     }
 
         $request->validate([
-            'medicine_id'       => 'required|exists:medicines,id',
+            'product_id'       => 'required|exists:product,id',
             'start_date'        => 'required|date',
             'end_date'          => 'required|date|after_or_equal:start_date',
             'promotional_price' => 'required|numeric|min:0',
         ]);
 
-        $medicine    = Medicine::with('activeIngredient')->find($request->medicine_id);
-        $drugstoreId = Auth::user()->drugstore_id;
+        $product = Product::with('species')->find($request->product_id);
+        $branchId = Auth::user()->branch_id;
 
-        $activeIngredientId = $medicine->active_ingredient_id;
+        $speciesId = $product->specie_id;
 
         // Verifica se já há promoção ativa com mesmo princípio ativo NA MESMA FILIAL
-        $alreadyInPromotion = Promotion::whereHas('medicine.stock', function ($query) use ($drugstoreId) {
-            $query->where('drugstore_id', $drugstoreId);
+        $alreadyInPromotion = Promotion::whereHas('product.stock', function ($query) use ($branchId) {
+            $query->where('branch_id', $branchId);
         })
-            ->whereHas('medicine', function ($query) use ($activeIngredientId) {
-                $query->where('active_ingredient_id', $activeIngredientId);
+            ->whereHas('product', function ($query) use ($speciesId) {
+                $query->where('specie_id', $speciesId);
             })
             ->where('end_date', '>=', now())
             ->exists();
@@ -73,7 +73,7 @@ class PromotionController extends Controller
         }
 
         // Verifica preço mínimo baseado no valor de compra (estoque mais recente)
-        $latestStock = $medicine->stock()->where('drugstore_id', $drugstoreId)->latest('entry_date')->first();
+        $latestStock = $product->stock()->where('branch_id', $branchId)->latest('entry_date')->first();
 
         if (! $latestStock) {
             return back()->with('error', 'Este medicamento não possui estoque registrado na sua filial.');
@@ -92,15 +92,15 @@ class PromotionController extends Controller
 
     public function edit(Promotion $promotion)
     {
-        $medicines = Medicine::with('stock')->get();
+        $products = Product::with('stock')->get();
 
-        foreach ($medicines as $medicine) {
-            $latestStock                     = $medicine->stock->sortByDesc('entry_date')->first();
-            $medicine->min_promotional_price = $latestStock ? $latestStock->unitary_price * 1.10 : 0;
+        foreach ($products as $product) {
+            $latestStock                     = $product->stock->sortByDesc('entry_date')->first();
+            $product->min_promotional_price = $latestStock ? $latestStock->unitary_price * 1.10 : 0;
         }
         return view('system.promotion.edit', [
             'promotion' => $promotion,
-            'medicines' => $medicines,
+            'products' => $products,
         ]);
     }
 
@@ -118,10 +118,10 @@ class PromotionController extends Controller
             'end_date'          => 'required|date|after_or_equal:start_date',
         ]);
 
-        $medicine = $promotion->medicine()->with('activeIngredient')->first();
+        $product = $promotion->product()->with('activeIngredient')->first();
 
 
-        $latestStock = $medicine->stock()->latest('entry_date')->first();
+        $latestStock = $product->stock()->latest('entry_date')->first();
 
         if (! $latestStock) {
             return back()->with('error', 'Este medicamento não possui estoque registrado.');
