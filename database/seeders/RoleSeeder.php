@@ -28,15 +28,15 @@ class RoleSeeder extends Seeder
         //Dar permissão para o papel
         $admin->givePermissionTo([
 
-            'index-active-ingredient',
-            'create-active-ingredient',
-            'update-active-ingredient',
-            'destroy-active-ingredient',
+            'index-species',
+            'create-species',
+            'update-species',
+            'destroy-species',
 
-            'index-medicine',
-            'create-medicine',
-            'update-medicine',
-            'destroy-medicine',
+            'index-product',
+            'create-product',
+            'update-product',
+            'destroy-product',
 
             'index-promotions',
             'create-promotions',
@@ -47,7 +47,7 @@ class RoleSeeder extends Seeder
             'update-stock',
             'destroy-stock',
 
-            'index-drugstore',
+            'index-branches',
             'index-budget',
 
             'index-role-permission',
@@ -74,15 +74,15 @@ class RoleSeeder extends Seeder
             $employee = Role::where('name', 'Funcionário')->first();
         }
         $employee->givePermissionTo([
-            'index-active-ingredient',
-            'create-active-ingredient',
-            'update-active-ingredient',
-            'destroy-active-ingredient',
+            'index-species',
+            'create-species',
+            'update-species',
+            'destroy-species',
 
-            'index-medicine',
-            'create-medicine',
-            'update-medicine',
-            'destroy-medicine',
+            'index-products',
+            'create-products',
+            'update-products',
+            'destroy-products',
 
             'index-promotions',
             'create-promotions',

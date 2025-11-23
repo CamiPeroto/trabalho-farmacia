@@ -5,15 +5,15 @@
         <div class="row">
             <div class="col-12 my-4">
                 <x-alert />
-                <h3 class="fw-bold" id="medicine-header">Cadastrar Produto</h3>
+                <h3 class="fw-bold" id="product-header">Cadastrar Produto</h3>
             </div>
-            <form action="{{ route('medicine.store') }}" method="POST" enctype="multipart/form-data" class="row">
+            <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data" class="row">
                 @csrf
 
                 <!-- Coluna esquerda - Imagem -->
                 <div class="col-6 d-flex justify-content-center">
-                    <div class="card shadow" style="width: 32rem;" id="card-medicine">
-                        <img id="preview-image" src="{{ asset('assets/img/model-medicine.webp') }}"
+                    <div class="card shadow" style="width: 32rem;" id="card-product">
+                        <img id="preview-image" src="{{ asset('assets/img/model-product.png') }}"
                             style="height: 300px; object-fit: contain;margin-top:2rem;" alt="Pré-visualização da imagem">
                         <div class="card-body d-flex justify-content-center">
                             <input type="file" class="form-control upload-img" name="image" id="image"
@@ -31,9 +31,9 @@
                         <h2 class="fw-medium">Informações do Produto</h2>
 
                         <div class="col-md-6">
-                            <label for="fantasy-name" class="form-label">Nome Fantasia*</label>
-                            <input type="text" class="form-control input-bg" id="fantasy-name" name="fantasy_name"
-                                value="{{ old('fantasy_name') }}">
+                            <label for="name" class="form-label">Nome*</label>
+                            <input type="text" class="form-control input-bg" id="name" name="name"
+                                value="{{ old('name') }}">
                         </div>
                         <div class="col-md-6">
                             <label for="price" class="form-label">Preço de Compra*</label>
@@ -41,24 +41,24 @@
                         </div>
 
                         <div class="col-6">
-                            <label for="active_ingredient_id" class="form-label">Princípio Ativo*</label>
-                            <select id="active_ingredient_id" name="active_ingredient_id" class="form-select input-bg">
+                            <label for="specie_id" class="form-label">Espécie*</label>
+                            <select id="specie_id" name="specie_id" class="form-select input-bg">
                                 <option value="" selected disabled>Selecione...</option>
-                                @foreach ($ingredients as $ingredient)
-                                    <option value="{{ $ingredient->id }}"
-                                        {{ old('active_ingredient_id') == $ingredient->id ? 'selected' : '' }}>
-                                        {{ $ingredient->name }}
+                                @foreach ($species as $specie)
+                                    <option value="{{ $specie->id }}"
+                                        {{ old('specie_id') == $specie->id ? 'selected' : '' }}>
+                                        {{ $specie->name }}
                                     </option>
                                 @endforeach
                             </select>
                         </div>
 
                         <div class="col-6">
-                            <label for="form" class="form-label">Forma*</label>
-                            <select id="form" name="form" class="form-select input-bg">
+                            <label for="shape" class="form-label">Forma*</label>
+                            <select id="shape" name="shape" class="form-select input-bg">
                                 <option selected>Selecione...</option>
                                 <option>Comprimido</option>
-                                <option value="Cápsula">Cápsula</option>
+                                <option value="Saco">Saco</option>
                                 <option value="Xarope">Xarope</option>
                                 <option value="Solução injetável">Solução injetável</option>
                                 <option value="Pomada">Pomada</option>
@@ -87,11 +87,6 @@
                             <input type="number" class="form-control input-bg" id="quantity" name="quantity" placeholder="UNT"
                                 value="{{ old('quantity') }}" min="1">
                         </div>
-                        <div class="col-4">
-                            <label for="dosage" class="form-label">Dosagem*</label>
-                            <input type="text" class="form-control input-bg" id="dosage" name="dosage"
-                                placeholder="5mg" value="{{ old('dosage') }}">
-                        </div>
 
                         <div class="col-12 pb-3">
                             <label for="description" class="form-label">Descrição</label>
@@ -104,7 +99,7 @@
 
                         <!-- Botões -->
                         <div class="col-12 d-flex justify-content-end gap-3">
-                            <a href="{{ route('medicine.index') }}" class="btn btn-warning fw-medium" id="cancel-button">Cancelar</a>
+                            <a href="{{ route('product.index') }}" class="btn btn-warning fw-medium" id="cancel-button">Cancelar</a>
                             <button type="submit" class="btn btn-warning" id="save-button">Salvar</button>
                         </div>
                     </div>

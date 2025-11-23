@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
                 'name'     => 'Camila',
                 'email'    => 'camila@gmail.com.br',
                 'password' => Hash::make('123456a', ['rounds' => 12]),
-                 'drugstore_id' => 1,
+                 'branch_id' => 1,
             ]);
             $superAdmin->assignRole('Super Admin');
         }
@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
                 'name'     => 'Muller',
                 'email'    => 'muller@gmail.com.br',
                 'password' => Hash::make('123456a', ['rounds' => 12]),
-                 'drugstore_id' => 1,
+                 'branch_id' => 1,
             ]);
             $superAdmin->assignRole('Super Admin');
 
@@ -37,7 +37,7 @@ class UserSeeder extends Seeder
                 'name'     => 'Conrado',
                 'email'    => 'conrado@gmail.com.br',
                 'password' => Hash::make('123456a', ['rounds' => 12]),
-                'drugstore_id' => 2,
+                'branch_id' => 2,
             ]);
             $superAdmin->assignRole('Super Admin');
 
@@ -47,7 +47,7 @@ class UserSeeder extends Seeder
                 'name'     => 'Rafael',
                 'email'    => 'rafael@gmail.com.br',
                 'password' => Hash::make('123456a', ['rounds' => 12]),
-                 'drugstore_id' => 1,
+                 'branch_id' => 1,
             ]);
             $superAdmin->assignRole('Super Admin');
 
@@ -57,7 +57,7 @@ class UserSeeder extends Seeder
                 'name'     => 'Geovane',
                 'email'    => 'geovane@gmail.com.br',
                 'password' => Hash::make('123456a', ['rounds' => 12]),
-                'drugstore_id' => 1,
+                'branch_id' => 1,
             ]);
              $employee->assignRole('Funcionário');
 
@@ -67,7 +67,7 @@ class UserSeeder extends Seeder
                 'name'     => 'Pedro',
                 'email'    => 'pedro@gmail.com.br',
                 'password' => Hash::make('123456a', ['rounds' => 12]),
-                'drugstore_id' => 1,
+                'branch_id' => 1,
             ]);
              $client->assignRole('Cliente');
 

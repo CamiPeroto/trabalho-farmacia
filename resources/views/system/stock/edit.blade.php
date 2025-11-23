@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-12 my-4">
                 <x-alert />
-                <h3 class="fw-bold" id="medicine-header">Editar Estoque do Produto</h3>
+                <h3 class="fw-bold" id="product-header">Editar Estoque do Produto</h3>
             </div>
             <form action="{{ route('stock.update', $stock->id) }}" method="POST" enctype="multipart/form-data" class="row">
                 @csrf
@@ -15,11 +15,11 @@
                 <div class="col-6 d-flex justify-content-center">
                     <div class="card shadow" style="width: 32rem;" id="card-stock">
                         <img id="preview-image"
-                            src="{{ $medicine->image
-                                ? (Str::startsWith($medicine->image, 'assets')
-                                    ? asset($medicine->image)
-                                    : asset('storage/' . $medicine->image))
-                                : asset('assets/img/model-medicine.webp') }}"
+                            src="{{ $product->image
+                                ? (Str::startsWith($product->image, 'assets')
+                                    ? asset($product->image)
+                                    : asset('storage/' . $product->image))
+                                : asset('assets/img/model-product.webp') }}"
                             style="height: 300px; object-fit: contain; margin-top: 2rem;" alt="Imagem do produto">
                     </div>
                 </div>
@@ -32,12 +32,12 @@
                         <div class="col-6">
                             <label for="id" class="form-label">Código do Produto</label>
                             <input type="text" class="form-control" id="id"
-                                placeholder="{{ old('id', $medicine->id) }}" disabled>
+                                placeholder="{{ old('id', $product->id) }}" disabled>
                         </div>
                         <div class="col-md-6">
                             <label for="fantasy-name" class="form-label">Nome Fantasia*</label>
                             <input type="text" class="form-control input-bg" id="fantasy_name" name="fantasy_name"
-                                value="{{ old('fantasy_name', $medicine->fantasy_name) }}" disabled>
+                                value="{{ old('fantasy_name', $product->fantasy_name) }}" disabled>
                         </div>
                         <div class="col-md-6">
                             <label for="unitary_price" class="form-label">Preço Unitário*</label>

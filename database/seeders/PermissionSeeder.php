@@ -12,15 +12,15 @@ class PermissionSeeder extends Seeder
     public function run(): void
     {
         $permissions = [
-            ['title' => 'Listar ingredientes', 'name' => 'index-active-ingredient'],
-            ['title' => 'Criar ingredientes', 'name' => 'create-active-ingredient'],
-            ['title' => 'Editar ingredientes', 'name' => 'update-active-ingredient'],
-            ['title' => 'Apagar ingredientes', 'name' => 'destroy-active-ingredient'],
+            ['title' => 'Listar especies', 'name' => 'index-species'],
+            ['title' => 'Criar especies', 'name' => 'create-species'],
+            ['title' => 'Editar especies', 'name' => 'update-species'],
+            ['title' => 'Apagar especies', 'name' => 'destroy-species'],
 
-            ['title' => 'Listar remédios', 'name' => 'index-medicine'],
-            ['title' => 'Criar remédio', 'name' => 'create-medicine'],
-            ['title' => 'Editar remédio', 'name' => 'update-medicine'],
-            ['title' => 'Apagar remédio', 'name' => 'destroy-medicine'],
+            ['title' => 'Listar produtos', 'name' => 'index-product'],
+            ['title' => 'Criar produto', 'name' => 'create-product'],
+            ['title' => 'Editar produto', 'name' => 'update-product'],
+            ['title' => 'Apagar produto', 'name' => 'destroy-product'],
 
             ['title' => 'Listar promoções', 'name' => 'index-promotions'],
             ['title' => 'Criar promoções', 'name' => 'create-promotions'],
@@ -31,7 +31,7 @@ class PermissionSeeder extends Seeder
             ['title' => 'Editar estoque', 'name' => 'update-stock'],
             ['title' => 'Apagar estoque', 'name' => 'destroy-stock'],
 
-            ['title' => 'Listar filiais', 'name' => 'index-drugstore'],
+            ['title' => 'Listar filiais', 'name' => 'index-branches'],
             ['title' => 'Listar fornecedores', 'name' => 'index-budget'],
 
             ['title' => 'Listar papéis', 'name' => 'index-role'],

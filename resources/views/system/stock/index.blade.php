@@ -54,7 +54,7 @@
                 </div>
             </div>
             <div class="col-6 d-flex justify-content-end align-items-center">
-                <a class="ms-2 text-decoration-none" href="{{ url('/medicines') }}">
+                <a class="ms-2 text-decoration-none" href="{{ url('/products') }}">
                     <i class="fi fi-rr-plus-small fs-3 btn-icon-bg"></i>
                 </a>
             </div>
@@ -75,11 +75,11 @@
                         @foreach ($stocks as $stock)
                             <tr style="--bs-table-bg: {{ $loop->index % 2 == 0 ? '#0252590D' : '#00717226' }}">
                                 <td class="d-flex align-items-center text-start">
-                                    <img src="{{ $stock->medicine->image ? (Str::startsWith($stock->medicine->image, 'assets') ? asset($stock->medicine->image) : asset('storage/' . $stock->medicine->image)) : 'https://via.placeholder.com/150' }}"
-                                        alt="{{ $stock->medicine->fantasy_name }}" width="120" height="120"
+                                    <img src="{{ $stock->product->image ? (Str::startsWith($stock->product->image, 'assets') ? asset($stock->product->image) : asset('storage/' . $stock->product->image)) : 'https://via.placeholder.com/150' }}"
+                                        alt="{{ $stock->product->fantasy_name }}" width="120" height="120"
                                         class="me-3 rounded my-3" style="cursor: pointer;">
                                     <div>
-                                        <strong>{{ $stock->medicine->fantasy_name ?? 'Sem nome' }}</strong><br>
+                                        <strong>{{ $stock->product->fantasy_name ?? 'Sem nome' }}</strong><br>
 
                                         @if ($stock->quantity < 20)
                                             <span class="badge bg-danger mt-2 d-inline-flex align-items-center p-2">
@@ -90,7 +90,7 @@
                                     </div>
                                 </td>
 
-                                <td class="fw-bold">R$ {{ number_format($stock->medicine->price ?? 0, 2, ',', '.') }}</td>
+                                <td class="fw-bold">R$ {{ number_format($stock->product->price ?? 0, 2, ',', '.') }}</td>
                                 <td>{{ $stock->quantity }}</td>
                                 <td>{{ $stock->drugstore->name ?? 'N/A' }}</td>
                                 <td>

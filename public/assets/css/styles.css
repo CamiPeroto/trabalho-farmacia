@@ -343,16 +343,16 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-#medicine-header {
+#product-header {
     margin-left: 8rem;
 }
 
-#card-medicine {
+#card-product {
     background-color: var(--bg-primary-color) !important;
     height: 63vh;
 }
 
-#card-medicine ul li {
+#card-product ul li {
     background-color: var(--bg-primary-color) !important;
 }
 

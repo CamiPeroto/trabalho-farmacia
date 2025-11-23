@@ -2,26 +2,26 @@
 
 namespace Database\Seeders;
 
-use App\Models\Drugstore;
+use App\Models\Branch;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DrugstoreSeeder extends Seeder
+class BranchesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-         if(!Drugstore::where('name', 'Filial PG')->first()){
-            Drugstore::create([
+         if(!Branch::where('name', 'Filial PG')->first()){
+            Branch::create([
                 'name' => 'Filial PG',
                 'location' => 'Ponta Grossa - PR',
                 'status' =>true,
             ]);
         }
-         if(!Drugstore::where('name', 'Filial CBI')->first()){
-            Drugstore::create([
+         if(!Branch::where('name', 'Filial CBI')->first()){
+            Branch::create([
                 'name' => 'Filial CBI',
                 'location' => 'Carambeí - PR',
                 'status' =>true,

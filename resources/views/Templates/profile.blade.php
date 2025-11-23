@@ -91,7 +91,7 @@
                     @endcan
 
                     <li class="nav-item">
-                        <a href="{{ url('/medicines') }}">
+                        <a href="{{ url('/products') }}">
                             <i class="fi fi-rr-computer"></i>
                             <p>Sistema</p>
                         </a>

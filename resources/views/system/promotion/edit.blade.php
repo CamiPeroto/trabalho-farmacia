@@ -15,32 +15,32 @@
                 {{-- Coluna esquerda: medicamento fixo --}}
                 <div class="col-6 d-flex justify-content-center">
                     <div class="w-100 shadow rounded-4 p-3" style="max-height: 30rem; overflow-y: auto;">
-                        <h5 class="fw-bold mb-3">Remédio Selecionado</h5>
-                        @foreach ($medicines as $medicine)
+                        <h5 class="fw-bold mb-3">Produto Selecionado</h5>
+                        @foreach ($products as $product)
                             <div class="form-check d-flex align-items-center mb-3" style="height: 80px;">
                                 <input 
                                     class="form-check-input me-3" 
-                                    type="radio" name="medicine_id"
-                                    id="medicine{{ $medicine->id }}" 
-                                    value="{{ $medicine->id }}"
-                                    data-price="{{ $medicine->price }}"
-                                    data-min-price="{{ $medicine->min_promotional_price ?? 0 }}"
-                                    {{ $medicine->id == $promotion->medicine_id ? 'checked' : '' }}
+                                    type="radio" name="product_id"
+                                    id="product{{ $product->id }}" 
+                                    value="{{ $product->id }}"
+                                    data-price="{{ $product->price }}"
+                                    data-min-price="{{ $product->min_promotional_price ?? 0 }}"
+                                    {{ $product->id == $promotion->product_id ? 'checked' : '' }}
                                     disabled
                                 >
                                 <label class="form-check-label d-flex align-items-center w-100"
-                                    for="medicine{{ $medicine->id }}">
-                                      <img src="{{ $medicine->image ? (Str::startsWith($medicine->image, 'assets') ? asset($medicine->image) : asset('storage/' . $medicine->image)) : 'https://via.placeholder.com/80' }}"
-                                        alt="{{ $medicine->fantasy_name }}" class="rounded me-3" width="60"
+                                    for="product{{ $product->id }}">
+                                      <img src="{{ $product->image ? (Str::startsWith($product->image, 'assets') ? asset($product->image) : asset('storage/' . $product->image)) : 'https://via.placeholder.com/80' }}"
+                                        alt="{{ $product->name }}" class="rounded me-3" width="60"
                                         height="60">
                                     <div>
-                                        <strong>{{ $medicine->fantasy_name }}</strong><br>
-                                        <small>{{ $medicine->description ?? 'Sem descrição' }}</small>
+                                        <strong>{{ $product->name }}</strong><br>
+                                        <small>{{ $product->description ?? 'Sem descrição' }}</small>
                                     </div>
                                 </label>
                             </div>
                         @endforeach
-                        <input type="hidden" name="medicine_id" value="{{ $promotion->medicine_id }}">
+                        <input type="hidden" name="product_id" value="{{ $promotion->product_id }}">
                     </div>
                 </div>
 
@@ -50,15 +50,15 @@
                         <h2 class="fw-medium">Informações da Promoção</h2>
 
                         <div class="col-3">
-                            <label for="medicine_code_display" class="form-label">Código do remédio</label>
-                            <input type="text" class="form-control" id="medicine_code_display"
-                                value="{{ $promotion->medicine_id }}" disabled>
+                            <label for="product_code_display" class="form-label">Código do Produto</label>
+                            <input type="text" class="form-control" id="product_code_display"
+                                value="{{ $promotion->product_id }}" disabled>
                         </div>
 
                         <div class="col-3">
                             <label for="price" class="form-label">Preço Normal*</label>
                             <input type="text" class="form-control input-bg" id="price"
-                                value="{{ number_format($promotion->medicine->price, 2, ',', '.') }}" disabled>
+                                value="{{ number_format($promotion->product->price, 2, ',', '.') }}" disabled>
                         </div>
 
                         <div class="col-6">
@@ -99,8 +99,8 @@
 @section('javascript')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const radio = document.querySelector('input[name="medicine_id"]:checked');
-            const codeInput = document.getElementById('medicine_code_display');
+            const radio = document.querySelector('input[name="product_id"]:checked');
+            const codeInput = document.getElementById('product_code_display');
             const priceInput = document.getElementById('price');
             const minPriceBadge = document.getElementById('minPriceBadge');
 

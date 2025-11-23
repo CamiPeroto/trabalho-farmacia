@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class BranchController extends Controller
+class BranchesController extends Controller
 {
     public function index()
     {

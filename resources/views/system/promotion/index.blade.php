@@ -41,16 +41,16 @@
                         @forelse($promotions as $promotion)
                             <tr>
                                 <td class="d-flex align-items-center text-start">
-                                    <a href="{{ route('medicine.show', $promotion->medicine->id) }}"
+                                    <a href="{{ route('product.show', $promotion->product->id) }}"
                                         class="d-flex align-items-center text-decoration-none text-dark">
-                                        <img src="{{ $promotion->medicine->image ? (Str::startsWith($promotion->medicine->image, 'assets') ? asset($promotion->medicine->image) : asset('storage/' . $promotion->medicine->image)) : 'https://via.placeholder.com/150' }}"
-                                            alt="{{ $promotion->medicine->fantasy_name }}" width="130" height="130"
+                                        <img src="{{ $promotion->product->image ? (Str::startsWith($promotion->product->image, 'assets') ? asset($promotion->product->image) : asset('storage/' . $promotion->product->image)) : 'https://via.placeholder.com/150' }}"
+                                            alt="{{ $promotion->product->name }}" width="130" height="130"
                                             class="me-3 rounded my-3" style="cursor: pointer;">
                                         <div>
-                                            <strong>{{ $promotion->medicine->fantasy_name }}</strong><br>
+                                            <strong>{{ $promotion->product->name }}</strong><br>
                                             <small class="description-limit"
-                                                title="{{ $promotion->medicine->description }}">
-                                                {{ $promotion->medicine->description ?? 'Sem descrição' }}</small>
+                                                title="{{ $promotion->product->description }}">
+                                                {{ $promotion->product->description ?? 'Sem descrição' }}</small>
                                         </div>
                                     </a>
                                 </td>

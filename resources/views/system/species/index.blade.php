@@ -4,7 +4,7 @@
     <div class="container my-5">
         <div class="row d-flex">
             <div class="col-6 my-4">
-                <h3 class="fw-bold">Princípio Ativo</h3>
+                <h3 class="fw-bold">Espécies</h3>
             </div>
             <x-alert />
             <div class="row">
@@ -49,20 +49,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($ingredients as  $ingredient)
+                        @forelse ($species as  $specie)
                             <tr>
-                                <th scope="row">{{ $ingredient->id }}</th>
-                                <td>{{ $ingredient->name }}</td>
-                                <td>{{ $ingredient->description }}</td>
+                                <th scope="row">{{ $specie->id }}</th>
+                                <td>{{ $specie->name }}</td>
+                                <td>{{ $specie->description }}</td>
                                 <td class="d-md-flex flex-row ">
                                     <a href="#" class="btn btn-warning btn-sm me-1 mb-1 mb-md-0"
                                         data-bs-toggle="modal" data-bs-target="#editActiveModal"
-                                        data-id="{{ $ingredient->id }}" data-name="{{ $ingredient->name }}"
-                                        data-description="{{ $ingredient->description }}">
+                                        data-id="{{ $specie->id }}" data-name="{{ $specie->name }}"
+                                        data-description="{{ $specie->description }}">
                                         <i class="fi fi-rr-file-edit"></i>
                                     </a>
 
-                                    <form action="{{ route('ingredient.destroy', ['ingredient' => $ingredient->id]) }}"
+                                    <form action="{{ route('specie.destroy', ['specie' => $specie->id]) }}"
                                         method="POST">
                                         @csrf
                                         @method('DELETE')
@@ -87,7 +87,7 @@
                     </tfoot>
                 </table>
                 <!-- Paginação -->
-                <x-pagination :paginator="$ingredients" />
+                <x-pagination :paginator="$species" />
             </div>
         </div>
     </div>
@@ -105,7 +105,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ route('ingredient.store') }}">
+                <form method="POST" action="{{ route('specie.store') }}">
                     @csrf
                     @method('POST')
                     <div class="mb-3">
@@ -117,7 +117,7 @@
                         <textarea class="form-control" id="description" name="description" rows="3"></textarea>
                     </div>
                     <div class="d-flex justify-content-end gap-2">
-                        <a href="{{ route('ingredient.index') }}" class="btn btn-warning fw-medium"
+                        <a href="{{ route('specie.index') }}" class="btn btn-warning fw-medium"
                             id="cancel-ai">Cancelar</a>
                         <button type="submit" class="btn btn-warning" id="ai-button">Salvar</button>
                     </div>
@@ -169,7 +169,7 @@
         const description = button.getAttribute('data-description');
 
         const form = document.getElementById('editForm');
-        form.action = `/ingredient/${id}`; // Define action para update
+        form.action = `/specie/${id}`; // Define action para update
 
         document.getElementById('editName').value = name;
         document.getElementById('editDescription').value = description;

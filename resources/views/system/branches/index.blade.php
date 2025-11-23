@@ -47,13 +47,13 @@
                 </tr>
             </thead>
             <tbody class="custom-tbody">
-                @forelse ($drugstores as  $drugstore)
+                @forelse ($branches as  $branch)
                     <tr>
-                        <td>{{ $drugstore->id }}</td>
-                        <td>{{ $drugstore->name }}</td>
-                        <td><i class="bi bi-geo-alt-fill text-secondary icon-gray me-1"></i>{{ $drugstore->location }}</td>
+                        <td>{{ $branch->id }}</td>
+                        <td>{{ $branch->name }}</td>
+                        <td><i class="bi bi-geo-alt-fill text-secondary icon-gray me-1"></i>{{ $branch->location }}</td>
                         <td class="status-column">
-                            @if ($drugstore->status)
+                            @if ($branch->status)
                                 <span class="badge bg-info">Ativo</span>
                             @else
                                 <span class="badge text-bg-secondary">Inativo</span>
@@ -61,13 +61,13 @@
                         </td>
                         <td class="d-md-flex flex-row ">
                             <a href="#" class="btn btn-warning btn-sm me-1 mb-1 mb-md-0" data-bs-toggle="modal"
-                                data-bs-target="#editBranchModal" data-id="{{ $drugstore->id }}"
-                                data-name="{{ $drugstore->name }}" data-location="{{ $drugstore->location }}"
-                                data-status="{{ $drugstore->status == 1 ? '1' : '0' }}">
+                                data-bs-target="#editBranchModal" data-id="{{ $branch->id }}"
+                                data-name="{{ $branch->name }}" data-location="{{ $branch->location }}"
+                                data-status="{{ $branch->status == 1 ? '1' : '0' }}">
                                 <i class="fi fi-rr-file-edit"></i>
                             </a>
 
-                            <form action="{{ route('drugstore.destroy', $drugstore->id) }}" method="POST">
+                            <form action="{{ route('branch.destroy', $branch->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm me-1"
@@ -87,7 +87,7 @@
         </table>
 
         <!-- Paginação -->
-        <x-pagination :paginator="$drugstores" />
+        <x-pagination :paginator="$branches" />
     </div>
 
     <!-- Bootstrap Icons -->
@@ -115,7 +115,7 @@
                         <input type="text" class="form-control" id="branchLocation" name="location" required>
                     </div>
                     <div class="d-flex justify-content-end gap-2">
-                        <a href="{{ route('drugstore.index') }}" class="btn btn-warning fw-medium"
+                        <a href="{{ route('branches.index') }}" class="btn btn-warning fw-medium"
                             id="cancel-ai">Cancelar</a>
                         <button type="submit" class="btn btn-warning" id="ai-button">Salvar</button>
                     </div>
@@ -161,7 +161,7 @@
                     </div>
 
                     <div class="d-flex justify-content-end gap-2">
-                        <a href="{{ route('drugstore.index') }}" class="btn btn-warning fw-medium"
+                        <a href="{{ route('branches.index') }}" class="btn btn-warning fw-medium"
                             id="cancel-ai">Cancelar</a>
                         <button type="submit" class="btn btn-warning" id="ai-button">Salvar</button>
                     </div>
@@ -192,6 +192,6 @@
 
         // Define a action do formulário
         const form = document.getElementById('editBranchForm');
-        form.action = `/drugstore/${id}`;
+        form.action = `/branch/${id}`;
     });
 </script>

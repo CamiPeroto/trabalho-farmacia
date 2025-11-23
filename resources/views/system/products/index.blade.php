@@ -21,7 +21,7 @@
                 </form>
             </div>
             <div class="col-6 my-4 d-flex justify-content-end">
-                <a href="{{ route('medicine.create') }}"
+                <a href="{{ route('product.create') }}"
                     class="btn btn-light rounded-circle shadow d-flex align-items-center justify-content-center"
                     id="white-circle" style="width: 48px; height: 48px;">
                     <img src="{{ asset('assets/img/add-icon.png') }}" alt="+" style="width: 12px; height: 12px;">
@@ -40,33 +40,33 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($medicines as $medicine)
+                        @forelse ($products as $product)
                             <tr>
                                 <td class="d-flex align-items-center text-start">
-                                    <a href="{{ route('medicine.show', $medicine->id) }}"
+                                    <a href="{{ route('product.show', $product->id) }}"
                                         class="d-flex align-items-center text-decoration-none text-dark">
-                                        <img src="{{ $medicine->image ? (Str::startsWith($medicine->image, 'assets') ? asset($medicine->image) : asset('storage/' . $medicine->image)) : 'https://via.placeholder.com/150' }}"
-                                            alt="{{ $medicine->fantasy_name }}" width="120" height="120"
+                                        <img src="{{ $product->image ? (Str::startsWith($product->image, 'assets') ? asset($product->image) : asset('storage/' . $product->image)) : 'https://via.placeholder.com/150' }}"
+                                            alt="{{ $product->name }}" width="120" height="120"
                                             class="me-3 rounded my-3" style="cursor: pointer;">
                                         <div>
-                                            <strong>{{ $medicine->fantasy_name }}</strong><br>
-                                            <small class="description-limit" title="{{ $medicine->description }}">
-                                                {{ $medicine->description ?? 'Sem descrição' }}
+                                            <strong>{{ $product->name }}</strong><br>
+                                            <small class="description-limit" title="{{ $product->description }}">
+                                                {{ $product->description ?? 'Sem descrição' }}
                                             </small>
                                         </div>
                                     </a>
                                 </td>
-                                <td class="fw-bold">R$ {{ number_format($medicine->price, 2, ',', '.') }}</td>
-                                <td>{{ $medicine->stock->sum('quantity') }}</td>
+                                <td class="fw-bold">R$ {{ number_format($product->price, 2, ',', '.') }}</td>
+                                <td>{{ $product->stock->sum('quantity') }}</td>
                                 <td>
-                                    <form action="{{ route('medicine.edit', $medicine->id) }}" method="GET"
+                                    <form action="{{ route('product.edit', $product->id) }}" method="GET"
                                         class="d-inline">
                                         <button type="submit" class="btn btn-outline-warning btn-sm ms-2 rounded-pill">
                                             EDITAR
                                         </button>
                                     </form>
 
-                                    <form action="{{ route('medicine.destroy', $medicine->id) }}" method="POST"
+                                    <form action="{{ route('product.destroy', $product->id) }}" method="POST"
                                         class="d-inline">
                                         @csrf
                                         @method('DELETE')
@@ -79,13 +79,13 @@
                         @empty
                             <tr>
                                 <td colspan="4" class="text-center alert alert-danger">
-                                    Nenhum remédio encontrado!
+                                    Nenhum produto encontrado!
                                 </td>
                             </tr>
                         @endforelse
                     </tbody>
                 </table>
-                <x-pagination :paginator="$medicines" />
+                <x-pagination :paginator="$products" />
             </div>
         </div>
     </div>

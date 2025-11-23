@@ -12,21 +12,21 @@
 
                 <div class="col-6 d-flex justify-content-center">
                     <div class="w-100 shadow rounded-4 p-3" style="max-height: 30rem; overflow-y: auto;">
-                        <h5 class="fw-bold mb-3">Escolha o Remédio</h5>
-                        @foreach ($medicines as $medicine)
+                        <h5 class="fw-bold mb-3">Escolha o Produto</h5>
+                        @foreach ($products as $product)
                             <div class="form-check d-flex align-items-center mb-3" style="height: 80px;">
-                                <input class="form-check-input me-3" type="radio" name="medicine_id"
-                                    id="medicine{{ $medicine->id }}" value="{{ $medicine->id }}"
-                                    data-price="{{ $medicine->price }}"
-                                    data-min-price="{{ $medicine->min_promotional_price ?? 0 }}" required>
+                                <input class="form-check-input me-3" type="radio" name="product_id"
+                                    id="product{{ $product->id }}" value="{{ $product->id }}"
+                                    data-price="{{ $product->price }}"
+                                    data-min-price="{{ $product->min_promotional_price ?? 0 }}" required>
                                 <label class="form-check-label d-flex align-items-center w-100"
-                                    for="medicine{{ $medicine->id }}">
-                                    <img src="{{ $medicine->image ? (Str::startsWith($medicine->image, 'assets') ? asset($medicine->image) : asset('storage/' . $medicine->image)) : 'https://via.placeholder.com/80' }}"
-                                        alt="{{ $medicine->fantasy_name }}" class="rounded me-3" width="60"
+                                    for="product{{ $product->id }}">
+                                    <img src="{{ $product->image ? (Str::startsWith($product->image, 'assets') ? asset($product->image) : asset('storage/' . $product->image)) : 'https://via.placeholder.com/80' }}"
+                                        alt="{{ $product->name }}" class="rounded me-3" width="60"
                                         height="60">
                                     <div>
-                                        <strong>{{ $medicine->fantasy_name }}</strong><br>
-                                        <small>{{ $medicine->description ?? 'Sem descrição' }}</small>
+                                        <strong>{{ $product->name }}</strong><br>
+                                        <small>{{ $product->description ?? 'Sem descrição' }}</small>
                                     </div>
                                 </label>
                             </div>
@@ -39,8 +39,8 @@
                     <div class="row g-3 shadow rounded-4 mt-1" style="padding:20px;min-height: 30rem;">
                         <h2 class="fw-medium">Informações da Promoção</h2>
                         <div class="col-3">
-                            <label for="medicine_id" class="form-label">Código do remédio</label>
-                            <input type="text" class="form-control" id="medicine_code_display" placeholder="N°" disabled>
+                            <label for="product_id" class="form-label">Código do produtp</label>
+                            <input type="text" class="form-control" id="product_code_display" placeholder="N°" disabled>
                         </div>
                         <div class="col-3">
                             <label for="price" class="form-label">Preço Normal*</label>
@@ -82,8 +82,8 @@
 @section('javascript')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const radioButtons = document.querySelectorAll('input[name="medicine_id"]');
-            const codeInput = document.getElementById('medicine_code_display');
+            const radioButtons = document.querySelectorAll('input[name="product_id"]');
+            const codeInput = document.getElementById('product_code_display');
             const priceInput = document.getElementById('price');
             const minPriceBadge = document.getElementById('minPriceBadge');
             const form = document.querySelector('form'); // seleciona o form da página

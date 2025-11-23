@@ -99,7 +99,7 @@
                     <i class="fi fi-rr-menu-burger d-flex" style="font-size: 18px;"></i>
                 </a>
                 <ul class="dropdown-menu">
-                    @can('index-active-ingredient')
+                    @can('index-especies')
                         <li><a class="dropdown-item fw-bold fs-6" href="{{ route('ingredient.index') }}">Principio
                                 Ativo</a></li>
                     @endcan
@@ -108,7 +108,7 @@
                         <li><a class="dropdown-item fw-bold fs-6" href="{{ route('stock.index') }}">Estoque</a></li>
                     @endcan
 
-                    @can('index-drugstore')
+                    @can('index-braches')
                         <li><a class="dropdown-item fw-bold fs-6" href="{{ route('drugstore.index') }}">Filiais</a></li>
                     @endcan
                 </ul>
@@ -117,8 +117,8 @@
             <a href="{{ route('sale.index') }}" class="px-4 py-2 footer-button fw-bold text-decoration-none">
                 Vendas
             </a>
-            @can('index-medicine')
-                <a href="{{ route('medicine.index') }}" class="px-4 py-2 footer-button  fw-bold text-decoration-none">
+            @can('index-product')
+                <a href="{{ route('product.index') }}" class="px-4 py-2 footer-button  fw-bold text-decoration-none">
                     Produtos
                 </a>
             @endcan
