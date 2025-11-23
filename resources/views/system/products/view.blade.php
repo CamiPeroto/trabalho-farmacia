@@ -36,7 +36,7 @@
 
                     <div class="col-md-6">
                         <label class="form-label fw-bold">Preço de Compra:</label>
-                        <p class="text-body-tertiary">R$: {{ number_format($product->price, 2, ',', '.') }}</p>
+                        <p class="text-body-tertiary">R$ {{ number_format($product->price, 2, ',', '.') }}</p>
                     </div>
 
                     <div class="col-6">

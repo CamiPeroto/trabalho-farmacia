@@ -104,4 +104,6 @@
         </div>
     </form>
 </div>
+<img src="{{ asset('assets/img/dog-illustration.png') }}" class="card-img-top" alt="Dog" style="width: 8%; position: fixed;  bottom: 68px; left: 50%;
+transform: translateX(-50%);">
 @endsection
