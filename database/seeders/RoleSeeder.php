@@ -33,10 +33,10 @@ class RoleSeeder extends Seeder
             'update-species',
             'destroy-species',
 
-            'index-product',
-            'create-product',
-            'update-product',
-            'destroy-product',
+            'index-products',
+            'create-products',
+            'update-products',
+            'destroy-products',
 
             'index-promotions',
             'create-promotions',

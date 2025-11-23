@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Medicine;
+use App\Models\Product;
 use App\Models\Stock;
 use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;

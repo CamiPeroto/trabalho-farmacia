@@ -17,10 +17,10 @@ class PermissionSeeder extends Seeder
             ['title' => 'Editar especies', 'name' => 'update-species'],
             ['title' => 'Apagar especies', 'name' => 'destroy-species'],
 
-            ['title' => 'Listar produtos', 'name' => 'index-product'],
-            ['title' => 'Criar produto', 'name' => 'create-product'],
-            ['title' => 'Editar produto', 'name' => 'update-product'],
-            ['title' => 'Apagar produto', 'name' => 'destroy-product'],
+            ['title' => 'Listar produtos', 'name' => 'index-products'],
+            ['title' => 'Criar produto', 'name' => 'create-products'],
+            ['title' => 'Editar produto', 'name' => 'update-products'],
+            ['title' => 'Apagar produto', 'name' => 'destroy-products'],
 
             ['title' => 'Listar promoções', 'name' => 'index-promotions'],
             ['title' => 'Criar promoções', 'name' => 'create-promotions'],

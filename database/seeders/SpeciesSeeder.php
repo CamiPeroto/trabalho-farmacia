@@ -1,7 +1,7 @@
 <?php
 namespace Database\Seeders;
 
-use App\Models\ActiveIngredient;
+use App\Models\Species;
 use Illuminate\Database\Seeder;
 
 class SpeciesSeeder extends Seeder
