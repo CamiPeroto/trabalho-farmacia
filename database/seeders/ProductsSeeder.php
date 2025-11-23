@@ -75,15 +75,20 @@ class ProductsSeeder extends Seeder
         try {
             foreach ($products as $product) {
 
-                // Evita duplicar pelo nome
                 if (!Product::where('name', $product['name'])->exists()) {
-
-                    Product::create($product);
-
+            
+                    $newProduct = Product::create($product);
+            
+                    Stock::create([
+                        'product_id'     => $newProduct->id,
+                        'branch_id'      => $branchId,
+                        'quantity'       => $product['quantity'],
+                        'unitary_price'  => $product['price'],
+                        'entry_date'     => now(),
+                        'expiration_date'=> now()->addYear(),
+                    ]);
+                
                     Log::info('Produto criado: ' . $product['name']);
-
-                } else {
-                    Log::info('Produto já existe, pulando: ' . $product['name']);
                 }
             }
 
