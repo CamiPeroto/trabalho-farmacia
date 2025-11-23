@@ -43,7 +43,7 @@
                         @forelse ($products as $product)
                             <tr>
                                 <td class="d-flex align-items-center text-start">
-                                    <a href="{{ route('product.show', $product->id) }}"
+                                    <a href="{{ route('products.show', $product->id) }}"
                                         class="d-flex align-items-center text-decoration-none text-dark">
                                         <img src="{{ $product->image ? (Str::startsWith($product->image, 'assets') ? asset($product->image) : asset('storage/' . $product->image)) : 'https://via.placeholder.com/150' }}"
                                             alt="{{ $product->name }}" width="120" height="120"
@@ -59,14 +59,14 @@
                                 <td class="fw-bold">R$ {{ number_format($product->price, 2, ',', '.') }}</td>
                                 <td>{{ $product->stock->sum('quantity') }}</td>
                                 <td>
-                                    <form action="{{ route('product.edit', $product->id) }}" method="GET"
+                                    <form action="{{ route('products.edit', $product->id) }}" method="GET"
                                         class="d-inline">
                                         <button type="submit" class="btn btn-outline-warning btn-sm ms-2 rounded-pill">
                                             EDITAR
                                         </button>
                                     </form>
 
-                                    <form action="{{ route('product.destroy', $product->id) }}" method="POST"
+                                    <form action="{{ route('products.destroy', $product->id) }}" method="POST"
                                         class="d-inline">
                                         @csrf
                                         @method('DELETE')

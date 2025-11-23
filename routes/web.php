@@ -49,9 +49,9 @@ Route::group(['middleware' => 'auth'], function()
 // Especies
 Route::get('/species', [SpeciesController::class, 'index'])->name('species.index')->middleware('permission:index-species');
 Route::post('/species', [SpeciesController::class, 'store'])->name('species.store')->middleware('permission:create-species');
-Route::get('/species/{species}', [SpeciesController::class, 'edit'])->name('species.edit')->middleware('permission:update-species');
-Route::put('/species/{species}', [SpeciesController::class, 'update'])->name('species.update')->middleware('permission:update-species');
-Route::delete('/species/{species}', [SpeciesController::class, 'destroy'])->name('species.destroy')->middleware('permission:destroy-species');
+Route::get('/species/{specie}', [SpeciesController::class, 'edit'])->name('species.edit')->middleware('permission:update-species');
+Route::put('/species/{specie}', [SpeciesController::class, 'update'])->name('species.update')->middleware('permission:update-species');
+Route::delete('/species/{specie}', [SpeciesController::class, 'destroy'])->name('species.destroy')->middleware('permission:destroy-species');
 
 //Remédios
 Route::get('/products', [ProductController::class, 'index'])->name('products.index')->middleware('permission:index-products');

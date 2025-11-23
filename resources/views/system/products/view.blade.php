@@ -81,7 +81,7 @@
 
                     <!-- Botão de voltar -->
                     <div class="col-12 d-flex justify-content-end">
-                        <a href="{{ route('product.index') }}" class="btn btn-warning fw-medium"
+                        <a href="{{ route('products.index') }}" class="btn btn-warning fw-medium"
                             id="cancel-button">Voltar</a>
                     </div>
                 </div>

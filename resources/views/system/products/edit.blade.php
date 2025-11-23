@@ -7,7 +7,7 @@
                 <x-alert />
                 <h3 class="fw-bold" id="product-header">Editar Produto</h3>
             </div>
-            <form action="{{ route('product.update', $product->id) }}" method="POST" enctype="multipart/form-data"
+            <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data"
                 class="row">
                 @csrf
                 @method('PUT')
@@ -117,7 +117,7 @@
 
                         <!-- Botões -->
                         <div class="col-12 d-flex justify-content-end gap-3">
-                            <a href="{{ route('product.index') }}" class="btn btn-warning fw-medium"
+                            <a href="{{ route('products.index') }}" class="btn btn-warning fw-medium"
                                 id="cancel-button">Cancelar</a>
 
                             <button type="submit" class="btn btn-warning" id="save-button">Salvar</button>
