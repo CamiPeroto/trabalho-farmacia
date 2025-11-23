@@ -7,13 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 class Appointments extends Model
 {
     protected $table = 'appointments';
-    
+
     protected $fillable = [
-        'name', 
-        'phone',
+        'pet_name',
+        'owner_phone',
+        'date',
         'time',
-        'hours',
-        'value',
-        'total_value'
+        'services',
+        'total_value',
+    ];
+
+    protected $casts = [
+        'services' => 'array',     // armazena serviços como JSON
+        'date'     => 'date',
+        'time'     => 'datetime:H:i',
+        'total_value' => 'decimal:2',
     ];
 }
+
