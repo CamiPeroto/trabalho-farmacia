@@ -31,7 +31,7 @@ class BranchesController extends Controller
             ]);
             DB::commit();
 
-            return redirect()->route('branch.index', )->with('success', 'Filial cadastrada com sucesso!');
+            return redirect()->route('branches.index', )->with('success', 'Filial cadastrada com sucesso!');
 
         } catch (Exception $e) {
             DB::rollBack();
@@ -61,7 +61,7 @@ class BranchesController extends Controller
 
             DB::commit();
 
-            return redirect()->route('branch.index')
+            return redirect()->route('branches.index')
                 ->with('success', 'Filial atualizada com sucesso!');
 
         } catch (Exception $e) {
@@ -78,12 +78,12 @@ class BranchesController extends Controller
 
             Log::info('Filial apagada.', ['branch_id' => $branch->id]);
 
-            return redirect()->route('branch.index')->with('success', 'Filial excluída com sucesso!');
+            return redirect()->route('branches.index')->with('success', 'Filial excluída com sucesso!');
 
         } catch (Exception $e) {
             Log::error('Erro ao excluir filial.', ['error' => $e->getMessage()]);
 
-            return redirect()->route('branch.index')->with('error', 'Filial não foi excluída!');
+            return redirect()->route('branches.index')->with('error', 'Filial não foi excluída!');
         }
     }
 

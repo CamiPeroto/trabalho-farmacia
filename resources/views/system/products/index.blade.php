@@ -21,7 +21,7 @@
                 </form>
             </div>
             <div class="col-6 my-4 d-flex justify-content-end">
-                <a href="{{ route('product.create') }}"
+                <a href="{{ route('products.create') }}"
                     class="btn btn-light rounded-circle shadow d-flex align-items-center justify-content-center"
                     id="white-circle" style="width: 48px; height: 48px;">
                     <img src="{{ asset('assets/img/add-icon.png') }}" alt="+" style="width: 12px; height: 12px;">

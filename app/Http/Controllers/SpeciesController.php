@@ -7,12 +7,12 @@ use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class SpecieController extends Controller
+class SpeciesController extends Controller
 {
     public function index()
     {
         $species = Species::paginate(10);
-        return view('system.active-specie.index', ['species' => $species ]);
+        return view('system.species.index', ['species' => $species ]);
     }
 
     public function store(SpeciesRequest $request)
@@ -41,7 +41,7 @@ class SpecieController extends Controller
     public function edit(Species $species){
        
         //Carregar view 
-        return view('system.active-species.index', ['species' => $species ]);
+        return view('system.species.index', ['species' => $species ]);
     }
     
     public function update(SpeciesRequest $request, Species $species)

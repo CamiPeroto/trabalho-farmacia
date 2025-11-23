@@ -62,7 +62,7 @@
                                         <i class="fi fi-rr-file-edit"></i>
                                     </a>
 
-                                    <form action="{{ route('specie.destroy', ['specie' => $specie->id]) }}"
+                                    <form action="{{ route('species.destroy', ['specie' => $specie->id]) }}"
                                         method="POST">
                                         @csrf
                                         @method('DELETE')
@@ -105,7 +105,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ route('specie.store') }}">
+                <form method="POST" action="{{ route('species.store') }}">
                     @csrf
                     @method('POST')
                     <div class="mb-3">
@@ -117,7 +117,7 @@
                         <textarea class="form-control" id="description" name="description" rows="3"></textarea>
                     </div>
                     <div class="d-flex justify-content-end gap-2">
-                        <a href="{{ route('specie.index') }}" class="btn btn-warning fw-medium"
+                        <a href="{{ route('species.index') }}" class="btn btn-warning fw-medium"
                             id="cancel-ai">Cancelar</a>
                         <button type="submit" class="btn btn-warning" id="ai-button">Salvar</button>
                     </div>

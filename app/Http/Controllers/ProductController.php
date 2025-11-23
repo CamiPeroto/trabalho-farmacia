@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
-use App\Models\ActiveIngredient;
+use App\Models\Species;
 use App\Models\Product;
 use App\Models\Stock;
 use Carbon\Carbon;
@@ -16,12 +16,12 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $drugstoreId = Auth::user()->drugstore_id;
+        $branchId = Auth::user()->branch_id;
 
-        $products = Product::whereHas('stock', function ($query) use ($drugstoreId) {
-            $query->where('drugstore_id', $drugstoreId);
-        })->with(['stock' => function ($query) use ($drugstoreId) {
-            $query->where('drugstore_id', $drugstoreId);
+        $products = Product::whereHas('stock', function ($query) use ($branchId) {
+            $query->where('branch_id', $branchId);
+        })->with(['stock' => function ($query) use ($branchId) {
+            $query->where('branch_id', $branchId);
         }])->paginate(10);
 
         return view('system.products.index', ['products' => $products]);
@@ -29,20 +29,20 @@ class ProductController extends Controller
 
     public function create()
     {
-        $ingredients = ActiveIngredient::all();
+        $species = Species::all();
         $nextId      = \App\Models\Product::max('id') + 1;
 
         return view('system.products.create',
             [
-                'ingredients' => $ingredients,
+                'species' => $species,
                 'nextId'      => $nextId,
             ]);
     }
     public function show(Product $product)
     {
-        $ingredients = ActiveIngredient::all();
+        $species = Species::all();
 
-        return view('system.products.view', ['product'=> $product,'ingredients' => $ingredients]);
+        return view('system.products.view', ['product'=> $product,'species' => $species]);
     }
 
     public function store(ProductRequest $request)
@@ -58,31 +58,29 @@ class ProductController extends Controller
 
             // Cria o remédio e armazena em $product
             $product = Product::create([
-                'fantasy_name'         => $request->fantasy_name,
+                'name'                 => $request->name,
                 'price'                => $request->price,
                 'type'                 => $request->type,
-                'form'                 => $request->form,
-                'dosage'               => $request->dosage,
+                'shape'                => $request->shape,
+                'weight'               => $request->weight,
+                'code_product'         => $request->code_product,
                 'maker'                => $request->maker,
                 'quantity'             => $request->quantity,
-                'description'          => $request->description,
-                'active_ingredient_id' => $request->active_ingredient_id,
+                'species_id'           => $request->species_id,
                 'image'                => $imagePath,
             ]);
 
-            $drugstoreId = Auth::user()->drugstore_id;
-            if (! $drugstoreId) {
-            }
+            $branchId = Auth::user()->branch_id;
 
             // Cria automaticamente o estoque
-            Log::info('Criando estoque com drugstore_id', ['drugstore_id' => $drugstoreId]);
+            Log::info('Criando estoque com branch_id', ['branch_id' => $branchId]);
             Stock::create([
                 'product_id'     => $product->id,
                 'quantity'        => $product->quantity,
                 'unitary_price'   => $product->price,
                 'entry_date'      => Carbon::now()->toDateString(),
                 'expiration_date' => Carbon::now()->addYears(2)->toDateString(),
-                'drugstore_id'    => $drugstoreId,
+                'branch_id'    => $branchId,
             ]);
 
             DB::commit();
@@ -100,8 +98,8 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        $ingredients = ActiveIngredient::all();
-        return view('system.products.edit', ['product' => $product, 'ingredients' => $ingredients]);
+        $species = Species::all();
+        return view('system.products.edit', ['product' => $product, 'species' => $species]);
     }
 
     public function update(ProductRequest $request, Product $product)

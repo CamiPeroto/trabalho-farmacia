@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Client;
 use App\Models\Comission;
-use App\Models\Medicine;
+use App\Models\Product;
 use App\Models\Sale;
 use App\Models\Stock;
 use Illuminate\Http\Request;
@@ -15,14 +15,14 @@ class SaleController extends Controller
     public function index()
     {
         $user        = Auth::user();
-        $drugstoreId = $user->drugstore_id;
+        $branchId = $user->branch_id;
 
-        $medicines = Medicine::whereHas('stock', function ($query) use ($drugstoreId) {
-            $query->where('drugstore_id', $drugstoreId);
+        $products = Product::whereHas('stock', function ($query) use ($branchId) {
+            $query->where('branch_id', $branchId);
         })->get();
 
         // Adiciona o preço unitário (base + 5)
-        $medicines->transform(function ($medicine) {
+        $products->transform(function ($medicine) {
             $medicine->unit_price = $medicine->price + 5;
             return $medicine;
         });
@@ -30,7 +30,7 @@ class SaleController extends Controller
         $nextSaleId = $lastSale ? $lastSale->id + 1 : 1;
 
         return view('system.sale.index', [
-            'medicines'  => $medicines,
+            'products'  => $products,
             'sellerId'   => $user->id,
             'nextSaleId' => $nextSaleId,
         ]);
@@ -39,7 +39,7 @@ class SaleController extends Controller
     {
         $request->validate([
             'cpf'       => 'required|string|max:14',
-            'medicines' => 'required|array|min:1',
+            'products' => 'required|array|min:1',
         ]);
 
         // Remove máscara do CPF
@@ -57,7 +57,7 @@ class SaleController extends Controller
 
         $totalValue = 0;
 
-        foreach ($request->medicines as $medicineId) {
+        foreach ($request->products as $medicineId) {
             $quantity = $request->quantities[$medicineId] ?? 0;
 
             if ($quantity <= 0) {
@@ -80,7 +80,7 @@ class SaleController extends Controller
             'total_value' => $totalValue,
         ]);
 
-        foreach ($request->medicines as $medicineId) {
+        foreach ($request->products as $medicineId) {
             $quantity = $request->quantities[$medicineId];
 
             $stock = Stock::where('medicine_id', $medicineId)->first();

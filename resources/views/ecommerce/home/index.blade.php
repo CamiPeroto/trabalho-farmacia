@@ -6,20 +6,20 @@
             <a href="#" class="footer-button text-decoration-none fs-5">
                 <i class="fi fi-rr-menu-burger"></i>
             </a>
-            <a href="#" class="px-4 py-2 footer-button text-decoration-none">
+            <a href="#" class="px-5 py-2 footer-button text-decoration-none">
                 Departamentos
             </a>
-            <a href="#" class="px-4 py-2 footer-button text-decoration-none">
+            <a href="#" class="px-5 py-2 footer-button text-decoration-none">
                 Club
             </a>
-            <a href="#" class="px-4 py-2 footer-button text-decoration-none">
+            <a href="#" class="px-5 py-2 footer-button text-decoration-none">
                 Almanaque
             </a>
-            <a href="#" class="px-4 py-2 footer-button text-decoration-none">
+            <a href="#" class="px-5 py-2 footer-button text-decoration-none">
                 Manipulação
             </a>
-            <a href="#" class="px-4 py-2 footer-button text-decoration-none">
-                Medicações Especiais
+            <a href="#" class="px-5 py-2 footer-button text-decoration-none">
+                Sob Encomenda
             </a>
         </div>
     </div>
