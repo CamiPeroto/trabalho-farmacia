@@ -28,12 +28,12 @@ class SpeciesController extends Controller
             ]);
             DB::commit();
 
-            return redirect()->route('species.index')->with('success', 'Principio ativo cadastrado com sucesso!');
+            return redirect()->route('species.index')->with('success', 'Espécie cadastrada com sucesso!');
 
         } catch (Exception $e) {
             DB::rollBack();
-             Log::notice('Principio ativo não cadastrado.', ['error' => $e->getMessage()]);
-            return back()->withInput()->with('error', 'Principio ativo não cadastrado');
+             Log::notice('Espécie não cadastrada.', ['error' => $e->getMessage()]);
+            return back()->withInput()->with('error', 'Espécie não cadastrada');
 
         }
     }
@@ -63,13 +63,13 @@ class SpeciesController extends Controller
             Log::info('Curso editado.', ['course_id' => $species->id]);
 
             return redirect()->route('species.index')
-                ->with('success', 'Principio ativo editado com sucesso!');
+                ->with('success', 'Espécie editada com sucesso!');
         } catch (Exception $e) {
 
             DB::rollBack();
 
-            Log::notice('Principio ativo não editado.', ['error' => $e->getMessage()]);
-            return back()->withInput()->with('error', 'Principio ativo não editado!');
+            Log::notice('Espécie não editada.', ['error' => $e->getMessage()]);
+            return back()->withInput()->with('error', 'Espécie não editada!');
         }
     }
 
@@ -79,16 +79,16 @@ class SpeciesController extends Controller
 
             $species->delete();
 
-            Log::info('Principio ativo apagado.', ['species' => $species->id]);
+            Log::info('Espécie apagada.', ['species' => $species->id]);
 
-            return redirect()->route('species.index')->with('success', 'Principio ativo excluído com sucesso!');
+            return redirect()->route('species.index')->with('success', 'Espécie excluída com sucesso!');
 
         } catch (Exception $e) {
 
-            Log::info('Principio ativo não apagado.', ['error' => $e->getMessage()]);
+            Log::info('Espécie não apagada.', ['error' => $e->getMessage()]);
 
             return redirect()->route('species.index')
-            ->with('error', 'Principio ativo não foi excluído!');
+            ->with('error', 'Espécie não foi excluída!');
         }
     }
 }

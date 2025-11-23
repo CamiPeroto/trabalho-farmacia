@@ -55,7 +55,7 @@ class ProductController extends Controller
             ? $request->file('image')->store('products', 'public')
             : null;
 
-            // Cria o remédio e armazena em $product
+            // Cria o produto e armazena em $product
             $product = Product::create([
                 'name'                 => $request->name,
                 'price'                => $request->price,
@@ -138,9 +138,9 @@ class ProductController extends Controller
                 ->with('success', 'Produto atualizado com sucesso!');
         } catch (Exception $e) {
             DB::rollBack();
-            Log::error('Erro ao atualizar remédio.', ['error' => $e->getMessage()]);
+            Log::error('Erro ao atualizar produto.', ['error' => $e->getMessage()]);
 
-            return back()->withInput()->with('error', 'Erro ao atualizar o remédio.');
+            return back()->withInput()->with('error', 'Erro ao atualizar o produto.');
         }
     }
     public function destroy(Product $product)
