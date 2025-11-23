@@ -49,7 +49,7 @@ class LoginController extends Controller
             return redirect('/'); 
         }
 
-        return redirect()->route('medicine.index');
+        return redirect()->route('products.index');
 
     }
 
