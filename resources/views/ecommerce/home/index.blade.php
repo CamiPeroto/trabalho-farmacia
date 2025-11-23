@@ -62,9 +62,9 @@
                                         -{{ $discountPercent }}%
                                     </div>
                                 @endif
-                                <img src="{{ $image }}" class="card-img-top" alt="{{ $product->fantasy_name }}">
+                                <img src="{{ $image }}" class="card-img-top" alt="{{ $product->name }}">
                                 <div class="card-body text-start">
-                                    <h6 class="mb-2">{{ $product->fantasy_name }}</h6>
+                                    <h6 class="mb-2">{{ $product->name }}</h6>
                                     <span class="text-price-other mb-0">
                                         R$ {{ number_format($product->price, 2, ',', '.') }}
                                     </span>
@@ -73,7 +73,7 @@
                                     </p>
                                     @auth
                                         <a href="#"
-                                            onclick="handleBuy({{ $product->id }}, '{{ $product->fantasy_name }}', {{ $product->price }})"
+                                            onclick="handleBuy({{ $product->id }}, '{{ $product->name }}', {{ $product->price }})"
                                             class="btn-buy-home text-center btn-sm">Comprar</a>
                                     @else
                                         <a href="{{ route('login.index') }}"
@@ -101,15 +101,15 @@
                         <div class="swiper-slide">
                             <div class="card h-100">
                                 <img src="{{ $product['image'] }}" class="card-img-top"
-                                    alt="{{ $product->fantasy_name }}">
+                                    alt="{{ $product->name }}">
                                 <div class="card-body text-start">
-                                    <h6 class="mb-2">{{ $product->fantasy_name }}</h6>
+                                    <h6 class="mb-2">{{ $product->name }}</h6>
                                     <p class="fw-bold fs-3 mb-2">
                                         R$ {{ number_format($product['price'], 2, ',', '.') }}
                                     </p>
                                     @auth
                                         <a href="#"
-                                            onclick="handleBuy({{ $product->id }}, '{{ $product->fantasy_name }}', {{ $product->price }})"
+                                            onclick="handleBuy({{ $product->id }}, '{{ $product->name }}', {{ $product->price }})"
                                             class="btn-buy-home text-center btn-sm">Comprar</a>
                                     @else
                                         <a href="{{ route('login.index') }}"
