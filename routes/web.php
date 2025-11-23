@@ -2,10 +2,9 @@
 
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\BudgetController;
-use App\Http\Controllers\DrugStoreController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\MedicineController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PromotionController;
@@ -26,7 +25,6 @@ Route::get('/pets/create', [PetsController::class, 'create'])->name('create');
 Route::get('/payment', [PaymentController::class, 'index'])->name('index');
 
 //Login
-
 Route::get('/login', [LoginController::class, 'index'])->name('login.index');
 Route::post('/login', [LoginController::class, 'loginProcess'])->name('login.process'); 
 Route::get('/register', [RegisterController::class, 'index'])->name('register.index');
@@ -48,11 +46,11 @@ Route::post('/store-user-login', [LoginController::class, 'store'])->name('login
 // Route::group(['middleware' => 'auth'], function()
 // {
 //Princípio Ativo
-Route::get('/pet', [PetController::class, 'index'])->name('pet.index')->middleware('permission:index-active-ingredient');
-Route::post('/pet', [PetController::class, 'store'])->name('pet.store')->middleware('permission:create-active-ingredient');
-Route::get('/pet/{pet}', [PetController::class, 'edit'])->name('pet.edit')->middleware('permission:update-active-ingredient');
-Route::put('/pet/{pet}', [PetController::class, 'update'])->name('pet.update')->middleware('permission:update-active-ingredient');
-Route::delete('/pet/{pet}', [PetController::class, 'destroy'])->name('pet.destroy')->middleware('permission:destroy-active-ingredient');
+Route::get('/pet', [PetsController::class, 'index'])->name('pet.index')->middleware('permission:index-active-ingredient');
+Route::post('/pet', [PetsController::class, 'store'])->name('pet.store')->middleware('permission:create-active-ingredient');
+Route::get('/pet/{pet}', [PetsController::class, 'edit'])->name('pet.edit')->middleware('permission:update-active-ingredient');
+Route::put('/pet/{pet}', [PetsController::class, 'update'])->name('pet.update')->middleware('permission:update-active-ingredient');
+Route::delete('/pet/{pet}', [PetsController::class, 'destroy'])->name('pet.destroy')->middleware('permission:destroy-active-ingredient');
 
 //Remédios
 Route::get('/products', [ProductController::class, 'index'])->name('medicine.index')->middleware('permission:index-medicine');
@@ -81,10 +79,10 @@ Route::delete('/stock/{stock}', [StockController::class, 'destroy'])->name('stoc
 
 
 //Filais
-Route::get('/branche', [BrancheController::class, 'index'])->name('drugstore.index')->middleware('permission:index-drugstore');
-Route::post('/branche', [BrancheController::class, 'store'])->name('drugstore.store')->middleware('permission:create-drugstore');
-Route::put('/branche/{branche}', [BrancheController::class, 'update'])->name('drugstore.update')->middleware('permission:update-drugstore');
-Route::delete('/branche/{branche}', [BrancheController::class, 'destroy'])->name('drugstore.destroy')->middleware('permission:destroy-drugstore');
+Route::get('/branche', [BranchesController::class, 'index'])->name('drugstore.index')->middleware('permission:index-drugstore');
+Route::post('/branche', [BranchesController::class, 'store'])->name('drugstore.store')->middleware('permission:create-drugstore');
+Route::put('/branche/{branche}', [BranchesController::class, 'update'])->name('drugstore.update')->middleware('permission:update-drugstore');
+Route::delete('/branche/{branche}', [BranchesController::class, 'destroy'])->name('drugstore.destroy')->middleware('permission:destroy-drugstore');
 
 
 // Vendas
