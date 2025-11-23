@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Drugstore;
+use App\Models\Branches;
 use App\Models\Stock;
 use Illuminate\Http\Request;
 
@@ -17,7 +17,7 @@ class StockController extends Controller
     }
 
     $stocks = $query->paginate(10);
-    $drugstores = Drugstore::orderBy('name')->get();
+    $drugstores = Branches::orderBy('name')->get();
 
     return view('system.stock.index', [
         'stocks' => $stocks,

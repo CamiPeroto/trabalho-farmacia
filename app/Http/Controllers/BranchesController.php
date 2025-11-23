@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\Branch;
+use App\Models\Branches;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -11,7 +11,7 @@ class BranchesController extends Controller
 {
     public function index()
     {
-        $branches = Branch::paginate(10);
+        $branches = Branches::paginate(10);
         return view('system.branches.index', ['branches' => $branches]);
     }
     public function store(Request $request)
@@ -24,7 +24,7 @@ class BranchesController extends Controller
         DB::beginTransaction();
 
         try {
-            Branch::create([
+            Branches::create([
                 'name'     => $validated['name'],
                 'location' => $validated['location'],
                 'status'   => true,
@@ -51,7 +51,7 @@ class BranchesController extends Controller
         DB::beginTransaction();
 
         try {
-            $branch = Branch::findOrFail($id);
+            $branch = Branches::findOrFail($id);
 
             $branch->update([
                 'name'     => $validated['name'],
@@ -71,7 +71,7 @@ class BranchesController extends Controller
             return back()->withInput()->with('error', 'Erro ao atualizar filial');
         }
     }
-    public function destroy(Branch $branch)
+    public function destroy(Branches $branch)
     {
         try {
             $branch->delete();
