@@ -50,9 +50,6 @@
                                             class="me-3 rounded my-3" style="cursor: pointer;">
                                         <div>
                                             <strong>{{ $product->name }}</strong><br>
-                                            <small class="description-limit" title="{{ $product->description }}">
-                                                {{ $product->description ?? 'Sem descrição' }}
-                                            </small>
                                         </div>
                                     </a>
                                 </td>

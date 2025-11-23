@@ -75,7 +75,7 @@
                         @empty
                             <tr>
                                 <td colspan="4" class="text-center alert alert-danger">
-                                    Nenhum principio ativo encontrado!
+                                    Nenhuma espécie encontrada!
                                 </td>
                             </tr>
                         @endforelse
@@ -92,16 +92,16 @@
         </div>
     </div>
     </div>
-    <div class="line mt-5"></div>
+    <img src="{{ asset('assets/img/gato.png') }}" class="card-img-top" alt="Antipulgas" style="width: 5%; position: fixed;  bottom: 55px; right: 100px;">
 @endsection
 
-{{-- Card Principio Ativo --}}
+{{-- Card Espécies --}}
 <div class="modal fade" id="createActiveModal" tabindex="-1" aria-labelledby="createActiveModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content p-4 rounded shadow" style="max-width: 500px; margin: auto;">
             <div class="modal-header border-0">
-                <h5 class="modal-title fw-bold" id="createActiveModalLabel">Novo Princípio Ativo</h5>
+                <h5 class="modal-title fw-bold" id="createActiveModalLabel">Nova Espécie</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
             </div>
             <div class="modal-body">
@@ -126,14 +126,14 @@
         </div>
     </div>
 </div>
-{{-- Card Principio Ativo --}}
-{{-- Card Principio Ativo --}}
+
+{{-- Card Espécie | Edição --}}
 <div class="modal fade" id="editActiveModal" tabindex="-1" aria-labelledby="editActiveModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content p-4 rounded shadow" style="max-width: 500px; margin: auto;">
             <div class="modal-header border-0">
-                <h5 class="modal-title fw-bold" id="editActiveModalLabel">Editar Princípio Ativo</h5>
+                <h5 class="modal-title fw-bold" id="editActiveModalLabel">Editar Espécie</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
             </div>
             <div class="modal-body">
@@ -158,7 +158,8 @@
         </div>
     </div>
 </div>
-{{-- Card Principio Ativo --}}
+
+{{-- Card Espécie --}}
 <script>
     const editModal = document.getElementById('editActiveModal');
     editModal.addEventListener('show.bs.modal', function(event) {

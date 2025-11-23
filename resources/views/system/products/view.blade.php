@@ -74,11 +74,6 @@
                         <p class="text-body-tertiary">{{ $product->weight }}</p>
                     </div>
 
-                    <div class="col-12 pb-3">
-                        <label class="form-label fw-bold">Descrição:</label>
-                        <p class="text-body-tertiary">{{ $product->description }}</p>
-                    </div>
-
                     <!-- Botão de voltar -->
                     <div class="col-12 d-flex justify-content-end">
                         <a href="{{ route('products.index') }}" class="btn btn-warning fw-medium"

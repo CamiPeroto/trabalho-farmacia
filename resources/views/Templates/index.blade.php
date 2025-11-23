@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Farmácia Barateira</title>
+    <title>Pet Store</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -138,7 +138,7 @@
 
     @yield('content')
 
-    <footer class="footer">
+    <footer class="footer position-fixed" style="bottom: 0;">
         <div class="container-fluid justify-content-center">
             <nav class="pull-left">
                 <div class="copyright d-flex align-items-center">

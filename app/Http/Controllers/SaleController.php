@@ -22,9 +22,9 @@ class SaleController extends Controller
         })->get();
 
         // Adiciona o preço unitário (base + 5)
-        $products->transform(function ($medicine) {
-            $medicine->unit_price = $medicine->price + 5;
-            return $medicine;
+        $products->transform(function ($product) {
+            $product->unit_price = $product->price + 5;
+            return $product;
         });
         $lastSale   = Sale::orderBy('id', 'desc')->first();
         $nextSaleId = $lastSale ? $lastSale->id + 1 : 1;
@@ -57,14 +57,14 @@ class SaleController extends Controller
 
         $totalValue = 0;
 
-        foreach ($request->products as $medicineId) {
-            $quantity = $request->quantities[$medicineId] ?? 0;
+        foreach ($request->products as $productId) {
+            $quantity = $request->quantities[$productId] ?? 0;
 
             if ($quantity <= 0) {
                 return back()->with('error', 'Quantidade inválida para o produto selecionado.');
             }
 
-            $stock = Stock::where('medicine_id', $medicineId)->first();
+            $stock = Stock::where('product_id', $productId)->first();
 
             if (! $stock || $stock->quantity < $quantity) {
                 return back()->with('error', 'Estoque insuficiente para o produto selecionado.');
@@ -80,15 +80,15 @@ class SaleController extends Controller
             'total_value' => $totalValue,
         ]);
 
-        foreach ($request->products as $medicineId) {
-            $quantity = $request->quantities[$medicineId];
+        foreach ($request->products as $productId) {
+            $quantity = $request->quantities[$productId];
 
-            $stock = Stock::where('medicine_id', $medicineId)->first();
+            $stock = Stock::where('product_id', $productId)->first();
             $stock->quantity -= $quantity;
             $stock->save();
 
             $sale->products()->create([
-                'medicine_id' => $medicineId,
+                'product_id' => $productId,
                 'quantity'    => $quantity,
                 'unit_price'  => $stock->unitary_price,
             ]);

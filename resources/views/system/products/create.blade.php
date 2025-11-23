@@ -88,15 +88,6 @@
                                 value="{{ old('quantity') }}" min="1">
                         </div>
 
-                        <div class="col-12 pb-3">
-                            <label for="description" class="form-label">Descrição</label>
-                            <div class="form-floating">
-                                <textarea class="form-control" placeholder="Para que serve?" id="description" name="description"
-                                    value="{{ old('description') }}"></textarea>
-                                <label for="description">Para que serve?</label>
-                            </div>
-                        </div>
-
                         <!-- Botões -->
                         <div class="col-12 d-flex justify-content-end gap-3">
                             <a href="{{ route('products.index') }}" class="btn btn-warning fw-medium" id="cancel-button">Cancelar</a>
