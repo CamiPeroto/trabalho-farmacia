@@ -43,7 +43,7 @@ class BranchesController extends Controller
     {
         Log::info('Status recebido:', ['status' => $request->input('status')]);
         $validated = $request->validate([
-            'name'     => 'required|string|max:50|unique:branchs,name,' . $id,
+            'name'     => 'required|string|max:50|unique:branches,name,' . $id,
             'location' => 'required|string|max:50',
             'status'   => 'required|boolean',
         ]);

@@ -10,27 +10,27 @@ class StockController extends Controller
 {
     public function index(Request $request)
     {
-         $query = Stock::with(['medicine', 'drugstore']);
+         $query = Stock::with(['product', 'branch']);
 
-    if ($request->has('drugstore')) {
-        $query->where('drugstore_id', $request->drugstore);
+    if ($request->has('branch')) {
+        $query->where('branch_id', $request->branch);
     }
 
     $stocks = $query->paginate(10);
-    $drugstores = Branches::orderBy('name')->get();
+    $branches = Branches::orderBy('name')->get();
 
     return view('system.stock.index', [
         'stocks' => $stocks,
-        'drugstores' => $drugstores,
+        'branches' => $branches,
     ]);
     }
     public function edit(Stock $stock)
     {
-        $medicine = $stock->medicine;
+        $product = $stock->product;
 
         return view('system.stock.edit', [
             'stock'    => $stock,
-            'medicine' => $medicine,
+            'product' => $product,
         ]);
     }
 
