@@ -41,7 +41,7 @@
                         @forelse($promotions as $promotion)
                             <tr>
                                 <td class="d-flex align-items-center text-start">
-                                    <a href="{{ route('product.show', $promotion->product->id) }}"
+                                    <a href="{{ route('products.show', $promotion->product->id) }}"
                                         class="d-flex align-items-center text-decoration-none text-dark">
                                         <img src="{{ $promotion->product->image ? (Str::startsWith($promotion->product->image, 'assets') ? asset($promotion->product->image) : asset('storage/' . $promotion->product->image)) : 'https://via.placeholder.com/150' }}"
                                             alt="{{ $promotion->product->name }}" width="130" height="130"

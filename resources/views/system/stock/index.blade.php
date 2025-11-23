@@ -4,20 +4,10 @@
 @section('content')
     <div class="container my-5">
         <div class="row d-flex">
-            <div class="col-4 my-4">
+            <div class="col-6 my-4">
                 <h3 class="fw-bold ">Estoque de Produtos</h3>
             </div>
-            <div class="col-4 d-flex align-items-center">
-                <div class="form-check form-check-inline ms-5 mt-2">
-                    <input class="form-check-input" type="checkbox" id="todosCheckbox" name="filter[]" value="todos" checked>
-                    <label class="form-check-label" for="todosCheckbox">Todos</label>
-                </div>
-                <div class="form-check form-check-inline mt-2">
-                    <input class="form-check-input" type="checkbox" id="ativoCheckbox" name="filter[]" value="ativo">
-                    <label class="form-check-label" for="ativoCheckbox">Princípio Ativo</label>
-                </div>
-            </div>
-            <div class="col-4 d-flex align-items-center justify-content-end">
+            <div class="col-6 d-flex align-items-center justify-content-end">
                 <form class="d-flex justify-content-center me-5" role="search" action="{{ url('/search') }}"
                     method="GET">
                     <div class="position-relative w-100">

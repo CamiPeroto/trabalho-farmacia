@@ -47,7 +47,7 @@ class PromotionController extends Controller
     }
 
         $request->validate([
-            'product_id'       => 'required|exists:product,id',
+            'product_id'       => 'required|exists:products,id',
             'start_date'        => 'required|date',
             'end_date'          => 'required|date|after_or_equal:start_date',
             'promotional_price' => 'required|numeric|min:0',
@@ -56,27 +56,11 @@ class PromotionController extends Controller
         $product = Product::with('species')->find($request->product_id);
         $branchId = Auth::user()->branch_id;
 
-        $speciesId = $product->specie_id;
-
-        // Verifica se já há promoção ativa com mesmo princípio ativo NA MESMA FILIAL
-        $alreadyInPromotion = Promotion::whereHas('product.stock', function ($query) use ($branchId) {
-            $query->where('branch_id', $branchId);
-        })
-            ->whereHas('product', function ($query) use ($speciesId) {
-                $query->where('specie_id', $speciesId);
-            })
-            ->where('end_date', '>=', now())
-            ->exists();
-
-        if ($alreadyInPromotion) {
-            return back()->with('error', 'Já existe um medicamento com o mesmo princípio ativo em promoção nesta filial.');
-        }
-
         // Verifica preço mínimo baseado no valor de compra (estoque mais recente)
         $latestStock = $product->stock()->where('branch_id', $branchId)->latest('entry_date')->first();
 
         if (! $latestStock) {
-            return back()->with('error', 'Este medicamento não possui estoque registrado na sua filial.');
+            return back()->with('error', 'Este produto não possui estoque registrado na sua filial.');
         }
 
         $minPrice = $latestStock->unitary_price * 1.10;
@@ -118,13 +102,13 @@ class PromotionController extends Controller
             'end_date'          => 'required|date|after_or_equal:start_date',
         ]);
 
-        $product = $promotion->product()->with('activeIngredient')->first();
+        $product = $promotion->product()->with('species')->first();
 
 
         $latestStock = $product->stock()->latest('entry_date')->first();
 
         if (! $latestStock) {
-            return back()->with('error', 'Este medicamento não possui estoque registrado.');
+            return back()->with('error', 'Este produto não possui estoque registrado.');
         }
 
         $minPrice = $latestStock->unitary_price * 1.10;

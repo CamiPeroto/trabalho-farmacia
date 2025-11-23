@@ -62,7 +62,7 @@
                                         <i class="fi fi-rr-file-edit"></i>
                                     </a>
 
-                                    <form action="{{ route('species.destroy', ['specie' => $specie->id]) }}"
+                                    <form action="{{ route('species.destroy', ['species' => $specie->id]) }}"
                                         method="POST">
                                         @csrf
                                         @method('DELETE')
@@ -170,7 +170,7 @@
         const description = button.getAttribute('data-description');
 
         const form = document.getElementById('editForm');
-        form.action = `/specie/${id}`; // Define action para update
+        form.action = `/species/${id}`; // Define action para update
 
         document.getElementById('editName').value = name;
         document.getElementById('editDescription').value = description;

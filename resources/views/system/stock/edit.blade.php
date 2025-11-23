@@ -35,9 +35,9 @@
                                 placeholder="{{ old('id', $product->id) }}" disabled>
                         </div>
                         <div class="col-md-6">
-                            <label for="fantasy-name" class="form-label">Nome Fantasia*</label>
-                            <input type="text" class="form-control input-bg" id="fantasy_name" name="fantasy_name"
-                                value="{{ old('fantasy_name', $product->fantasy_name) }}" disabled>
+                            <label for="fantasy-name" class="form-label">Nome*</label>
+                            <input type="text" class="form-control input-bg" id="name" name="name"
+                                value="{{ old('name', $product->name) }}" disabled>
                         </div>
                         <div class="col-md-6">
                             <label for="unitary_price" class="form-label">Preço Unitário*</label>

@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             SpeciesSeeder::class,
             ProductsSeeder::class,
-
+            PetsSeeder::class
         ]);
     }
 }

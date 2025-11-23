@@ -35,7 +35,6 @@
                                         height="60">
                                     <div>
                                         <strong>{{ $product->name }}</strong><br>
-                                        <small>{{ $product->description ?? 'Sem descrição' }}</small>
                                     </div>
                                 </label>
                             </div>

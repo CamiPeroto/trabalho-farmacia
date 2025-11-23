@@ -32,7 +32,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand me-4" href="{{ url('/') }}">
-                <img src="{{ asset('assets/img/logo.png') }}" alt="Logo" width="150" height="50"
+                <img src="{{ asset('assets/img/logo.png') }}" alt="Logo" width="100"
                     class="d-inline-block align-text-top">
             </a>
 
@@ -113,7 +113,7 @@
 
                     <li><a class="dropdown-item fw-bold fs-6" href="{{ route('appointments.create') }}">Agendamentos</a></li>
 
-                    <li><a class="dropdown-item fw-bold fs-6" href="{{ route('pets.create') }}">Pets</a></li>
+                    <li><a class="dropdown-item fw-bold fs-6" href="{{ route('pets.index') }}">Pets</a></li>
                 </ul>
             </div>
 

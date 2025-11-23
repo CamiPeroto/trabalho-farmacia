@@ -93,6 +93,7 @@
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 @endsection
+
 {{-- Card Criar Filial --}}
 <div class="modal fade" id="createBranchModal" tabindex="-1" aria-labelledby="createBranchModalLabel"
     aria-hidden="true">
@@ -192,6 +193,6 @@
 
         // Define a action do formulário
         const form = document.getElementById('editBranchForm');
-        form.action = `/branch/${id}`;
+        form.action = `/branches/${id}`;
     });
 </script>

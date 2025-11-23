@@ -4,8 +4,7 @@
         <div class="card p-4 shadow-sm rounded-4 card-bg-profile">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <div class="d-flex align-items-center gap-3">
-                    <img src="https://www.svgrepo.com/show/384674/account-avatar-profile-user-11.svg" width="50"
-                        alt="Avatar">
+                    <img src="https://www.svgrepo.com/show/384674/account-avatar-profile-user-11.svg" width="50" alt="Avatar">
                     <div>
                         <h5 class="mb-0 text-uppercase text-primary fw-bold">
                             @if (auth()->check())

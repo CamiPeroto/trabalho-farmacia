@@ -26,7 +26,6 @@
                                         height="60">
                                     <div>
                                         <strong>{{ $product->name }}</strong><br>
-                                        <small>{{ $product->description ?? 'Sem descrição' }}</small>
                                     </div>
                                 </label>
                             </div>
@@ -39,7 +38,7 @@
                     <div class="row g-3 shadow rounded-4 mt-1" style="padding:20px;min-height: 30rem;">
                         <h2 class="fw-medium">Informações da Promoção</h2>
                         <div class="col-3">
-                            <label for="product_id" class="form-label">Código do produtp</label>
+                            <label for="product_id" class="form-label">Código do produto</label>
                             <input type="text" class="form-control" id="product_code_display" placeholder="N°" disabled>
                         </div>
                         <div class="col-3">
@@ -76,8 +75,6 @@
             </form>
         </div>
     </div>
-    </div>
-    <div class="line mt-5"></div>
 
 @section('javascript')
     <script>

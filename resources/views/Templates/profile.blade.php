@@ -34,10 +34,9 @@
 
     <div class="sidebar">
         <div class="sidebar-logo">
-            <div class="logo-header">
+            <div class="logo-header d-flex justify-content-center mt-5 mb-2">
                 <a href="{{ url('/') }}" class="logo">
-                    <img src="{{ asset('assets/img/logo.png') }}" alt="Logo da Barateira" class="navbar-brand"
-                        height="30" />
+                    <img src="{{ asset('assets/img/logo.png') }}" alt="Logo da Barateira" class="navbar-brand" height="100" />
                 </a>
             </div>
         </div>
@@ -64,13 +63,13 @@
                     </li>
                      @can('index-stock')
                         <li class="nav-item">
-                            <a data-bs-toggle="collapse" href="#submenuPerfil" role="button" aria-expanded="true"
-                                aria-controls="submenuPerfil">
+                            <a data-bs-toggle="collapse" href="#submenuPermissoes" role="button" aria-expanded="true"
+                                aria-controls="submenuPermissoes">
                                 <i class="fi fi-rr-document"></i>
                                 <p>Permissões</p>
                                 <span class="caret"></span>
                             </a>
-                            <div class="collapse" id="submenuPerfil">
+                            <div class="collapse" id="submenuPermissoes">
                                 <ul class="nav nav-collapse">
                                     <li class="nav-item">
                                         <a href="{{ url('/index-permission') }}"
