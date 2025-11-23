@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('weight'); 
             $table->string('type'); 
             $table->string('maker'); 
-            $table->text('code_product');
             $table->timestamps();
         });
     }

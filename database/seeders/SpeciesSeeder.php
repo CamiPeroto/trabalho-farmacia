@@ -24,6 +24,10 @@ class SpeciesSeeder extends Seeder
                 'name'        => 'Aves',
                 'description' => 'Diversos tipos de aves domésticas.',
             ],
+            [
+                'name'        => 'Outros',
+                'description' => 'Espécies diversas.',
+            ],
         ];
 
         foreach ($species as $specie) {

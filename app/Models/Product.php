@@ -13,7 +13,6 @@ class Product extends Model
         'type',
         'shape',
         'weight',
-        'code_product',
         'maker',
         'quantity',
         'image',

@@ -12,9 +12,9 @@
 
                 <!-- Coluna esquerda - Imagem -->
                 <div class="col-6 d-flex justify-content-center">
-                    <div class="card shadow" style="width: 32rem;" id="card-product">
+                    <div class="card shadow" style="width: 32rem; height:34rem;" id="card-product">
                         <img id="preview-image" src="{{ asset('assets/img/model-product.png') }}"
-                            style="height: 300px; object-fit: contain;margin-top:2rem;" alt="Pré-visualização da imagem">
+                            style="height: 280px; object-fit: contain;margin-top:2rem;" alt="Pré-visualização da imagem">
                         <div class="card-body d-flex justify-content-center">
                             <input type="file" class="form-control upload-img" name="image" id="image"
                                 style="height: 3rem;" accept="image/* "onchange="previewImage(event)">
@@ -41,13 +41,13 @@
                         </div>
 
                         <div class="col-6">
-                            <label for="specie_id" class="form-label">Espécie*</label>
-                            <select id="specie_id" name="specie_id" class="form-select input-bg">
+                            <label for="species_id" class="form-label">Espécie*</label>
+                            <select id="species_id" name="species_id" class="form-select input-bg">
                                 <option value="" selected disabled>Selecione...</option>
-                                @foreach ($species as $specie)
-                                    <option value="{{ $specie->id }}"
-                                        {{ old('specie_id') == $specie->id ? 'selected' : '' }}>
-                                        {{ $specie->name }}
+                                @foreach ($species as $species)
+                                    <option value="{{ $species->id }}"
+                                        {{ old('species_id') == $species->id ? 'selected' : '' }}>
+                                        {{ $species->name }}
                                     </option>
                                 @endforeach
                             </select>
@@ -57,26 +57,30 @@
                             <label for="shape" class="form-label">Forma*</label>
                             <select id="shape" name="shape" class="form-select input-bg">
                                 <option selected>Selecione...</option>
-                                <option>Comprimido</option>
-                                <option value="Saco">Saco</option>
-                                <option value="Xarope">Xarope</option>
+                                <option>Ração</option>
+                                <option value="remedio">Remédio</option>
+                                <option value="brinquedo">Brinquedo</option>
                                 <option value="Solução injetável">Solução injetável</option>
-                                <option value="Pomada">Pomada</option>
+                                <option value="others">Outros</option>
                             </select>
                         </div>
                         <div class="col-md-6">
                             <label for="type" class="form-label">Tipo*</label>
                             <select id="type" name="type" class="form-select input-bg">
-                                <option selected>Selecione...</option>
-                                <option>Genérico</option>
-                                <option value="Referência">Referência</option>
-                                <option value="Similar">Similar</option>
+                                <option selected>Selecione...</option>   
+                                <option value="remédio">Remédio</option>
+                                <option value="alimentação">Alimentação</option>
+                                <option value="outros">Outros</option>
                             </select>
                         </div>
                         <div class="col-6">
                             <label for="maker" class="form-label">Fabricante</label>
                             <input type="text" class="form-control input-bg" id="maker" name="maker"
-                                placeholder="Ex: OMS" value="{{ old('maker') }}">
+                                placeholder="Ex: Special Dog" value="{{ old('maker') }}">
+                        </div>
+                        <div class="col-6">
+                            <label for="weight" class="form-label">Peso*</label>
+                            <input type="text" class="form-control input-bg" name="weight" id="weight" placeholder="Ex: 1kg">
                         </div>
                         <div class="col-4">
                             <label for="id" class="form-label">Código do Produto</label>

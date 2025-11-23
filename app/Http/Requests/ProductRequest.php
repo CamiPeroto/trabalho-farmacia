@@ -20,7 +20,6 @@ class ProductRequest extends FormRequest
             'weight'       => 'required|string|max:255',
             'type'         => 'required|string|max:255',
             'maker'        => 'required|string|max:255',
-            'code_product' => 'required|string|max:255|unique:products,code_product,' . $this->id,
             'price'        => 'required|numeric|min:0',
             'quantity'     => $this->isMethod('post') 
                 ? 'required|integer|min:1' 
@@ -44,10 +43,6 @@ class ProductRequest extends FormRequest
             'weight.required'       => 'O peso/volume é obrigatório.',
             'type.required'         => 'O tipo do produto é obrigatório.',
             'maker.required'        => 'O fabricante é obrigatório.',
-
-            'code_product.required' => 'O código do produto é obrigatório.',
-            'code_product.unique'   => 'Este código já está cadastrado.',
-
             'price.required'        => 'O preço é obrigatório.',
             'price.numeric'         => 'O preço deve ser numérico.',
             'price.min'             => 'O preço não pode ser negativo.',

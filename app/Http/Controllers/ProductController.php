@@ -50,7 +50,6 @@ class ProductController extends Controller
         $request->validated();
 
         DB::beginTransaction();
-
         try {
             $imagePath = $request->hasFile('image')
             ? $request->file('image')->store('products', 'public')
@@ -63,7 +62,6 @@ class ProductController extends Controller
                 'type'                 => $request->type,
                 'shape'                => $request->shape,
                 'weight'               => $request->weight,
-                'code_product'         => $request->code_product,
                 'maker'                => $request->maker,
                 'quantity'             => $request->quantity,
                 'species_id'           => $request->species_id,
@@ -85,14 +83,14 @@ class ProductController extends Controller
 
             DB::commit();
 
-            return redirect()->route('product.index')
-                ->with('success', 'Remédio cadastrado com sucesso!');
+            return redirect()->route('products.index')
+                ->with('success', 'Produto cadastrado com sucesso!');
 
         } catch (Exception $e) {
             DB::rollBack();
-            Log::notice('Remédio não cadastrado.', ['error' => $e->getMessage()]);
+            Log::notice('Produto não cadastrado.', ['error' => $e->getMessage()]);
 
-            return back()->withInput()->with('error', 'Remédio não cadastrado');
+            return back()->withInput()->with('error', 'Produto não cadastrado');
         }
     }
 
@@ -123,21 +121,21 @@ class ProductController extends Controller
 
             // Atualiza os dados
             $product->update([
-                'fantasy_name'         => $request->fantasy_name,
+                'name'                 => $request->name,
                 'price'                => $request->price,
                 'type'                 => $request->type,
-                'form'                 => $request->form,
-                'dosage'               => $request->dosage,
+                'shape'                => $request->shape,
+                'weight'               => $request->weight,
                 'maker'                => $request->maker,
-                'description'          => $request->description,
-                'active_ingredient_id' => $request->active_ingredient_id,
+                'quantity'             => $request->quantity,
+                'species_id'           => $request->species_id,
                 'image'                => $imagePath,
             ]);
 
             DB::commit();
 
-            return redirect()->route('product.index')
-                ->with('success', 'Remédio atualizado com sucesso!');
+            return redirect()->route('products.index')
+                ->with('success', 'Produto atualizado com sucesso!');
         } catch (Exception $e) {
             DB::rollBack();
             Log::error('Erro ao atualizar remédio.', ['error' => $e->getMessage()]);
@@ -155,29 +153,29 @@ class ProductController extends Controller
             // Estoques que são inativos e com quantidade < 3
             $deletableStock = $product->stock()
                 ->where('status', false)
-                ->where('quantity', '<', 3)
+                ->where('quantity', '<=', 3)
                 ->count();
 
             // Se houver algum estoque que não é seguro, bloqueia
             if ($deletableStock !== $totalStock) {
-                return redirect()->route('product.index')
-                    ->with('error', 'Remédio não foi excluído! Estoque ativo ou com quantidade suficiente.');
+                return redirect()->route('products.index')
+                    ->with('error', 'Produto não foi excluído! Estoque ativo ou com quantidade suficiente.');
             }
 
             // Exclui todos os estoques restantes
             $product->stock()->delete();
             $product->delete();
 
-            Log::info('Remédio apagado.', ['product' => $product->id]);
+            Log::info('Produto apagado.', ['product' => $product->id]);
 
-            return redirect()->route('product.index')->with('success', 'Remédio excluído com sucesso!');
+            return redirect()->route('products.index')->with('success', 'Produto excluído com sucesso!');
 
         } catch (Exception $e) {
 
-            Log::info('Remédio não apagado.', ['error' => $e->getMessage()]);
+            Log::info('Produto não apagado.', ['error' => $e->getMessage()]);
 
-            return redirect()->route('product.index')
-                ->with('error', 'Remédio não foi excluído!');
+            return redirect()->route('products.index')
+                ->with('error', 'Produto não foi excluído!');
 
         }
 

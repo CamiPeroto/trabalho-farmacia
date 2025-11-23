@@ -10,7 +10,7 @@
 
             <!-- Coluna esquerda - Imagem -->
             <div class="col-6 d-flex justify-content-center">
-                <div class="card shadow" style="width: 32rem;" id="card-product">
+                <div class="card shadow" style="width: 32rem; height: 34rem" id="card-product">
                     <img id="preview-image"
                         src="{{ $product->image
                             ? (Str::startsWith($product->image, 'assets')

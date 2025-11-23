@@ -14,14 +14,14 @@
 
                 <!-- Coluna esquerda - Imagem -->
                 <div class="col-6 d-flex justify-content-center">
-                    <div class="card shadow" style="width: 32rem;" id="card-product">
+                    <div class="card shadow" style="width: 32rem; height:34rem;" id="card-product">
                         <img id="preview-image"
                             src="{{ $product->image
                                 ? (Str::startsWith($product->image, 'assets')
                                     ? asset($product->image)
                                     : asset('storage/' . $product->image))
                                 : asset('assets/img/model-product.png') }}"
-                            style="height: 300px; object-fit: contain; margin-top: 2rem;" alt="Imagem do produto">
+                            style="height: 280px; object-fit: contain; margin-top: 2rem;" alt="Imagem do produto">
                         <div class="card-body d-flex justify-content-center">
                             <input type="file" class="form-control upload-img" name="image" id="image"
                                 style="height: 3rem;" accept="image/* "onchange="previewImage(event)">
@@ -49,13 +49,13 @@
                         </div>
 
                         <div class="col-6">
-                            <label for="specie_id" class="form-label">Espécie*</label>
-                            <select id="specie_id" name="specie_id" class="form-select input-bg">
+                            <label for="species_id" class="form-label">Espécie*</label>
+                            <select id="species_id" name="species_id" class="form-select input-bg">
                                 <option value="" selected disabled>Selecione...</option>
-                                @foreach ($species as $specie)
-                                    <option value="{{ $specie->id }}"
-                                        {{ old('specie_id', $product->specie_id) == $specie->id ? 'selected' : '' }}>
-                                        {{ $specie->name }}
+                                @foreach ($species as $species)
+                                    <option value="{{ $species->id }}"
+                                        {{ old('species_id', $product->species_id) == $species->id ? 'selected' : '' }}>
+                                        {{ $species->name }}
                                     </option>
                                 @endforeach
                             </select>
@@ -64,19 +64,21 @@
                         <div class="col-6">
                             <label for="shape" class="form-label">Forma*</label>
                             <select id="shape" name="shape" class="form-select input-bg">
-                                <option disabled {{ old('shape', $product->shape) == null ? 'selected' : '' }}>Selecione...
-                                </option>
-                                <option value="Comprimido"
-                                    {{ old('shape', $product->shape) == 'Comprimido' ? 'selected' : '' }}>Comprimido</option>
-                                <option value="Cápsula" {{ old('shape', $product->shape) == 'Cápsula' ? 'selected' : '' }}>
-                                    Cápsula</option>
-                                <option value="Xarope" {{ old('shape', $product->shape) == 'Xarope' ? 'selected' : '' }}>
-                                    Xarope</option>
-                                <option value="Solução injetável"
-                                    {{ old('shape', $product->shape) == 'Solução injetável' ? 'selected' : '' }}>Solução
-                                    injetável</option>
-                                <option value="Pomada" {{ old('shape', $product->shape) == 'Pomada' ? 'selected' : '' }}>
-                                    Pomada</option>
+                                <option selected>Selecione...</option>
+                                <option>Ração</option>
+                                <option value="remedio">Remédio</option>
+                                <option value="brinquedo">Brinquedo</option>
+                                <option value="Solução injetável">Solução injetável</option>
+                                <option value="others">Outros</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="type" class="form-label">Tipo*</label>
+                            <select id="type" name="type" class="form-select input-bg">
+                                <option selected>Selecione...</option>   
+                                <option value="remédio">Remédio</option>
+                                <option value="alimentação">Alimentação</option>
+                                <option value="outros">Outros</option>
                             </select>
                         </div>
                         
@@ -86,19 +88,15 @@
                                 placeholder="Ex: OMS" value="{{ old('maker', $product->maker) }}">
                         </div>
 
-                        <div class="col-md-6">
-                            <label for="type" class="form-label">Tipo*</label>
-                            <select id="type" name="type" class="form-select input-bg">
-                                <option disabled {{ old('type', $product->type) == null ? 'selected' : '' }}>Selecione...
-                                </option>
-                                <option value="Genérico"
-                                    {{ old('type', $product->type) == 'Genérico' ? 'selected' : '' }}>Genérico</option>
-                                <option value="Referência"
-                                    {{ old('type', $product->type) == 'Referência' ? 'selected' : '' }}>Referência
-                                </option>
-                                <option value="Similar" {{ old('type', $product->type) == 'Similar' ? 'selected' : '' }}>
-                                    Similar</option>
-                            </select>
+                        <div class="col-6">
+                            <label for="weight" class="form-label">Peso*</label>
+                            <input type="text" class="form-control input-bg" name="weight" id="weight" placeholder="Ex: 1kg">
+                        </div>
+
+                        <div class="col-6">
+                            <label for="quantity" class="form-label">Quantidade</label>
+                            <input type="number" class="form-control input-bg" id="quantity" name="quantity" placeholder="UNT"
+                                value="{{ old('quantity', $product->quantity) }}" min="1">
                         </div>
 
                         <div class="col-6">
