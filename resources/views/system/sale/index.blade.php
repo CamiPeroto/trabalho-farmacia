@@ -21,10 +21,10 @@
                                 <label class="form-check-label flex-grow-1" for="product{{ $product->id }}">
                                     <div class="d-flex align-items-center gap-3">
                                         <img src="{{ $product->image ? (Str::startsWith($product->image, 'assets') ? asset($product->image) : asset('storage/' . $product->image)) : 'https://via.placeholder.com/80' }}"
-                                            alt="{{ $product->fantasy_name }}" class="rounded me-3" width="60"
+                                            alt="{{ $product->name }}" class="rounded me-3" width="60"
                                             height="60">
                                         <div>
-                                            <strong>{{ $product->fantasy_name }}</strong><br>
+                                            <strong>{{ $product->name }}</strong><br>
                                             <small>{{ $product->description ?? 'Sem descrição' }}</small>
                                         </div>
                                     </div>

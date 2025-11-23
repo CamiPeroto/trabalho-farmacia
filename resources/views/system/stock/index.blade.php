@@ -43,10 +43,10 @@
                         </div>
                     </button>
                     <ul class="dropdown-menu">
-                        @foreach ($drugstores as $drugstore)
+                        @foreach ($branches as $branch)
                             <li>
-                                <a class="dropdown-item" href="{{ route('stock.index', ['drugstore' => $drugstore->id]) }}">
-                                    {{ $drugstore->name }}
+                                <a class="dropdown-item" href="{{ route('stock.index', ['branch' => $branch->id]) }}">
+                                    {{ $branch->name }}
                                 </a>
                             </li>
                         @endforeach
@@ -76,10 +76,10 @@
                             <tr style="--bs-table-bg: {{ $loop->index % 2 == 0 ? '#0252590D' : '#00717226' }}">
                                 <td class="d-flex align-items-center text-start">
                                     <img src="{{ $stock->product->image ? (Str::startsWith($stock->product->image, 'assets') ? asset($stock->product->image) : asset('storage/' . $stock->product->image)) : 'https://via.placeholder.com/150' }}"
-                                        alt="{{ $stock->product->fantasy_name }}" width="120" height="120"
+                                        alt="{{ $stock->product->name }}" width="120" height="120"
                                         class="me-3 rounded my-3" style="cursor: pointer;">
                                     <div>
-                                        <strong>{{ $stock->product->fantasy_name ?? 'Sem nome' }}</strong><br>
+                                        <strong>{{ $stock->product->name ?? 'Sem nome' }}</strong><br>
 
                                         @if ($stock->quantity < 20)
                                             <span class="badge bg-danger mt-2 d-inline-flex align-items-center p-2">
@@ -92,7 +92,7 @@
 
                                 <td class="fw-bold">R$ {{ number_format($stock->product->price ?? 0, 2, ',', '.') }}</td>
                                 <td>{{ $stock->quantity }}</td>
-                                <td>{{ $stock->drugstore->name ?? 'N/A' }}</td>
+                                <td>{{ $stock->branch->name ?? 'N/A' }}</td>
                                 <td>
                                     @if ($stock->status)
                                         <span class="badge bg-success px-3 py-2 rounded-pill">ATIVO</span>
