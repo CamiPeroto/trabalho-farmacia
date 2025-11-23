@@ -20,9 +20,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/appointment/create', [AppointmentsController::class, 'create'])->name('create');
-Route::get('/pets/create', [PetsController::class, 'create'])->name('create');
-Route::get('/payment', [PaymentController::class, 'index'])->name('index');
+Route::get('/appointment/create', [AppointmentsController::class, 'create'])->name('appointments.create');
+Route::get('/pets/create', [PetsController::class, 'create'])->name('pets.create');
+Route::get('/payment', [PaymentController::class, 'index'])->name('payments.index');
 
 //Login
 Route::get('/login', [LoginController::class, 'index'])->name('login.index');

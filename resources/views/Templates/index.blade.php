@@ -110,6 +110,10 @@
                     @can('index-braches')
                         <li><a class="dropdown-item fw-bold fs-6" href="{{ route('branches.index') }}">Filiais</a></li>
                     @endcan
+
+                    <li><a class="dropdown-item fw-bold fs-6" href="{{ route('appointments.create') }}">Agendamentos</a></li>
+
+                    <li><a class="dropdown-item fw-bold fs-6" href="{{ route('pets.create') }}">Pets</a></li>
                 </ul>
             </div>
 
