@@ -74,6 +74,7 @@
             </form>
         </div>
     </div>
+    <img src="{{ asset('assets/img/papagaio.png') }}" class="card-img-top" alt="Papagaio" style="width: 8%; position: fixed;  bottom: 68px; right: 50px;">
 @endsection
 
 @section('javascript')

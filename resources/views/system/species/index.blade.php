@@ -92,7 +92,7 @@
         </div>
     </div>
     </div>
-    <img src="{{ asset('assets/img/gato.png') }}" class="card-img-top" alt="Antipulgas" style="width: 5%; position: fixed;  bottom: 55px; right: 100px;">
+    <img src="{{ asset('assets/img/gato.png') }}" class="card-img-top" alt="Gato" style="width: 5%; position: fixed;  bottom: 55px; right: 100px;">
 @endsection
 
 {{-- Card Espécies --}}

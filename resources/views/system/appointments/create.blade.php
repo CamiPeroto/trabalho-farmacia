@@ -53,7 +53,7 @@
                                 <input type="checkbox" class="form-check-input me-2">
                                 <div>
                                     <strong>Banho</strong><br>
-                                    <small class="text-muted">R$: 30,00</small>
+                                    <small class="text-muted">R$ 30,00</small>
                                 </div>
                             </div>
                             <i class="bi bi-droplet fs-4 text-secondary"></i>
@@ -65,7 +65,7 @@
                                 <input type="checkbox" class="form-check-input me-2">
                                 <div>
                                     <strong>Tosa</strong><br>
-                                    <small class="text-muted">R$: 40,00</small>
+                                    <small class="text-muted">R$ 40,00</small>
                                 </div>
                             </div>
                             <i class="bi bi-scissors fs-4 text-secondary"></i>
@@ -77,7 +77,7 @@
                                 <input type="checkbox" class="form-check-input me-2">
                                 <div>
                                     <strong>Banho + Tosa</strong><br>
-                                    <small class="text-muted">R$: 60,00</small>
+                                    <small class="text-muted">R$ 60,00</small>
                                 </div>
                             </div>
                             <i class="bi bi-stars fs-4 text-secondary"></i>
@@ -89,7 +89,7 @@
                                 <input type="checkbox" class="form-check-input me-2">
                                 <div>
                                     <strong>Hidratação</strong><br>
-                                    <small class="text-muted">R$: 25,00</small>
+                                    <small class="text-muted">R$ 25,00</small>
                                 </div>
                             </div>
                             <i class="bi bi-droplet-half fs-4 text-secondary"></i>
@@ -102,7 +102,7 @@
                 <div class="col-md-4">
                     <div class="bg-white p-3 rounded shadow-sm d-flex justify-content-between align-items-center">
                         <strong class="fs-5">Valor Total:</strong>
-                        <span class="fw-bold text-success fs-4">R$:120,00</span>
+                        <span class="fw-bold text-success fs-4">R$ 120,00</span>
                     </div>
                 </div>
             </div>
