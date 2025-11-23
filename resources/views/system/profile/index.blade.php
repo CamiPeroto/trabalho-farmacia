@@ -41,7 +41,7 @@
             <div class="row mb-5">
                 <div class="col-12">
                     <label class="form-label small">Usuário do Sistema</label>
-                    <input type="text" class="form-control" value="{{ strtolower(Auth::user()->name) }}.barateira" readonly>
+                    <input type="text" class="form-control" value="{{ strtolower(Auth::user()->name) }}.petstore" readonly>
                 </div>
             </div>
 
