@@ -75,7 +75,6 @@ class SpeciesController extends Controller
 
     public function destroy(Species $species)
     {
-
         try {
 
             $species->delete();
@@ -90,9 +89,6 @@ class SpeciesController extends Controller
 
             return redirect()->route('species.index')
             ->with('error', 'Principio ativo não foi excluído!');
-
         }
-
     }
-
 }

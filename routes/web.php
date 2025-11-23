@@ -20,7 +20,6 @@ use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-
 Route::get('/appointment/create', [AppointmentsController::class, 'create'])->name('appointments.create');
 Route::get('/payment', [PaymentController::class, 'index'])->name('payments.index');
 
@@ -91,6 +90,16 @@ Route::get('/branches', [BranchesController::class, 'index'])->name('branches.in
 Route::post('/branches', [BranchesController::class, 'store'])->name('branch.store')->middleware('permission:create-branches');
 Route::put('/branches/{branch}', [BranchesController::class, 'update'])->name('branch.update')->middleware('permission:update-branches');
 Route::delete('/branches/{branch}', [BranchesController::class, 'destroy'])->name('branch.destroy')->middleware('permission:destroy-branches');
+
+Route::get('/appointments', [AppointmentsController::class, 'index'])->name('appointments.index');
+Route::get('/appointment/create', [AppointmentsController::class, 'create'])->name('appointments.create');
+Route::post('/appointment/create', [AppointmentsController::class, 'store'])->name('appointments.store');
+Route::get('/appointment/{appointment}/edit', [AppointmentsController::class, 'edit'])->name('appointments.edit');
+Route::put('/appointment/{appointment}', [AppointmentsController::class, 'update'])->name('appointments.update');
+Route::delete('/appointments/{appointment}', [AppointmentsController::class, 'destroy'])->name('appointments.destroy');
+
+Route::get('/pets/create', [PetsController::class, 'create'])->name('pets.create');
+Route::get('/payment', [PaymentController::class, 'index'])->name('payments.index');
 
 
 // Vendas
